@@ -7,9 +7,6 @@ import {
   Table,
 } from '@mantine/core';
 
-// Add item reference https://stackblitz.com/edit/simple-react-todo-example-qevigz?file=index.js
-// Timeline reference https://react-timeline.com/?path=/story/intro--page
-
 const useStyles = createStyles((theme) => ({
   heroImagePick: {
     outline: '3px solid green',

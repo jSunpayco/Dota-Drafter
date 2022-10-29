@@ -25,9 +25,9 @@ export const constants = {
       pickType2: 'Ban',
       pickOrder2: 2,
       pickImage1:
-        'https://static.wikia.nocookie.net/dota2_gamepedia/images/1/12/Marci_icon.png',
+        'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
       pickImage2:
-        'https://static.wikia.nocookie.net/dota2_gamepedia/images/7/7c/Cosmetic_icon_Compass_of_the_Rising_Gale_Bundle.png',
+        'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
     },
     {
       pickType1: 'Ban',
@@ -35,9 +35,9 @@ export const constants = {
       pickType2: 'Ban',
       pickOrder2: 4,
       pickImage1:
-        'https://static.wikia.nocookie.net/dota2_gamepedia/images/1/12/Marci_icon.png',
+        'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
       pickImage2:
-        'https://static.wikia.nocookie.net/dota2_gamepedia/images/7/7c/Cosmetic_icon_Compass_of_the_Rising_Gale_Bundle.png',
+        'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
     },
 
     {
@@ -46,9 +46,9 @@ export const constants = {
       pickType2: 'Pick',
       pickOrder2: 6,
       pickImage1:
-        'https://static.wikia.nocookie.net/dota2_gamepedia/images/1/12/Marci_icon.png',
+        'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
       pickImage2:
-        'https://static.wikia.nocookie.net/dota2_gamepedia/images/7/7c/Cosmetic_icon_Compass_of_the_Rising_Gale_Bundle.png',
+        'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
     },
     {
       pickType1: 'Pick',
@@ -56,9 +56,9 @@ export const constants = {
       pickType2: 'Pick',
       pickOrder2: 7,
       pickImage1:
-        'https://static.wikia.nocookie.net/dota2_gamepedia/images/1/12/Marci_icon.png',
+        'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
       pickImage2:
-        'https://static.wikia.nocookie.net/dota2_gamepedia/images/7/7c/Cosmetic_icon_Compass_of_the_Rising_Gale_Bundle.png',
+        'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
     },
 
     {
@@ -67,9 +67,9 @@ export const constants = {
       pickType2: 'Ban',
       pickOrder2: 10,
       pickImage1:
-        'https://static.wikia.nocookie.net/dota2_gamepedia/images/1/12/Marci_icon.png',
+        'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
       pickImage2:
-        'https://static.wikia.nocookie.net/dota2_gamepedia/images/7/7c/Cosmetic_icon_Compass_of_the_Rising_Gale_Bundle.png',
+        'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
     },
     {
       pickType1: 'Ban',
@@ -77,9 +77,9 @@ export const constants = {
       pickType2: 'Ban',
       pickOrder2: 12,
       pickImage1:
-        'https://static.wikia.nocookie.net/dota2_gamepedia/images/1/12/Marci_icon.png',
+        'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
       pickImage2:
-        'https://static.wikia.nocookie.net/dota2_gamepedia/images/7/7c/Cosmetic_icon_Compass_of_the_Rising_Gale_Bundle.png',
+        'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
     },
     {
       pickType1: 'Ban',
@@ -87,9 +87,9 @@ export const constants = {
       pickType2: 'Ban',
       pickOrder2: 14,
       pickImage1:
-        'https://static.wikia.nocookie.net/dota2_gamepedia/images/1/12/Marci_icon.png',
+        'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
       pickImage2:
-        'https://static.wikia.nocookie.net/dota2_gamepedia/images/7/7c/Cosmetic_icon_Compass_of_the_Rising_Gale_Bundle.png',
+        'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
     },
 
     {
@@ -98,9 +98,9 @@ export const constants = {
       pickType2: 'Pick',
       pickOrder2: 15,
       pickImage1:
-        'https://static.wikia.nocookie.net/dota2_gamepedia/images/1/12/Marci_icon.png',
+        'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
       pickImage2:
-        'https://static.wikia.nocookie.net/dota2_gamepedia/images/7/7c/Cosmetic_icon_Compass_of_the_Rising_Gale_Bundle.png',
+        'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
     },
     {
       pickType1: 'Pick',
@@ -108,9 +108,9 @@ export const constants = {
       pickType2: 'Pick',
       pickOrder2: 18,
       pickImage1:
-        'https://static.wikia.nocookie.net/dota2_gamepedia/images/1/12/Marci_icon.png',
+        'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
       pickImage2:
-        'https://static.wikia.nocookie.net/dota2_gamepedia/images/7/7c/Cosmetic_icon_Compass_of_the_Rising_Gale_Bundle.png',
+        'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
     },
 
     {
@@ -119,9 +119,9 @@ export const constants = {
       pickType2: 'Ban',
       pickOrder2: 20,
       pickImage1:
-        'https://static.wikia.nocookie.net/dota2_gamepedia/images/1/12/Marci_icon.png',
+        'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
       pickImage2:
-        'https://static.wikia.nocookie.net/dota2_gamepedia/images/7/7c/Cosmetic_icon_Compass_of_the_Rising_Gale_Bundle.png',
+        'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
     },
     {
       pickType1: 'Ban',
@@ -129,9 +129,9 @@ export const constants = {
       pickType2: 'Ban',
       pickOrder2: 22,
       pickImage1:
-        'https://static.wikia.nocookie.net/dota2_gamepedia/images/1/12/Marci_icon.png',
+        'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
       pickImage2:
-        'https://static.wikia.nocookie.net/dota2_gamepedia/images/7/7c/Cosmetic_icon_Compass_of_the_Rising_Gale_Bundle.png',
+        'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
     },
 
     {
@@ -140,9 +140,9 @@ export const constants = {
       pickType2: 'Pick',
       pickOrder2: 24,
       pickImage1:
-        'https://static.wikia.nocookie.net/dota2_gamepedia/images/1/12/Marci_icon.png',
+        'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
       pickImage2:
-        'https://static.wikia.nocookie.net/dota2_gamepedia/images/7/7c/Cosmetic_icon_Compass_of_the_Rising_Gale_Bundle.png',
+        'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
     },
   ],
 };
