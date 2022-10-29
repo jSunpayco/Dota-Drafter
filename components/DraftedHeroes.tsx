@@ -6,18 +6,6 @@ import {
   Button,
   Table,
 } from '@mantine/core';
-import { IconBrandYoutube } from '@tabler/icons';
-import {
-  Timeline,
-  Events,
-  UrlButton,
-  ImageEvent,
-  TextEvent,
-  YouTubeEvent,
-} from '@merc/react-timeline';
-import { useEffect, useState } from 'react';
-
-import { constants } from '../Constants';
 
 // Add item reference https://stackblitz.com/edit/simple-react-todo-example-qevigz?file=index.js
 // Timeline reference https://react-timeline.com/?path=/story/intro--page

@@ -68,6 +68,7 @@ function Drafter() {
 
   useEffect(() => {
     fetchHeroStatus();
+    testing();
   }, []);
 
   const fetchHeroStatus = () => {
@@ -92,6 +93,11 @@ function Drafter() {
       });
   };
 
+  function testing() {
+    console.log(pickList[currIndex].pickOrder2);
+    console.log('to prove it works');
+  }
+
   const heroCards = (attr) => {
     return attr
       .sort((a, b) => {
@@ -105,16 +111,16 @@ function Drafter() {
             radius="md"
             className={classes.card}
             src={constants.urlMainApi + heroItem.img}
+            // onClick={pickAHero(constants.urlMainApi + heroItem.img)}
           />
         </AspectRatio>
       ));
   };
 
-  function pickAHero() {
+  function pickAHero(heroImage) {
     const tempList = [...pickList];
     if (tempList[currIndex].pickOrder2 == currPick) {
-      tempList[currIndex].pickImage2 =
-        'https://static.wikia.nocookie.net/dota2_gamepedia/images/4/4f/The_Disciple%27s_Path_Anti-Mage_icon.png';
+      tempList[currIndex].pickImage2 = heroImage;
       setPickList(tempList);
       setCurrIndex(currIndex + 1);
     }
@@ -170,7 +176,6 @@ function Drafter() {
             onChange={(e) => {
               setListItem(e.currentTarget.value);
             }}
-            rightSection={<Button />}
           />
           <DraftedHeroes pickList={pickList} />
         </Container>
