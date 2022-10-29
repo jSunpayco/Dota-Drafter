@@ -74,21 +74,8 @@ function DraftedHeroes(props) {
     </tr>
   ));
 
-  // function pickAHero() {
-  //   const tempList = [...props.pickList];
-  //   if (tempList[currIndex].pickOrder2 == currPick) {
-  //     tempList[currIndex].pickImage2 =
-  //       'https://static.wikia.nocookie.net/dota2_gamepedia/images/4/4f/The_Disciple%27s_Path_Anti-Mage_icon.png';
-  //     setMyList(tempList);
-  //     setCurrIndex(currIndex + 1);
-  //   }
-  //   setCurrPick(currPick + 1);
-  // }
-
   return (
     <div>
-      {/* <Button onClick={pickAHero}>click to add</Button> */}
-
       <Container size={200}>
         <Table horizontalSpacing="xs" withColumnBorders>
           <thead>

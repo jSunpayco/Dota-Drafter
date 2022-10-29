@@ -111,7 +111,7 @@ function Drafter() {
             radius="md"
             className={classes.card}
             src={constants.urlMainApi + heroItem.img}
-            // onClick={pickAHero(constants.urlMainApi + heroItem.img)}
+            onClick={() => pickAHero(constants.urlMainApi + heroItem.img)}
           />
         </AspectRatio>
       ));
@@ -119,11 +119,18 @@ function Drafter() {
 
   function pickAHero(heroImage) {
     const tempList = [...pickList];
-    if (tempList[currIndex].pickOrder2 == currPick) {
+    if (tempList[currIndex].pickOrder1 == currPick) {
+      tempList[currIndex].pickImage1 = heroImage;
+      if (currPick > pickList[currIndex].pickOrder2) {
+        setCurrIndex(currIndex + 1);
+      }
+    } else {
       tempList[currIndex].pickImage2 = heroImage;
-      setPickList(tempList);
-      setCurrIndex(currIndex + 1);
+      if (currPick > pickList[currIndex].pickOrder1) {
+        setCurrIndex(currIndex + 1);
+      }
     }
+    setPickList(tempList);
     setCurrPick(currPick + 1);
   }
 
