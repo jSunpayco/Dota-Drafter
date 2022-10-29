@@ -5,7 +5,6 @@ import {
   createStyles,
   Image,
   TextInput,
-  Button,
   Space,
   Title,
 } from '@mantine/core';
@@ -31,6 +30,7 @@ const useStyles = createStyles((theme) => ({
   container: {
     marginLeft: 50,
     flex: 1,
+    minWidth: '600px',
   },
 
   drafted: {
@@ -50,6 +50,11 @@ const useStyles = createStyles((theme) => ({
     alignItems: 'stretch',
     width: '100%',
   },
+
+  picked: {
+    filter: 'grayscale(100%)',
+    pointerEvents: 'none',
+  },
 }));
 
 function Drafter() {
@@ -62,13 +67,13 @@ function Drafter() {
   const [listItem, setListItem] = useState('');
 
   const [pickList, setPickList] = useState(constants.pickList);
+  const [selectedHeroes, setSelectedHeroes] = useState(constants.pickList);
 
   const [currPick, setCurrPick] = useState(1);
   const [currIndex, setCurrIndex] = useState(0);
 
   useEffect(() => {
     fetchHeroStatus();
-    testing();
   }, []);
 
   const fetchHeroStatus = () => {
@@ -93,31 +98,49 @@ function Drafter() {
       });
   };
 
-  function testing() {
-    console.log(pickList[currIndex].pickOrder2);
-    console.log('to prove it works');
-  }
+  const realHeroIndex = (index, attr) => {
+    let newIndex = index;
+    if (attr == 'int') {
+      newIndex += heroAgility.length;
+    } else if (attr == 'str') {
+      newIndex += heroAgility.length;
+      newIndex += heroIntelligence.length;
+    }
 
-  const heroCards = (attr) => {
+    return newIndex;
+  };
+
+  const heroCards = (attr, attrName) => {
     return attr
       .sort((a, b) => {
         return a.localized_name > b.localized_name ? 1 : -1;
       })
-      .map((heroItem) => (
+      .map((heroItem, index) => (
         <AspectRatio ratio={1920 / 1080}>
           <Image
             key={heroItem.localized_name}
             p="md"
             radius="md"
-            className={classes.card}
+            className={
+              selectedHeroes.some(
+                (item) => item == realHeroIndex(index, attrName)
+              )
+                ? classes.picked
+                : classes.card
+            }
             src={constants.urlMainApi + heroItem.img}
-            onClick={() => pickAHero(constants.urlMainApi + heroItem.img)}
+            onClick={() =>
+              pickAHero(
+                constants.urlMainApi + heroItem.img,
+                realHeroIndex(index, attrName)
+              )
+            }
           />
         </AspectRatio>
       ));
   };
 
-  function pickAHero(heroImage) {
+  function pickAHero(heroImage, filteredIndex) {
     const tempList = [...pickList];
     if (tempList[currIndex].pickOrder1 == currPick) {
       tempList[currIndex].pickImage1 = heroImage;
@@ -130,6 +153,7 @@ function Drafter() {
         setCurrIndex(currIndex + 1);
       }
     }
+    setSelectedHeroes([...selectedHeroes, filteredIndex]);
     setPickList(tempList);
     setCurrPick(currPick + 1);
   }
@@ -137,7 +161,6 @@ function Drafter() {
   return (
     <div>
       <HeaderMiddle />
-
       <div className={classes.divider}>
         <Container size={'sm'} className={classes.container}>
           <Title order={1}>Agility</Title>
@@ -147,7 +170,7 @@ function Drafter() {
             breakpoints={[{ maxWidth: 'xs', cols: 1 }]}
             spacing="xs"
           >
-            {heroCards(heroAgility)}
+            {heroCards(heroAgility, 'agi')}
           </SimpleGrid>
 
           <Space h="xl" />
@@ -158,7 +181,7 @@ function Drafter() {
             breakpoints={[{ maxWidth: 'xs', cols: 1 }]}
             spacing="xs"
           >
-            {heroCards(heroIntelligence)}
+            {heroCards(heroIntelligence, 'int')}
           </SimpleGrid>
 
           <Space h="xl" />
@@ -169,7 +192,7 @@ function Drafter() {
             breakpoints={[{ maxWidth: 'xs', cols: 1 }]}
             spacing="xs"
           >
-            {heroCards(heroStrength)}
+            {heroCards(heroStrength, 'str')}
           </SimpleGrid>
         </Container>
         <Container className={classes.drafted}>
