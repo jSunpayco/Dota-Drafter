@@ -10,7 +10,7 @@ import {
 } from '@mantine/core';
 import { IconBrandYoutube } from '@tabler/icons';
 import React = require('react');
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState } from 'react';
 import { constants } from '../Constants';
 import _ = require('lodash');
 
@@ -27,10 +27,16 @@ const useStyles = createStyles((theme) => ({
     },
   },
 
+  mainBody: {
+    width: '100%',
+    minWidth: '200px',
+  },
+
   container: {
     marginLeft: 50,
     flex: 1,
-    minWidth: '600px',
+    width: '100%',
+    minWidth: '500px',
   },
 
   drafted: {
@@ -159,15 +165,26 @@ function Drafter() {
   }
 
   return (
-    <div>
+    <div className={classes.mainBody}>
       <HeaderMiddle />
+      <TextInput
+        icon={<IconBrandYoutube size={18} stroke={1.5} />}
+        radius="xl"
+        size="md"
+        placeholder="Search Heroes"
+        rightSectionWidth={42}
+        value={listItem}
+        onChange={(e) => {
+          setListItem(e.currentTarget.value);
+        }}
+      />
       <div className={classes.divider}>
         <Container size={'sm'} className={classes.container}>
           <Title order={1}>Agility</Title>
           <Space h="xl" />
           <SimpleGrid
             cols={9}
-            breakpoints={[{ maxWidth: 'xs', cols: 1 }]}
+            breakpoints={[{ maxWidth: 'sm', cols: 3 }]}
             spacing="xs"
           >
             {heroCards(heroAgility, 'agi')}
@@ -178,7 +195,7 @@ function Drafter() {
           <Space h="xl" />
           <SimpleGrid
             cols={9}
-            breakpoints={[{ maxWidth: 'xs', cols: 1 }]}
+            breakpoints={[{ maxWidth: 'sm', cols: 3 }]}
             spacing="xs"
           >
             {heroCards(heroIntelligence, 'int')}
@@ -189,24 +206,13 @@ function Drafter() {
           <Space h="xl" />
           <SimpleGrid
             cols={9}
-            breakpoints={[{ maxWidth: 'xs', cols: 1 }]}
+            breakpoints={[{ maxWidth: 'sm', cols: 3 }]}
             spacing="xs"
           >
             {heroCards(heroStrength, 'str')}
           </SimpleGrid>
         </Container>
         <Container className={classes.drafted}>
-          <TextInput
-            icon={<IconBrandYoutube size={18} stroke={1.5} />}
-            radius="xl"
-            size="md"
-            placeholder="Search Heroes"
-            rightSectionWidth={42}
-            value={listItem}
-            onChange={(e) => {
-              setListItem(e.currentTarget.value);
-            }}
-          />
           <DraftedHeroes pickList={pickList} />
         </Container>
       </div>
