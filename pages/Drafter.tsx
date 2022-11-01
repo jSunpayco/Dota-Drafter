@@ -30,6 +30,8 @@ const useStyles = createStyles((theme) => ({
   mainBody: {
     width: '100%',
     minWidth: '200px',
+    marginTop: '100px',
+    marginBottom: '100px',
   },
 
   container: {

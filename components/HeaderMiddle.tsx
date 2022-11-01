@@ -1,74 +1,75 @@
 import React = require('react');
-import {
-  createStyles,
-  Header,
-  Container,
-  Group,
-  ActionIcon,
-} from '@mantine/core';
+import { createStyles, Text, Title } from '@mantine/core';
 
 const useStyles = createStyles((theme) => ({
-  inner: {
+  navbar: {
     display: 'flex',
-    justifyContent: 'space-between',
     alignItems: 'center',
-    height: 56,
-
-    [theme.fn.smallerThan('sm')]: {
-      justifyContent: 'flex-start',
-    },
+    justifyContent: 'space-between',
+    backgroundColor: 'white',
+    color: '#fff',
+    opacity: 1,
+    width: '100%',
+    height: '70px',
+    position: 'fixed',
+    top: '0px',
+    left: '0px',
+    zIndex: 1,
+    boxShadow: '0 2px 2px rgba(0, 0, 0, 0.1)',
   },
 
-  links: {
-    width: 260,
-    marginRight: 300,
+  logo: {
+    padding: '20px',
+    color: 'black',
+  },
 
-    [theme.fn.smallerThan('sm')]: {
-      display: 'none',
-    },
+  list: {
+    display: 'flex',
+  },
+
+  listItem: {
+    listStyleType: 'none',
+    padding: '20px',
+    height: '15px',
+    borderRadius: '10px',
+    textAlign: 'center',
   },
 
   link: {
-    display: 'block',
-    lineHeight: 1,
-    padding: '8px 12px',
-    borderRadius: theme.radius.sm,
-    textDecoration: 'none',
-    color:
-      theme.colorScheme === 'dark'
-        ? theme.colors.dark[0]
-        : theme.colors.gray[7],
-    fontSize: theme.fontSizes.sm,
-    fontWeight: 500,
-
-    '&:hover': {
-      backgroundColor:
-        theme.colorScheme === 'dark'
-          ? theme.colors.dark[6]
-          : theme.colors.gray[0],
-    },
+    color: 'black',
+    fontWeight: '700px',
+    cursor: 'pointer',
   },
 }));
 
 const HeaderMiddle = () => {
   const { classes, cx } = useStyles();
   return (
-    <div style={{ width: '100%' }}>
-      <Header height={56} mb={120}>
-        <Container className={classes.inner}>
-          <Group className={classes.links} spacing={5} noWrap>
-            <a href="/" className={classes.link}>
-              Home
-            </a>
-            <a href="drafter" className={classes.link}>
-              Drafter
-            </a>
-            <a href="about" className={classes.link}>
-              About
-            </a>
-          </Group>
-        </Container>
-      </Header>
+    <div>
+      <div className={classes.navbar}>
+        <Title className={classes.logo} order={2}>
+          DOTA Drafter
+        </Title>
+        <nav>
+          <ul className={classes.list}>
+            <li className={classes.listItem}>
+              <Text className={classes.link} weight={700} href="/">
+                Home
+              </Text>
+            </li>
+            <li className={classes.listItem}>
+              <Text className={classes.link} weight={700} href="/drafter">
+                Drafter
+              </Text>
+            </li>
+            <li className={classes.listItem}>
+              <Text className={classes.link} weight={700} href="/about">
+                About
+              </Text>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </div>
   );
 };

@@ -31,6 +31,7 @@ const useStyles = createStyles((theme) => ({
 
   container: {
     minWidth: 500,
+    marginTop: '100px',
   },
 
   title: {
