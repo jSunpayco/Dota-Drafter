@@ -6,11 +6,6 @@ import {
   Group,
   ActionIcon,
 } from '@mantine/core';
-import {
-  IconBrandTwitter,
-  IconBrandYoutube,
-  IconBrandInstagram,
-} from '@tabler/icons';
 
 const useStyles = createStyles((theme) => ({
   inner: {
@@ -30,15 +25,6 @@ const useStyles = createStyles((theme) => ({
 
     [theme.fn.smallerThan('sm')]: {
       display: 'none',
-    },
-  },
-
-  social: {
-    width: 260,
-
-    [theme.fn.smallerThan('sm')]: {
-      width: 'auto',
-      marginLeft: 'auto',
     },
   },
 
@@ -80,18 +66,6 @@ const HeaderMiddle = () => {
             <a href="about" className={classes.link}>
               About
             </a>
-          </Group>
-
-          <Group spacing={0} className={classes.social} position="right" noWrap>
-            <ActionIcon size="lg">
-              <IconBrandTwitter size={18} stroke={1.5} />
-            </ActionIcon>
-            <ActionIcon size="lg">
-              <IconBrandYoutube size={18} stroke={1.5} />
-            </ActionIcon>
-            <ActionIcon size="lg">
-              <IconBrandInstagram size={18} stroke={1.5} />
-            </ActionIcon>
           </Group>
         </Container>
       </Header>

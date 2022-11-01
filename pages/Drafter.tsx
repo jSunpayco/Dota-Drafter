@@ -35,8 +35,7 @@ const useStyles = createStyles((theme) => ({
   container: {
     marginLeft: 50,
     flex: 1,
-    width: '100%',
-    minWidth: '500px',
+    minWidth: '800px',
   },
 
   drafted: {
@@ -44,10 +43,7 @@ const useStyles = createStyles((theme) => ({
     marginLeft: 50,
     marginRight: 50,
     maxHeight: '1000px',
-  },
-
-  timeline: {
-    maxHeight: '1000px',
+    maxWidth: 'fit-content',
   },
 
   divider: {
@@ -179,34 +175,34 @@ function Drafter() {
         }}
       />
       <div className={classes.divider}>
-        <Container size={'sm'} className={classes.container}>
-          <Title order={1}>Agility</Title>
+        <Container size={'lg'} className={classes.container}>
+          <Title order={2}>Agility</Title>
           <Space h="xl" />
           <SimpleGrid
-            cols={9}
-            breakpoints={[{ maxWidth: 'sm', cols: 3 }]}
+            cols={12}
+            breakpoints={[{ maxWidth: 'sm', cols: 5 }]}
             spacing="xs"
           >
             {heroCards(heroAgility, 'agi')}
           </SimpleGrid>
 
           <Space h="xl" />
-          <Title order={1}>Intelligence</Title>
+          <Title order={2}>Intelligence</Title>
           <Space h="xl" />
           <SimpleGrid
-            cols={9}
-            breakpoints={[{ maxWidth: 'sm', cols: 3 }]}
+            cols={12}
+            breakpoints={[{ maxWidth: 'sm', cols: 5 }]}
             spacing="xs"
           >
             {heroCards(heroIntelligence, 'int')}
           </SimpleGrid>
 
           <Space h="xl" />
-          <Title order={1}>Strength</Title>
+          <Title order={2}>Strength</Title>
           <Space h="xl" />
           <SimpleGrid
-            cols={9}
-            breakpoints={[{ maxWidth: 'sm', cols: 3 }]}
+            cols={12}
+            breakpoints={[{ maxWidth: 'sm', cols: 5 }]}
             spacing="xs"
           >
             {heroCards(heroStrength, 'str')}

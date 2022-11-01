@@ -1,11 +1,5 @@
 import React = require('react');
-import {
-  createStyles,
-  Container,
-  TextInput,
-  Button,
-  Table,
-} from '@mantine/core';
+import { createStyles, Container, Table } from '@mantine/core';
 
 const useStyles = createStyles((theme) => ({
   heroImagePick: {
