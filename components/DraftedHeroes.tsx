@@ -1,14 +1,5 @@
 import React = require('react');
-import {
-  createStyles,
-  Container,
-  TextInput,
-  Button,
-  Table,
-} from '@mantine/core';
-
-// Add item reference https://stackblitz.com/edit/simple-react-todo-example-qevigz?file=index.js
-// Timeline reference https://react-timeline.com/?path=/story/intro--page
+import { createStyles, Container, Table } from '@mantine/core';
 
 const useStyles = createStyles((theme) => ({
   heroImagePick: {
@@ -74,21 +65,8 @@ function DraftedHeroes(props) {
     </tr>
   ));
 
-  // function pickAHero() {
-  //   const tempList = [...props.pickList];
-  //   if (tempList[currIndex].pickOrder2 == currPick) {
-  //     tempList[currIndex].pickImage2 =
-  //       'https://static.wikia.nocookie.net/dota2_gamepedia/images/4/4f/The_Disciple%27s_Path_Anti-Mage_icon.png';
-  //     setMyList(tempList);
-  //     setCurrIndex(currIndex + 1);
-  //   }
-  //   setCurrPick(currPick + 1);
-  // }
-
   return (
     <div>
-      {/* <Button onClick={pickAHero}>click to add</Button> */}
-
       <Container size={200}>
         <Table horizontalSpacing="xs" withColumnBorders>
           <thead>
