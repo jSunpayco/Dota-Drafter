@@ -8,7 +8,7 @@ import {
   Button,
   Table,
 } from '@mantine/core';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const useStyles = createStyles((theme) => ({
   heroImagePick: {
@@ -36,12 +36,40 @@ const useStyles = createStyles((theme) => ({
 
 function About() {
   const { classes, cx } = useStyles();
+  var currText = '';
+  const [sample, setSample] = useState(currText);
+
+  useEffect(() => {
+    document.addEventListener('keydown', keyPress);
+    return function cleanup() {
+      document.removeEventListener('keydown', keyPress);
+    };
+  }, []);
+
+  function keyPress(event) {
+    let currInput = sample;
+
+    if (event.keyCode === 8) {
+      setSample(sample.slice(0, -1));
+    }
+    // else if(event.target.innerHTML === 'enter'){
+    //   setSample();
+    // }
+    else if (
+      (event.keyCode >= 65 && event.keyCode <= 90) ||
+      (event.keyCode >= 97 && event.keyCode <= 122)
+    ) {
+      currText += event.key;
+      setSample(currText);
+    }
+  }
 
   return (
     <div>
       <HeaderMiddle activeTab={constants.aboutPageIndex} />
 
       <div style={{ marginTop: '100px' }}>
+        <p>{sample}</p>
         <Button>click to add</Button>
 
         <Container size={200}>
