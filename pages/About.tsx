@@ -40,7 +40,7 @@ function About() {
 
   return (
     <div>
-      <HeaderMiddle activeTab={2} />
+      <HeaderMiddle activeTab={constants.aboutPageIndex} />
 
       <div style={{ marginTop: '100px' }}>
         <Button>click to add</Button>
