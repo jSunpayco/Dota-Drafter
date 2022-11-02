@@ -10,7 +10,6 @@
     "@mantine/ds": "5.5.5",
     "@mantine/hooks": "5.5.5",
     "@mantine/prism": "5.5.5",
-    "@merc/react-timeline": "^0.1.42",
     "@mui/lab": "^5.0.0-alpha.104",
     "@mui/material": "^5.0.0",
     "@tabler/icons": "1.104.0",
@@ -23,10 +22,9 @@
     "ramda": ">= 0.20.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-google-location": "1.2.2",
     "react-is": ">= 16.8.0",
+    "react-loader-spinner": "^5.3.4",
     "react-router-dom": "6.4.2",
-    "react-vertical-timeline-component": "^3.5.2",
     "styled-components": ">= 4.*.*"
   },
   "scripts": {

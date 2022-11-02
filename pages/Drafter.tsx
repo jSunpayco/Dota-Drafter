@@ -30,12 +30,11 @@ const useStyles = createStyles((theme) => ({
   mainBody: {
     width: '100%',
     minWidth: '200px',
-    marginTop: '100px',
-    marginBottom: '100px',
+    marginTop: '90px',
   },
 
   container: {
-    marginLeft: 50,
+    marginLeft: 0,
     flex: 1,
     minWidth: '800px',
   },
@@ -64,11 +63,11 @@ const useStyles = createStyles((theme) => ({
 function Drafter() {
   const { classes } = useStyles();
 
+  const [isLoading, setIsLoading] = useState(true);
+
   const [heroAgility, setHeroAgility] = useState([]);
   const [heroIntelligence, setHeroIntelligence] = useState([]);
   const [heroStrength, setHeroStrength] = useState([]);
-
-  const [listItem, setListItem] = useState('');
 
   const [pickList, setPickList] = useState(constants.pickList);
   const [selectedHeroes, setSelectedHeroes] = useState(constants.pickList);
@@ -99,6 +98,9 @@ function Drafter() {
             return hero.primary_attr == 'str';
           })
         );
+      })
+      .then(function (data) {
+        setIsLoading(!isLoading);
       });
   };
 
@@ -165,50 +167,43 @@ function Drafter() {
   return (
     <div className={classes.mainBody}>
       <HeaderMiddle activeTab={constants.drafterPageIndex} />
-      <TextInput
-        icon={<IconBrandYoutube size={18} stroke={1.5} />}
-        radius="xl"
-        size="md"
-        placeholder="Search Heroes"
-        rightSectionWidth={42}
-        value={listItem}
-        onChange={(e) => {
-          setListItem(e.currentTarget.value);
-        }}
-      />
       <div className={classes.divider}>
         <Container size={'lg'} className={classes.container}>
-          <Title order={2}>Agility</Title>
-          <Space h="xl" />
-          <SimpleGrid
-            cols={12}
-            breakpoints={[{ maxWidth: 'sm', cols: 5 }]}
-            spacing="xs"
-          >
-            {heroCards(heroAgility, 'agi')}
-          </SimpleGrid>
+          {isLoading ? null : (
+            <div>
+              <Title order={2}>Agility</Title>
+              <Space h="sm" />
+              <SimpleGrid
+                cols={15}
+                breakpoints={[{ maxWidth: 'sm', cols: 5 }]}
+                spacing="xs"
+              >
+                {heroCards(heroAgility, 'agi')}
+              </SimpleGrid>
 
-          <Space h="xl" />
-          <Title order={2}>Intelligence</Title>
-          <Space h="xl" />
-          <SimpleGrid
-            cols={12}
-            breakpoints={[{ maxWidth: 'sm', cols: 5 }]}
-            spacing="xs"
-          >
-            {heroCards(heroIntelligence, 'int')}
-          </SimpleGrid>
+              <Space h="sm" />
+              <Title order={2}>Intelligence</Title>
+              <Space h="xl" />
+              <SimpleGrid
+                cols={15}
+                breakpoints={[{ maxWidth: 'sm', cols: 5 }]}
+                spacing="xs"
+              >
+                {heroCards(heroIntelligence, 'int')}
+              </SimpleGrid>
 
-          <Space h="xl" />
-          <Title order={2}>Strength</Title>
-          <Space h="xl" />
-          <SimpleGrid
-            cols={12}
-            breakpoints={[{ maxWidth: 'sm', cols: 5 }]}
-            spacing="xs"
-          >
-            {heroCards(heroStrength, 'str')}
-          </SimpleGrid>
+              <Space h="xl" />
+              <Title order={2}>Strength</Title>
+              <Space h="sm" />
+              <SimpleGrid
+                cols={15}
+                breakpoints={[{ maxWidth: 'sm', cols: 5 }]}
+                spacing="xs"
+              >
+                {heroCards(heroStrength, 'str')}
+              </SimpleGrid>
+            </div>
+          )}
         </Container>
         <Container className={classes.drafted}>
           <DraftedHeroes pickList={pickList} />
