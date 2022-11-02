@@ -40,7 +40,7 @@ function About() {
 
   return (
     <div>
-      <HeaderMiddle />
+      <HeaderMiddle activeTab={2} />
 
       <div style={{ marginTop: '100px' }}>
         <Button>click to add</Button>

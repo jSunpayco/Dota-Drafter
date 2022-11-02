@@ -1,5 +1,6 @@
 import React = require('react');
-import { createStyles, Text, Title } from '@mantine/core';
+import { createStyles, Text, Title, Anchor } from '@mantine/core';
+import { useState } from 'react';
 
 const useStyles = createStyles((theme) => ({
   navbar: {
@@ -29,21 +30,41 @@ const useStyles = createStyles((theme) => ({
 
   listItem: {
     listStyleType: 'none',
-    padding: '20px',
+    padding: `7px ${theme.spacing.sm}px`,
     height: '15px',
     borderRadius: '10px',
     textAlign: 'center',
   },
 
   link: {
-    color: 'black',
-    fontWeight: '700px',
+    textTransform: 'uppercase',
+    fontSize: 16,
+    color:
+      theme.colorScheme === 'dark'
+        ? theme.colors.dark[1]
+        : theme.colors.gray[6],
     cursor: 'pointer',
+    borderBottom: '2px solid transparent',
+    transition: 'border-color 100ms ease, color 100ms ease',
+
+    '&:hover': {
+      color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+      textDecoration: 'none',
+    },
+  },
+
+  activePage: {
+    color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+    borderBottomColor:
+      theme.colors[theme.primaryColor][theme.colorScheme === 'dark' ? 5 : 6],
   },
 }));
 
-const HeaderMiddle = () => {
+const HeaderMiddle = (props) => {
   const { classes, cx } = useStyles();
+
+  const [activeTab, setActiveTab] = useState(props.activeTab);
+
   return (
     <div>
       <div className={classes.navbar}>
@@ -53,19 +74,37 @@ const HeaderMiddle = () => {
         <nav>
           <ul className={classes.list}>
             <li className={classes.listItem}>
-              <Text className={classes.link} weight={700} href="/">
+              <Anchor
+                weight={700}
+                href="/"
+                className={cx(classes.link, {
+                  [classes.activePage]: activeTab == 0,
+                })}
+              >
                 Home
-              </Text>
+              </Anchor>
             </li>
             <li className={classes.listItem}>
-              <Text className={classes.link} weight={700} href="/drafter">
+              <Anchor
+                className={cx(classes.link, {
+                  [classes.activePage]: activeTab == 1,
+                })}
+                weight={700}
+                href="/drafter"
+              >
                 Drafter
-              </Text>
+              </Anchor>
             </li>
             <li className={classes.listItem}>
-              <Text className={classes.link} weight={700} href="/about">
+              <Anchor
+                className={cx(classes.link, {
+                  [classes.activePage]: activeTab == 2,
+                })}
+                weight={700}
+                href="/about"
+              >
                 About
-              </Text>
+              </Anchor>
             </li>
           </ul>
         </nav>

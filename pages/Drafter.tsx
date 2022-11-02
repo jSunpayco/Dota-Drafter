@@ -164,7 +164,7 @@ function Drafter() {
 
   return (
     <div className={classes.mainBody}>
-      <HeaderMiddle />
+      <HeaderMiddle activeTab={1} />
       <TextInput
         icon={<IconBrandYoutube size={18} stroke={1.5} />}
         radius="xl"

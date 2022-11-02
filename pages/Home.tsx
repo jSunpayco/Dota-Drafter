@@ -280,7 +280,7 @@ function Home() {
 
   return (
     <div>
-      <HeaderMiddle />
+      <HeaderMiddle activeTab={0} />
 
       <Container py="xl" className={classes.container}>
         <Header className={classes.inner}>
