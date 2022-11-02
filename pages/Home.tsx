@@ -31,6 +31,7 @@ const useStyles = createStyles((theme) => ({
 
   container: {
     minWidth: 500,
+    marginTop: '100px',
   },
 
   title: {
@@ -279,7 +280,7 @@ function Home() {
 
   return (
     <div>
-      <HeaderMiddle />
+      <HeaderMiddle activeTab={constants.homePageIndex} />
 
       <Container py="xl" className={classes.container}>
         <Header className={classes.inner}>

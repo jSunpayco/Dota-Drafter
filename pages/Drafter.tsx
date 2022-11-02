@@ -30,6 +30,8 @@ const useStyles = createStyles((theme) => ({
   mainBody: {
     width: '100%',
     minWidth: '200px',
+    marginTop: '100px',
+    marginBottom: '100px',
   },
 
   container: {
@@ -162,7 +164,7 @@ function Drafter() {
 
   return (
     <div className={classes.mainBody}>
-      <HeaderMiddle />
+      <HeaderMiddle activeTab={constants.drafterPageIndex} />
       <TextInput
         icon={<IconBrandYoutube size={18} stroke={1.5} />}
         radius="xl"

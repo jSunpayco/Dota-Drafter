@@ -1,4 +1,8 @@
 export const constants = {
+  drafterPageIndex: 1,
+  aboutPageIndex: 2,
+  homePageIndex: 0,
+
   attributeAgility: 'agi',
   attributeIntelligence: 'int',
   attributeStrength: 'str',

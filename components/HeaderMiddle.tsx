@@ -1,74 +1,114 @@
 import React = require('react');
-import {
-  createStyles,
-  Header,
-  Container,
-  Group,
-  ActionIcon,
-} from '@mantine/core';
+import { createStyles, Text, Title, Anchor } from '@mantine/core';
+import { useState } from 'react';
 
 const useStyles = createStyles((theme) => ({
-  inner: {
+  navbar: {
     display: 'flex',
-    justifyContent: 'space-between',
     alignItems: 'center',
-    height: 56,
-
-    [theme.fn.smallerThan('sm')]: {
-      justifyContent: 'flex-start',
-    },
+    justifyContent: 'space-between',
+    backgroundColor: 'white',
+    color: '#fff',
+    opacity: 1,
+    width: '100%',
+    height: '70px',
+    position: 'fixed',
+    top: '0px',
+    left: '0px',
+    zIndex: 1,
+    boxShadow: '0 2px 2px rgba(0, 0, 0, 0.1)',
   },
 
-  links: {
-    width: 260,
-    marginRight: 300,
+  logo: {
+    padding: '20px',
+    color: 'black',
+  },
 
-    [theme.fn.smallerThan('sm')]: {
-      display: 'none',
-    },
+  list: {
+    display: 'flex',
+  },
+
+  listItem: {
+    listStyleType: 'none',
+    padding: `7px ${theme.spacing.sm}px`,
+    height: '15px',
+    borderRadius: '10px',
+    textAlign: 'center',
   },
 
   link: {
-    display: 'block',
-    lineHeight: 1,
-    padding: '8px 12px',
-    borderRadius: theme.radius.sm,
-    textDecoration: 'none',
+    textTransform: 'uppercase',
+    fontSize: 16,
     color:
       theme.colorScheme === 'dark'
-        ? theme.colors.dark[0]
-        : theme.colors.gray[7],
-    fontSize: theme.fontSizes.sm,
-    fontWeight: 500,
+        ? theme.colors.dark[1]
+        : theme.colors.gray[6],
+    cursor: 'pointer',
+    borderBottom: '2px solid transparent',
+    transition: 'border-color 100ms ease, color 100ms ease',
 
     '&:hover': {
-      backgroundColor:
-        theme.colorScheme === 'dark'
-          ? theme.colors.dark[6]
-          : theme.colors.gray[0],
+      color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+      textDecoration: 'none',
     },
+  },
+
+  activePage: {
+    color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+    borderBottomColor:
+      theme.colors[theme.primaryColor][theme.colorScheme === 'dark' ? 5 : 6],
   },
 }));
 
-const HeaderMiddle = () => {
+const HeaderMiddle = (props) => {
   const { classes, cx } = useStyles();
+
+  const [activeTab, setActiveTab] = useState(props.activeTab);
+
   return (
-    <div style={{ width: '100%' }}>
-      <Header height={56} mb={120}>
-        <Container className={classes.inner}>
-          <Group className={classes.links} spacing={5} noWrap>
-            <a href="/" className={classes.link}>
-              Home
-            </a>
-            <a href="drafter" className={classes.link}>
-              Drafter
-            </a>
-            <a href="about" className={classes.link}>
-              About
-            </a>
-          </Group>
-        </Container>
-      </Header>
+    <div>
+      <div className={classes.navbar}>
+        <Title className={classes.logo} order={2}>
+          DOTA Drafter
+        </Title>
+        <nav>
+          <ul className={classes.list}>
+            <li className={classes.listItem}>
+              <Anchor
+                weight={700}
+                href="/"
+                className={cx(classes.link, {
+                  [classes.activePage]: activeTab == 0,
+                })}
+              >
+                Home
+              </Anchor>
+            </li>
+            <li className={classes.listItem}>
+              <Anchor
+                className={cx(classes.link, {
+                  [classes.activePage]: activeTab == 1,
+                })}
+                weight={700}
+                href="/drafter"
+              >
+                Drafter
+              </Anchor>
+            </li>
+            <li className={classes.listItem}>
+              <Anchor
+                className={cx(classes.link, {
+                  [classes.activePage]: activeTab == 2,
+                })}
+                weight={700}
+                href="/about"
+              >
+                About
+              </Anchor>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </div>
   );
 };
