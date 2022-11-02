@@ -63,7 +63,7 @@ const useStyles = createStyles((theme) => ({
 const HeaderMiddle = (props) => {
   const { classes, cx } = useStyles();
 
-  const [activeTab, setActiveTab] = useState(props.activeTab);
+  const activeTab = props.activeTab;
 
   return (
     <div>

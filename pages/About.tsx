@@ -8,7 +8,6 @@ import {
   Button,
   Table,
 } from '@mantine/core';
-import { IconBrandYoutube } from '@tabler/icons';
 import { useState } from 'react';
 
 const useStyles = createStyles((theme) => ({
