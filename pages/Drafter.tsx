@@ -8,14 +8,13 @@ import {
   Space,
   Title,
 } from '@mantine/core';
-import { IconBrandYoutube } from '@tabler/icons';
 import React = require('react');
 import { useEffect, useState } from 'react';
 import { constants } from '../Constants';
-import _ = require('lodash');
 
 import HeaderMiddle from '../components/HeaderMiddle';
 import DraftedHeroes from '../components/DraftedHeroes';
+import { IconSearch } from '@tabler/icons';
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -58,10 +57,16 @@ const useStyles = createStyles((theme) => ({
     filter: 'grayscale(100%)',
     pointerEvents: 'none',
   },
+
+  filteredOut: {
+    transition: '150ms',
+    filter: 'grayscale(100%)',
+    pointerEvents: 'none',
+  },
 }));
 
 function Drafter() {
-  const { classes } = useStyles();
+  const { classes, cx } = useStyles();
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -69,8 +74,13 @@ function Drafter() {
   const [heroIntelligence, setHeroIntelligence] = useState([]);
   const [heroStrength, setHeroStrength] = useState([]);
 
+  const [heroAgilityFiltered, setHeroAgilityFiltered] = useState([]);
+  const [heroIntelligenceFiltered, setHeroIntelligenceFiltered] = useState([]);
+  const [heroStrengthFiltered, setHeroStrengthFiltered] = useState([]);
+
   const [pickList, setPickList] = useState(constants.pickList);
   const [selectedHeroes, setSelectedHeroes] = useState(constants.pickList);
+  const [filteredHeroes, setFilteredHeroes] = useState([]);
 
   const [currPick, setCurrPick] = useState(1);
   const [currIndex, setCurrIndex] = useState(0);
@@ -78,6 +88,34 @@ function Drafter() {
   useEffect(() => {
     fetchHeroStatus();
   }, []);
+
+  function keyPress(event) {
+    if (event.target.value != '') {
+      let newAgi = heroAgility.filter((newItem) => {
+        return !newItem.localized_name
+          .toLowerCase()
+          .startsWith(event.target.value.toLowerCase());
+      });
+      let newInt = heroIntelligence.filter((newItem) => {
+        return !newItem.localized_name
+          .toLowerCase()
+          .startsWith(event.target.value.toLowerCase());
+      });
+      let newStr = heroStrength.filter((newItem) => {
+        return !newItem.localized_name
+          .toLowerCase()
+          .startsWith(event.target.value.toLowerCase());
+      });
+      // setHeroAgilityFiltered(newItem);
+      newAgi = newAgi.map((item) => item.hero_id);
+      newInt = newInt.map((item) => item.hero_id);
+      newStr = newStr.map((item) => item.hero_id);
+      setFilteredHeroes([...newAgi, ...newInt, ...newStr]);
+    } else {
+      setFilteredHeroes([]);
+    }
+    console.log(filteredHeroes);
+  }
 
   const fetchHeroStatus = () => {
     return fetch(constants.urlHeroStats)
@@ -88,12 +126,27 @@ function Drafter() {
             return hero.primary_attr == 'agi';
           })
         );
+        setHeroAgilityFiltered(
+          data.filter((hero) => {
+            return hero.primary_attr == 'agi';
+          })
+        );
         setHeroIntelligence(
           data.filter((hero) => {
             return hero.primary_attr == 'int';
           })
         );
+        setHeroIntelligenceFiltered(
+          data.filter((hero) => {
+            return hero.primary_attr == 'int';
+          })
+        );
         setHeroStrength(
+          data.filter((hero) => {
+            return hero.primary_attr == 'str';
+          })
+        );
+        setHeroStrengthFiltered(
           data.filter((hero) => {
             return hero.primary_attr == 'str';
           })
@@ -104,42 +157,28 @@ function Drafter() {
       });
   };
 
-  const realHeroIndex = (index, attr) => {
-    let newIndex = index;
-    if (attr == 'int') {
-      newIndex += heroAgility.length;
-    } else if (attr == 'str') {
-      newIndex += heroAgility.length;
-      newIndex += heroIntelligence.length;
-    }
-
-    return newIndex;
-  };
-
-  const heroCards = (attr, attrName) => {
+  const heroCards = (attr) => {
     return attr
       .sort((a, b) => {
         return a.localized_name > b.localized_name ? 1 : -1;
       })
-      .map((heroItem, index) => (
+      .map((heroItem) => (
         <AspectRatio ratio={1920 / 1080}>
           <Image
             key={heroItem.localized_name}
             p="md"
             radius="md"
-            className={
-              selectedHeroes.some(
-                (item) => item == realHeroIndex(index, attrName)
-              )
+            className={cx(
+              selectedHeroes.some((item) => item == heroItem.hero_id)
                 ? classes.picked
+                : classes.card,
+              filteredHeroes.some((item) => item == heroItem.hero_id)
+                ? classes.filteredOut
                 : classes.card
-            }
+            )}
             src={constants.urlMainApi + heroItem.img}
             onClick={() =>
-              pickAHero(
-                constants.urlMainApi + heroItem.img,
-                realHeroIndex(index, attrName)
-              )
+              pickAHero(constants.urlMainApi + heroItem.img, heroItem.hero_id)
             }
           />
         </AspectRatio>
@@ -169,6 +208,14 @@ function Drafter() {
       <HeaderMiddle activeTab={constants.drafterPageIndex} />
       <div className={classes.divider}>
         <Container size={'lg'} className={classes.container}>
+          <TextInput
+            icon={<IconSearch size={18} stroke={1.5} />}
+            radius="xl"
+            size="md"
+            placeholder="Search Heroes"
+            rightSectionWidth={42}
+            onChange={keyPress}
+          />
           {isLoading ? null : (
             <div>
               <Title order={2}>Agility</Title>
@@ -178,21 +225,21 @@ function Drafter() {
                 breakpoints={[{ maxWidth: 'sm', cols: 5 }]}
                 spacing="xs"
               >
-                {heroCards(heroAgility, 'agi')}
+                {heroCards(heroAgilityFiltered)}
               </SimpleGrid>
-
               <Space h="sm" />
+
               <Title order={2}>Intelligence</Title>
-              <Space h="xl" />
+              <Space h="sm" />
               <SimpleGrid
                 cols={15}
                 breakpoints={[{ maxWidth: 'sm', cols: 5 }]}
                 spacing="xs"
               >
-                {heroCards(heroIntelligence, 'int')}
+                {heroCards(heroIntelligenceFiltered)}
               </SimpleGrid>
+              <Space h="sm" />
 
-              <Space h="xl" />
               <Title order={2}>Strength</Title>
               <Space h="sm" />
               <SimpleGrid
@@ -200,7 +247,7 @@ function Drafter() {
                 breakpoints={[{ maxWidth: 'sm', cols: 5 }]}
                 spacing="xs"
               >
-                {heroCards(heroStrength, 'str')}
+                {heroCards(heroStrengthFiltered)}
               </SimpleGrid>
             </div>
           )}

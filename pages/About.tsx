@@ -47,8 +47,6 @@ function About() {
   }, []);
 
   function keyPress(event) {
-    let currInput = sample;
-
     if (event.keyCode === 8) {
       setSample(sample.slice(0, -1));
     }
