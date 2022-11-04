@@ -5,15 +5,15 @@ const useStyles = createStyles((theme) => ({
   heroImagePick: {
     outline: '3px solid green',
     borderRadius: '10px',
-    width: 80,
-    height: 44,
+    width: 60,
+    height: 33,
   },
 
   heroImageBanBorder: {
     outline: '2px solid red',
     borderRadius: '10px',
-    width: 60,
-    height: 33,
+    width: 50,
+    height: 28,
   },
 
   heroImageBan: {

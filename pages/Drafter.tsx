@@ -206,16 +206,18 @@ function Drafter() {
   return (
     <div className={classes.mainBody}>
       <HeaderMiddle activeTab={constants.drafterPageIndex} />
+
+      <TextInput
+        icon={<IconSearch size={18} stroke={1.5} />}
+        radius="xl"
+        size="md"
+        placeholder="Search Heroes"
+        rightSectionWidth={42}
+        onChange={keyPress}
+      />
+
       <div className={classes.divider}>
         <Container size={'lg'} className={classes.container}>
-          <TextInput
-            icon={<IconSearch size={18} stroke={1.5} />}
-            radius="xl"
-            size="md"
-            placeholder="Search Heroes"
-            rightSectionWidth={42}
-            onChange={keyPress}
-          />
           {isLoading ? null : (
             <div>
               <Title order={2}>Agility</Title>
