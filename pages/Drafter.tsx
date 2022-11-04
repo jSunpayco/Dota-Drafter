@@ -7,6 +7,7 @@ import {
   TextInput,
   Space,
   Title,
+  Tooltip,
 } from '@mantine/core';
 import React = require('react');
 import { useEffect, useState } from 'react';
@@ -164,36 +165,44 @@ function Drafter() {
       })
       .map((heroItem) => (
         <AspectRatio ratio={1920 / 1080}>
-          <Image
-            key={heroItem.localized_name}
-            p="md"
-            radius="md"
-            className={cx(
-              selectedHeroes.some((item) => item == heroItem.hero_id)
-                ? classes.picked
-                : classes.card,
-              filteredHeroes.some((item) => item == heroItem.hero_id)
-                ? classes.filteredOut
-                : classes.card
-            )}
-            src={constants.urlMainApi + heroItem.img}
-            onClick={() =>
-              pickAHero(constants.urlMainApi + heroItem.img, heroItem.hero_id)
-            }
-          />
+          <Tooltip label={heroItem.localized_name} multiline>
+            <Image
+              key={heroItem.localized_name}
+              p="md"
+              radius="md"
+              className={cx(
+                selectedHeroes.some((item) => item == heroItem.hero_id)
+                  ? classes.picked
+                  : classes.card,
+                filteredHeroes.some((item) => item == heroItem.hero_id)
+                  ? classes.filteredOut
+                  : classes.card
+              )}
+              src={constants.urlMainApi + heroItem.img}
+              onClick={() =>
+                pickAHero(
+                  constants.urlMainApi + heroItem.img,
+                  heroItem.hero_id,
+                  heroItem.localized_name
+                )
+              }
+            />
+          </Tooltip>
         </AspectRatio>
       ));
   };
 
-  function pickAHero(heroImage, filteredIndex) {
+  function pickAHero(heroImage, filteredIndex, heroName) {
     const tempList = [...pickList];
     if (tempList[currIndex].pickOrder1 == currPick) {
       tempList[currIndex].pickImage1 = heroImage;
+      tempList[currIndex].hero1 = heroName;
       if (currPick > pickList[currIndex].pickOrder2) {
         setCurrIndex(currIndex + 1);
       }
     } else {
       tempList[currIndex].pickImage2 = heroImage;
+      tempList[currIndex].hero2 = heroName;
       if (currPick > pickList[currIndex].pickOrder1) {
         setCurrIndex(currIndex + 1);
       }

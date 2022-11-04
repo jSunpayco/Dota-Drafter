@@ -28,6 +28,8 @@ export const constants = {
       pickOrder1: 1,
       pickType2: 'Ban',
       pickOrder2: 2,
+      hero1: 'Ban 1',
+      hero2: 'Ban 2',
       pickImage1:
         'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
       pickImage2:
@@ -38,6 +40,8 @@ export const constants = {
       pickOrder1: 3,
       pickType2: 'Ban',
       pickOrder2: 4,
+      hero1: 'Ban 3',
+      hero2: 'Ban 4',
       pickImage1:
         'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
       pickImage2:
@@ -49,6 +53,8 @@ export const constants = {
       pickOrder1: 5,
       pickType2: 'Pick',
       pickOrder2: 6,
+      hero1: 'Pick 5',
+      hero2: 'Pick 6',
       pickImage1:
         'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
       pickImage2:
@@ -59,6 +65,8 @@ export const constants = {
       pickOrder1: 8,
       pickType2: 'Pick',
       pickOrder2: 7,
+      hero1: 'Pick 8',
+      hero2: 'Pick 7',
       pickImage1:
         'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
       pickImage2:
@@ -70,6 +78,8 @@ export const constants = {
       pickOrder1: 9,
       pickType2: 'Ban',
       pickOrder2: 10,
+      hero1: 'Ban 9',
+      hero2: 'Ban 10',
       pickImage1:
         'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
       pickImage2:
@@ -80,6 +90,8 @@ export const constants = {
       pickOrder1: 11,
       pickType2: 'Ban',
       pickOrder2: 12,
+      hero1: 'Ban 11',
+      hero2: 'Ban 12',
       pickImage1:
         'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
       pickImage2:
@@ -90,6 +102,8 @@ export const constants = {
       pickOrder1: 13,
       pickType2: 'Ban',
       pickOrder2: 14,
+      hero1: 'Ban 13',
+      hero2: 'Ban 14',
       pickImage1:
         'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
       pickImage2:
@@ -101,6 +115,8 @@ export const constants = {
       pickOrder1: 16,
       pickType2: 'Pick',
       pickOrder2: 15,
+      hero1: 'Pick 16',
+      hero2: 'Pick 15',
       pickImage1:
         'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
       pickImage2:
@@ -111,6 +127,8 @@ export const constants = {
       pickOrder1: 17,
       pickType2: 'Pick',
       pickOrder2: 18,
+      hero1: 'Pick 17',
+      hero2: 'Pick 18',
       pickImage1:
         'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
       pickImage2:
@@ -122,6 +140,8 @@ export const constants = {
       pickOrder1: 19,
       pickType2: 'Ban',
       pickOrder2: 20,
+      hero1: 'Ban 19',
+      hero2: 'Ban 20',
       pickImage1:
         'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
       pickImage2:
@@ -132,6 +152,8 @@ export const constants = {
       pickOrder1: 21,
       pickType2: 'Ban',
       pickOrder2: 22,
+      hero1: 'Ban 21',
+      hero2: 'Ban 22',
       pickImage1:
         'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
       pickImage2:
@@ -143,6 +165,8 @@ export const constants = {
       pickOrder1: 23,
       pickType2: 'Pick',
       pickOrder2: 24,
+      hero1: 'Pick 23',
+      hero2: 'Pick 24',
       pickImage1:
         'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
       pickImage2:

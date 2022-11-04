@@ -1,5 +1,5 @@
 import React = require('react');
-import { createStyles, Container, Table } from '@mantine/core';
+import { createStyles, Container, Table, Tooltip } from '@mantine/core';
 
 const useStyles = createStyles((theme) => ({
   heroImagePick: {
@@ -31,36 +31,44 @@ function DraftedHeroes(props) {
   const rows = props.pickList.map((element) => (
     <tr key={element.pickOrder1}>
       <td align="right">
-        <div
-          className={
-            element.pickType1 == 'Ban' ? classes.heroImageBanBorder : undefined
-          }
-        >
-          <img
+        <Tooltip label={element.hero1}>
+          <div
             className={
-              element.pickType1 == 'Pick'
-                ? classes.heroImagePick
-                : classes.heroImageBan
+              element.pickType1 == 'Ban'
+                ? classes.heroImageBanBorder
+                : undefined
             }
-            src={element.pickImage1}
-          />
-        </div>
+          >
+            <img
+              className={
+                element.pickType1 == 'Pick'
+                  ? classes.heroImagePick
+                  : classes.heroImageBan
+              }
+              src={element.pickImage1}
+            />
+          </div>
+        </Tooltip>
       </td>
       <td>
-        <div
-          className={
-            element.pickType1 == 'Ban' ? classes.heroImageBanBorder : undefined
-          }
-        >
-          <img
+        <Tooltip label={element.hero2}>
+          <div
             className={
-              element.pickType2 == 'Pick'
-                ? classes.heroImagePick
-                : classes.heroImageBan
+              element.pickType1 == 'Ban'
+                ? classes.heroImageBanBorder
+                : undefined
             }
-            src={element.pickImage2}
-          />
-        </div>
+          >
+            <img
+              className={
+                element.pickType2 == 'Pick'
+                  ? classes.heroImagePick
+                  : classes.heroImageBan
+              }
+              src={element.pickImage2}
+            />
+          </div>
+        </Tooltip>
       </td>
     </tr>
   ));
