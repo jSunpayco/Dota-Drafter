@@ -7,6 +7,9 @@ import {
   TextInput,
   Button,
   Table,
+  Text,
+  Header,
+  Grid,
 } from '@mantine/core';
 import { useState, useEffect } from 'react';
 
@@ -31,6 +34,12 @@ const useStyles = createStyles((theme) => ({
     width: '100%',
     height: '100%',
     filter: 'grayscale(100%)',
+  },
+  inner: {
+    height: 60,
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
 }));
 

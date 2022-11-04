@@ -8,6 +8,9 @@ import {
   Space,
   Title,
   Tooltip,
+  Header,
+  Text,
+  Button,
 } from '@mantine/core';
 import React = require('react');
 import { useEffect, useState } from 'react';
@@ -30,7 +33,14 @@ const useStyles = createStyles((theme) => ({
   mainBody: {
     width: '100%',
     minWidth: '200px',
-    marginTop: '90px',
+    marginTop: '80px',
+  },
+
+  timerNavBar: {
+    height: 50,
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
 
   container: {
@@ -215,6 +225,22 @@ function Drafter() {
   return (
     <div className={classes.mainBody}>
       <HeaderMiddle activeTab={constants.drafterPageIndex} />
+      <Header className={classes.timerNavBar}>
+        <Text size="xl" weight={700}>
+          Radiant Pick
+        </Text>
+
+        <Button>Start</Button>
+        <Text size="xl" weight={300}>
+          00:00
+        </Text>
+
+        <Button>Pause</Button>
+
+        <Button>Reset</Button>
+      </Header>
+
+      <Space h="sm" />
 
       <TextInput
         icon={<IconSearch size={18} stroke={1.5} />}
