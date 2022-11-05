@@ -3,6 +3,10 @@ export const constants = {
   aboutPageIndex: 2,
   homePageIndex: 0,
 
+  pickTime: 5,
+  radiantExtraTime: 3,
+  direExtraTime: 130,
+
   attributeAgility: 'agi',
   attributeIntelligence: 'int',
   attributeStrength: 'str',

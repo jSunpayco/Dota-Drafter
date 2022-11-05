@@ -11,9 +11,10 @@ import {
   Header,
   Text,
   Button,
+  Group,
 } from '@mantine/core';
 import React = require('react');
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { constants } from '../Constants';
 
 import HeaderMiddle from '../components/HeaderMiddle';
@@ -37,10 +38,17 @@ const useStyles = createStyles((theme) => ({
   },
 
   timerNavBar: {
-    height: 50,
+    height: 'auto',
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
+  },
+
+  timerNavItems: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    paddingBottom: '10px',
   },
 
   container: {
@@ -96,9 +104,35 @@ function Drafter() {
   const [currPick, setCurrPick] = useState(1);
   const [currIndex, setCurrIndex] = useState(0);
 
+  const [isCountingDown, setCountingDown] = useState(false);
+  const [radiantExtraTime, setRadiantExtraTime] = useState(
+    constants.radiantExtraTime
+  );
+  const [direExtraTime, setDireExtraTime] = useState(constants.direExtraTime);
+  const [currDraftTime, setCurrDraftTime] = useState(constants.pickTime);
+  const [inExtraTime, setInExtraTime] = useState(false);
+  const countRef = useRef(null);
+
   useEffect(() => {
     fetchHeroStatus();
   }, []);
+
+  useEffect(() => {
+    if (currDraftTime <= 0) {
+      if (!inExtraTime) {
+        setInExtraTime(true);
+        setCurrDraftTime(radiantExtraTime);
+        clearInterval(countRef.current);
+        countRef.current = setInterval(() => {
+          setCurrDraftTime((timer) => timer - 1);
+        }, 1000);
+      } else {
+        setInExtraTime(false);
+        setCountingDown(!isCountingDown);
+        clearInterval(countRef.current);
+      }
+    }
+  }, [currDraftTime]);
 
   function keyPress(event) {
     if (event.target.value != '') {
@@ -222,22 +256,58 @@ function Drafter() {
     setCurrPick(currPick + 1);
   }
 
+  const handleTimer = () => {
+    if (!isCountingDown) {
+      setCountingDown(!isCountingDown);
+      countRef.current = setInterval(() => {
+        setCurrDraftTime((timer) => timer - 1);
+      }, 1000);
+    } else {
+      setCountingDown(!isCountingDown);
+      clearInterval(countRef.current);
+    }
+  };
+
+  const selectHero = () => {
+    setCountingDown(true);
+    setCurrDraftTime(constants.pickTime);
+    clearInterval(countRef.current);
+    countRef.current = setInterval(() => {
+      setCurrDraftTime((timer) => timer - 1);
+    }, 1000);
+  };
+
+  function secondsToMinutes(secs) {
+    const newMin = Math.floor(secs / 60);
+    const newSec = secs % 60;
+
+    return (
+      newMin.toString() +
+      ':' +
+      (newSec < 9 ? '0' + newSec.toString() : newSec.toString())
+    );
+  }
+
   return (
     <div className={classes.mainBody}>
       <HeaderMiddle activeTab={constants.drafterPageIndex} />
       <Header className={classes.timerNavBar}>
-        <Text size="xl" weight={700}>
-          Radiant Pick
-        </Text>
+        <div className={classes.timerNavItems}>
+          <Text size="xl" weight={700}>
+            Radiant Pick
+          </Text>
+          <Text size="xl" weight={300}>
+            {secondsToMinutes(currDraftTime)}
+          </Text>
 
-        <Button>Start</Button>
-        <Text size="xl" weight={300}>
-          00:00
-        </Text>
-
-        <Button>Pause</Button>
-
-        <Button>Reset</Button>
+          <Group position="center" spacing="xs">
+            <Button onClick={handleTimer}>
+              {isCountingDown ? 'Pause' : 'Start'}
+            </Button>
+            {/* <Button onClick={pauseTimer}>Pause</Button> */}
+            <Button onClick={selectHero}>Pick</Button>
+          </Group>
+        </div>
       </Header>
 
       <Space h="sm" />
@@ -250,6 +320,7 @@ function Drafter() {
         rightSectionWidth={42}
         onChange={keyPress}
       />
+      <Space h="sm" />
 
       <div className={classes.divider}>
         <Container size={'lg'} className={classes.container}>
