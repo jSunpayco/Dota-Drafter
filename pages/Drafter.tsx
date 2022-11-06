@@ -12,6 +12,7 @@ import {
   Text,
   Button,
   Group,
+  Card,
 } from '@mantine/core';
 import React = require('react');
 import { useEffect, useState, useRef } from 'react';
@@ -51,6 +52,15 @@ const useStyles = createStyles((theme) => ({
     paddingBottom: '10px',
   },
 
+  extraTime: {
+    borderStyle: 'solid',
+    borderWidth: '1px',
+    borderColor: '#e8e9e8',
+    marginRight: '50px',
+    marginLeft: '50px',
+    padding: '20px',
+  },
+
   container: {
     marginLeft: 0,
     flex: 1,
@@ -82,12 +92,18 @@ const useStyles = createStyles((theme) => ({
     filter: 'grayscale(100%)',
     pointerEvents: 'none',
   },
+
+  paused: {
+    pointerEvents: 'none',
+  },
 }));
 
 function Drafter() {
   const { classes, cx } = useStyles();
 
   const [isLoading, setIsLoading] = useState(true);
+
+  const [allHeroes, setAllHeroes] = useState([]);
 
   const [heroAgility, setHeroAgility] = useState([]);
   const [heroIntelligence, setHeroIntelligence] = useState([]);
@@ -98,11 +114,11 @@ function Drafter() {
   const [heroStrengthFiltered, setHeroStrengthFiltered] = useState([]);
 
   const [pickList, setPickList] = useState(constants.pickList);
-  const [selectedHeroes, setSelectedHeroes] = useState(constants.pickList);
+  const [selectedHeroes, setSelectedHeroes] = useState([]);
   const [filteredHeroes, setFilteredHeroes] = useState([]);
 
-  const [currPick, setCurrPick] = useState(1);
-  const [currIndex, setCurrIndex] = useState(0);
+  const currPick = useRef(1);
+  const currIndex = useRef(0);
 
   const [isCountingDown, setCountingDown] = useState(false);
   const [radiantExtraTime, setRadiantExtraTime] = useState(
@@ -113,23 +129,37 @@ function Drafter() {
   const [inExtraTime, setInExtraTime] = useState(false);
   const countRef = useRef(null);
 
+  const [isRadiantTurn, setRadiantTurn] = useState(true);
+
+  const [pickSequence, setPickSequence] = useState<number[]>(
+    constants.pickSequence
+  );
+
   useEffect(() => {
     fetchHeroStatus();
   }, []);
 
   useEffect(() => {
     if (currDraftTime <= 0) {
-      if (!inExtraTime) {
+      if (!inExtraTime && radiantExtraTime > 0 && direExtraTime > 0) {
         setInExtraTime(true);
-        setCurrDraftTime(radiantExtraTime);
+        if (isRadiantTurn) {
+          setCurrDraftTime(radiantExtraTime);
+        } else {
+          setCurrDraftTime(direExtraTime);
+        }
         clearInterval(countRef.current);
         countRef.current = setInterval(() => {
           setCurrDraftTime((timer) => timer - 1);
         }, 1000);
       } else {
         setInExtraTime(false);
-        setCountingDown(!isCountingDown);
-        clearInterval(countRef.current);
+        randomHero();
+        if (currPick.current == 24) {
+          setCountingDown(!isCountingDown);
+          clearInterval(countRef.current);
+          setCurrDraftTime(0);
+        }
       }
     }
   }, [currDraftTime]);
@@ -159,13 +189,14 @@ function Drafter() {
     } else {
       setFilteredHeroes([]);
     }
-    console.log(filteredHeroes);
+    // console.log(filteredHeroes);
   }
 
   const fetchHeroStatus = () => {
     return fetch(constants.urlHeroStats)
       .then((response) => response.json())
       .then((data) => {
+        setAllHeroes(data);
         setHeroAgility(
           data.filter((hero) => {
             return hero.primary_attr == 'agi';
@@ -220,7 +251,8 @@ function Drafter() {
                   : classes.card,
                 filteredHeroes.some((item) => item == heroItem.hero_id)
                   ? classes.filteredOut
-                  : classes.card
+                  : classes.card,
+                isCountingDown ? null : classes.paused
               )}
               src={constants.urlMainApi + heroItem.img}
               onClick={() =>
@@ -237,23 +269,51 @@ function Drafter() {
   };
 
   function pickAHero(heroImage, filteredIndex, heroName) {
-    const tempList = [...pickList];
-    if (tempList[currIndex].pickOrder1 == currPick) {
-      tempList[currIndex].pickImage1 = heroImage;
-      tempList[currIndex].hero1 = heroName;
-      if (currPick > pickList[currIndex].pickOrder2) {
-        setCurrIndex(currIndex + 1);
-      }
-    } else {
-      tempList[currIndex].pickImage2 = heroImage;
-      tempList[currIndex].hero2 = heroName;
-      if (currPick > pickList[currIndex].pickOrder1) {
-        setCurrIndex(currIndex + 1);
+    // Reset timer
+    if (inExtraTime) {
+      setInExtraTime(false);
+      if (isRadiantTurn) {
+        setRadiantExtraTime(currDraftTime);
+      } else {
+        setDireExtraTime(currDraftTime);
       }
     }
+
+    // setRadiantTurn(!isRadiantTurn);
+    setCountingDown(true);
+    setCurrDraftTime(constants.pickTime);
+    clearInterval(countRef.current);
+    countRef.current = setInterval(() => {
+      setCurrDraftTime((timer) => timer - 1);
+    }, 1000);
+
+    // Add to list
+    const tempList = [...pickList];
+
+    if (tempList[currIndex.current].pickOrder1 == currPick.current) {
+      tempList[currIndex.current].pickImage1 = heroImage;
+      tempList[currIndex.current].hero1 = heroName;
+      if (currPick.current > pickList[currIndex.current].pickOrder2) {
+        currIndex.current += 1;
+      }
+    } else {
+      tempList[currIndex.current].pickImage2 = heroImage;
+      tempList[currIndex.current].hero2 = heroName;
+      if (currPick.current > pickList[currIndex.current].pickOrder1) {
+        currIndex.current += 1;
+      }
+    }
+
+    currPick.current += 1;
+
+    if (tempList[currIndex.current].pickOrder2 == currPick.current) {
+      setRadiantTurn(false);
+    } else {
+      setRadiantTurn(true);
+    }
+
     setSelectedHeroes([...selectedHeroes, filteredIndex]);
     setPickList(tempList);
-    setCurrPick(currPick + 1);
   }
 
   const handleTimer = () => {
@@ -269,12 +329,35 @@ function Drafter() {
   };
 
   const selectHero = () => {
-    setCountingDown(true);
-    setCurrDraftTime(constants.pickTime);
-    clearInterval(countRef.current);
-    countRef.current = setInterval(() => {
-      setCurrDraftTime((timer) => timer - 1);
-    }, 1000);
+    let ind = Math.floor(Math.random() * 122);
+    if (selectedHeroes.length > 0) {
+      while (selectedHeroes.some((item) => item == allHeroes[ind].hero_id)) {
+        ind = Math.floor(Math.random() * 122);
+        // console.log(ind);
+      }
+    }
+
+    pickAHero(
+      constants.urlMainApi + allHeroes[ind].img,
+      allHeroes[ind].hero_id,
+      allHeroes[ind].localized_name
+    );
+  };
+
+  const randomHero = () => {
+    let ind = Math.floor(Math.random() * 122);
+    if (selectedHeroes.length > 0) {
+      while (selectedHeroes.some((item) => item == allHeroes[ind].hero_id)) {
+        ind = Math.floor(Math.random() * 122);
+        // console.log(ind);
+      }
+    }
+
+    pickAHero(
+      constants.urlMainApi + allHeroes[ind].img,
+      allHeroes[ind].hero_id,
+      allHeroes[ind].localized_name
+    );
   };
 
   function secondsToMinutes(secs) {
@@ -284,7 +367,7 @@ function Drafter() {
     return (
       newMin.toString() +
       ':' +
-      (newSec < 9 ? '0' + newSec.toString() : newSec.toString())
+      (newSec < 10 ? '0' + newSec.toString() : newSec.toString())
     );
   }
 
@@ -292,9 +375,21 @@ function Drafter() {
     <div className={classes.mainBody}>
       <HeaderMiddle activeTab={constants.drafterPageIndex} />
       <Header className={classes.timerNavBar}>
+        <div className={cx(classes.timerNavItems, classes.extraTime)}>
+          <Text>Radiant</Text>
+          <Text>{secondsToMinutes(radiantExtraTime)}</Text>
+          <Text>Reserve Time</Text>
+        </div>
         <div className={classes.timerNavItems}>
-          <Text size="xl" weight={700}>
-            Radiant Pick
+          <Text
+            size="xl"
+            weight={700}
+            style={{ color: isRadiantTurn ? 'green' : 'red' }}
+          >
+            {isRadiantTurn ? 'Radiant ' : 'Dire '}
+            {pickSequence.some((item) => item == currPick.current)
+              ? 'Pick'
+              : 'Ban'}
           </Text>
           <Text size="xl" weight={300}>
             {secondsToMinutes(currDraftTime)}
@@ -304,9 +399,18 @@ function Drafter() {
             <Button onClick={handleTimer}>
               {isCountingDown ? 'Pause' : 'Start'}
             </Button>
-            {/* <Button onClick={pauseTimer}>Pause</Button> */}
-            <Button onClick={selectHero}>Pick</Button>
+            <Button
+              onClick={selectHero}
+              // style={{ pointerEvents: isCountingDown ? 'auto' : 'none' }}
+            >
+              Pick
+            </Button>
           </Group>
+        </div>
+        <div className={cx(classes.timerNavItems, classes.extraTime)}>
+          <Text>Dire</Text>
+          <Text>{secondsToMinutes(direExtraTime)}</Text>
+          <Text>Reserve Time</Text>
         </div>
       </Header>
 

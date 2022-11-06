@@ -3,9 +3,9 @@ export const constants = {
   aboutPageIndex: 2,
   homePageIndex: 0,
 
-  pickTime: 5,
-  radiantExtraTime: 3,
-  direExtraTime: 130,
+  pickTime: 1, //30
+  radiantExtraTime: 0, //130
+  direExtraTime: 0, //130
 
   attributeAgility: 'agi',
   attributeIntelligence: 'int',
@@ -177,4 +177,6 @@ export const constants = {
         'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
     },
   ],
+
+  pickSequence: [5, 6, 7, 8, 15, 16, 17, 18, 23, 24],
 };
