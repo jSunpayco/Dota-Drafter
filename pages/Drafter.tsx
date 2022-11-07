@@ -132,10 +132,6 @@ function Drafter() {
 
   const [isRadiantTurn, setRadiantTurn] = useState(true);
 
-  const [pickSequence, setPickSequence] = useState<number[]>(
-    constants.pickSequence
-  );
-
   useEffect(() => {
     fetchHeroStatus();
   }, []);
@@ -230,6 +226,7 @@ function Drafter() {
       })
       .then(function (data) {
         setIsLoading(!isLoading);
+        getCurrentPick();
       });
   };
 
@@ -311,8 +308,10 @@ function Drafter() {
       tempList[currIndex.current].pickOrder2 == currPick.current
     ) {
       setRadiantTurn(false);
+      tempList[currIndex.current].pickImage2 = constants.urlCurrPick;
     } else {
       setRadiantTurn(true);
+      tempList[currIndex.current].pickImage1 = constants.urlCurrPick;
     }
 
     setSelectedHeroes([...selectedHeroes, filteredIndex]);
@@ -361,6 +360,18 @@ function Drafter() {
     );
   }
 
+  function getCurrentPick() {
+    const tempList = [...pickList];
+
+    if (tempList[currIndex.current].pickOrder1 == currPick.current) {
+      tempList[currIndex.current].pickImage1 = constants.urlCurrPick;
+    } else {
+      tempList[currIndex.current].pickImage2 = constants.urlCurrPick;
+    }
+
+    setPickList(tempList);
+  }
+
   return (
     <div className={classes.mainBody}>
       <HeaderMiddle activeTab={constants.drafterPageIndex} />
@@ -377,9 +388,7 @@ function Drafter() {
             style={{ color: isRadiantTurn ? 'green' : 'red' }}
           >
             {isRadiantTurn ? 'Radiant ' : 'Dire '}
-            {pickSequence.some((item) => item == currPick.current)
-              ? 'Pick'
-              : 'Ban'}
+            {pickList[currIndex.current].pickType1}
           </Text>
           <Text size="xl" weight={300}>
             {secondsToMinutes(currDraftTime)}

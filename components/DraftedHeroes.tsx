@@ -1,5 +1,6 @@
 import React = require('react');
 import { createStyles, Container, Table, Tooltip } from '@mantine/core';
+import { constants } from '../Constants';
 
 const useStyles = createStyles((theme) => ({
   heroImagePick: {
@@ -21,6 +22,9 @@ const useStyles = createStyles((theme) => ({
     borderRadius: '10px',
     width: '100%',
     height: '100%',
+  },
+
+  greyFilter: {
     filter: 'grayscale(100%)',
   },
 }));
@@ -43,7 +47,9 @@ function DraftedHeroes(props) {
               className={
                 element.pickType1 == 'Pick'
                   ? classes.heroImagePick
-                  : classes.heroImageBan
+                  : element.pickImage1 == constants.urlCurrPick
+                  ? classes.heroImageBan
+                  : cx(classes.heroImageBan, classes.greyFilter)
               }
               src={element.pickImage1}
             />
@@ -63,7 +69,9 @@ function DraftedHeroes(props) {
               className={
                 element.pickType2 == 'Pick'
                   ? classes.heroImagePick
-                  : classes.heroImageBan
+                  : element.pickImage2 == constants.urlCurrPick
+                  ? classes.heroImageBan
+                  : cx(classes.heroImageBan, classes.greyFilter)
               }
               src={element.pickImage2}
             />
