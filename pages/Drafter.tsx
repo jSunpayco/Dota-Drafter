@@ -155,7 +155,7 @@ function Drafter() {
       } else {
         setInExtraTime(false);
         randomHero();
-        if (currPick.current == 24) {
+        if (currPick.current > 24) {
           setCountingDown(!isCountingDown);
           clearInterval(countRef.current);
           setCurrDraftTime(0);
@@ -251,7 +251,7 @@ function Drafter() {
                   : classes.card,
                 filteredHeroes.some((item) => item == heroItem.hero_id)
                   ? classes.filteredOut
-                  : classes.card,
+                  : null,
                 isCountingDown ? null : classes.paused
               )}
               src={constants.urlMainApi + heroItem.img}
@@ -306,7 +306,10 @@ function Drafter() {
 
     currPick.current += 1;
 
-    if (tempList[currIndex.current].pickOrder2 == currPick.current) {
+    if (
+      currPick.current <= 24 &&
+      tempList[currIndex.current].pickOrder2 == currPick.current
+    ) {
       setRadiantTurn(false);
     } else {
       setRadiantTurn(true);
@@ -374,7 +377,7 @@ function Drafter() {
   return (
     <div className={classes.mainBody}>
       <HeaderMiddle activeTab={constants.drafterPageIndex} />
-      <Header className={classes.timerNavBar}>
+      <div className={classes.timerNavBar}>
         <div className={cx(classes.timerNavItems, classes.extraTime)}>
           <Text>Radiant</Text>
           <Text>{secondsToMinutes(radiantExtraTime)}</Text>
@@ -412,7 +415,7 @@ function Drafter() {
           <Text>{secondsToMinutes(direExtraTime)}</Text>
           <Text>Reserve Time</Text>
         </div>
-      </Header>
+      </div>
 
       <Space h="sm" />
 
