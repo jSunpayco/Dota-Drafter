@@ -113,6 +113,7 @@ function Drafter() {
   const [heroIntelligenceFiltered, setHeroIntelligenceFiltered] = useState([]);
   const [heroStrengthFiltered, setHeroStrengthFiltered] = useState([]);
 
+  const defaultState = constants.pickList;
   const [pickList, setPickList] = useState(constants.pickList);
   const [selectedHeroes, setSelectedHeroes] = useState([]);
   const [filteredHeroes, setFilteredHeroes] = useState([]);
@@ -181,7 +182,7 @@ function Drafter() {
           .toLowerCase()
           .startsWith(event.target.value.toLowerCase());
       });
-      // setHeroAgilityFiltered(newItem);
+
       newAgi = newAgi.map((item) => item.hero_id);
       newInt = newInt.map((item) => item.hero_id);
       newStr = newStr.map((item) => item.hero_id);
@@ -189,7 +190,6 @@ function Drafter() {
     } else {
       setFilteredHeroes([]);
     }
-    // console.log(filteredHeroes);
   }
 
   const fetchHeroStatus = () => {
@@ -331,28 +331,15 @@ function Drafter() {
     }
   };
 
-  const selectHero = () => {
-    let ind = Math.floor(Math.random() * 122);
-    if (selectedHeroes.length > 0) {
-      while (selectedHeroes.some((item) => item == allHeroes[ind].hero_id)) {
-        ind = Math.floor(Math.random() * 122);
-        // console.log(ind);
-      }
-    }
-
-    pickAHero(
-      constants.urlMainApi + allHeroes[ind].img,
-      allHeroes[ind].hero_id,
-      allHeroes[ind].localized_name
-    );
-  };
+  function resetDraft() {
+    window.location.reload();
+  }
 
   const randomHero = () => {
     let ind = Math.floor(Math.random() * 122);
     if (selectedHeroes.length > 0) {
       while (selectedHeroes.some((item) => item == allHeroes[ind].hero_id)) {
         ind = Math.floor(Math.random() * 122);
-        // console.log(ind);
       }
     }
 
@@ -403,7 +390,7 @@ function Drafter() {
               {isCountingDown ? 'Pause' : 'Start'}
             </Button>
             <Button
-              onClick={selectHero}
+              onClick={resetDraft}
               // style={{ pointerEvents: isCountingDown ? 'auto' : 'none' }}
             >
               Pick
