@@ -29,11 +29,10 @@ export const constants = {
   urlHeroStats: 'https://api.opendota.com/api/heroStats',
   urlMainApi: 'https://api.opendota.com',
 
-  pickList: [
+  pickRadiantFirst: [
     {
-      pickType1: 'Ban',
+      pickType: 'Ban',
       pickOrder1: 1,
-      pickType2: 'Ban',
       pickOrder2: 2,
       hero1: 'Ban 1',
       hero2: 'Ban 2',
@@ -43,9 +42,8 @@ export const constants = {
         'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
     },
     {
-      pickType1: 'Ban',
+      pickType: 'Ban',
       pickOrder1: 3,
-      pickType2: 'Ban',
       pickOrder2: 4,
       hero1: 'Ban 3',
       hero2: 'Ban 4',
@@ -56,9 +54,8 @@ export const constants = {
     },
 
     {
-      pickType1: 'Pick',
+      pickType: 'Pick',
       pickOrder1: 5,
-      pickType2: 'Pick',
       pickOrder2: 6,
       hero1: 'Pick 5',
       hero2: 'Pick 6',
@@ -68,9 +65,8 @@ export const constants = {
         'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
     },
     {
-      pickType1: 'Pick',
+      pickType: 'Pick',
       pickOrder1: 8,
-      pickType2: 'Pick',
       pickOrder2: 7,
       hero1: 'Pick 8',
       hero2: 'Pick 7',
@@ -81,9 +77,8 @@ export const constants = {
     },
 
     {
-      pickType1: 'Ban',
+      pickType: 'Ban',
       pickOrder1: 9,
-      pickType2: 'Ban',
       pickOrder2: 10,
       hero1: 'Ban 9',
       hero2: 'Ban 10',
@@ -93,9 +88,8 @@ export const constants = {
         'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
     },
     {
-      pickType1: 'Ban',
+      pickType: 'Ban',
       pickOrder1: 11,
-      pickType2: 'Ban',
       pickOrder2: 12,
       hero1: 'Ban 11',
       hero2: 'Ban 12',
@@ -105,9 +99,8 @@ export const constants = {
         'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
     },
     {
-      pickType1: 'Ban',
+      pickType: 'Ban',
       pickOrder1: 13,
-      pickType2: 'Ban',
       pickOrder2: 14,
       hero1: 'Ban 13',
       hero2: 'Ban 14',
@@ -118,9 +111,8 @@ export const constants = {
     },
 
     {
-      pickType1: 'Pick',
+      pickType: 'Pick',
       pickOrder1: 16,
-      pickType2: 'Pick',
       pickOrder2: 15,
       hero1: 'Pick 16',
       hero2: 'Pick 15',
@@ -130,9 +122,8 @@ export const constants = {
         'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
     },
     {
-      pickType1: 'Pick',
+      pickType: 'Pick',
       pickOrder1: 17,
-      pickType2: 'Pick',
       pickOrder2: 18,
       hero1: 'Pick 17',
       hero2: 'Pick 18',
@@ -143,7 +134,7 @@ export const constants = {
     },
 
     {
-      pickType1: 'Ban',
+      pickType: 'Ban',
       pickOrder1: 19,
       pickType2: 'Ban',
       pickOrder2: 20,
@@ -155,9 +146,8 @@ export const constants = {
         'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
     },
     {
-      pickType1: 'Ban',
+      pickType: 'Ban',
       pickOrder1: 21,
-      pickType2: 'Ban',
       pickOrder2: 22,
       hero1: 'Ban 21',
       hero2: 'Ban 22',
@@ -168,12 +158,151 @@ export const constants = {
     },
 
     {
-      pickType1: 'Pick',
+      pickType: 'Pick',
       pickOrder1: 23,
-      pickType2: 'Pick',
       pickOrder2: 24,
       hero1: 'Pick 23',
       hero2: 'Pick 24',
+      pickImage1:
+        'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+      pickImage2:
+        'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+    },
+  ],
+
+  pickDireFirst: [
+    {
+      pickType: 'Ban',
+      pickOrder1: 2,
+      pickOrder2: 1,
+      hero1: 'Ban 2',
+      hero2: 'Ban 1',
+      pickImage1:
+        'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+      pickImage2:
+        'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+    },
+    {
+      pickType: 'Ban',
+      pickOrder1: 4,
+      pickOrder2: 3,
+      hero1: 'Ban 4',
+      hero2: 'Ban 3',
+      pickImage1:
+        'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+      pickImage2:
+        'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+    },
+
+    {
+      pickType: 'Pick',
+      pickOrder1: 6,
+      pickOrder2: 5,
+      hero1: 'Pick 6',
+      hero2: 'Pick 5',
+      pickImage1:
+        'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+      pickImage2:
+        'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+    },
+    {
+      pickType: 'Pick',
+      pickOrder1: 7,
+      pickOrder2: 8,
+      hero1: 'Pick 7',
+      hero2: 'Pick 8',
+      pickImage1:
+        'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+      pickImage2:
+        'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+    },
+
+    {
+      pickType: 'Ban',
+      pickOrder1: 10,
+      pickOrder2: 9,
+      hero1: 'Ban 10',
+      hero2: 'Ban 9',
+      pickImage1:
+        'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+      pickImage2:
+        'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+    },
+    {
+      pickType: 'Ban',
+      pickOrder1: 12,
+      pickOrder2: 11,
+      hero1: 'Ban 12',
+      hero2: 'Ban 11',
+      pickImage1:
+        'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+      pickImage2:
+        'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+    },
+    {
+      pickType: 'Ban',
+      pickOrder1: 14,
+      pickOrder2: 13,
+      hero1: 'Ban 14',
+      hero2: 'Ban 13',
+      pickImage1:
+        'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+      pickImage2:
+        'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+    },
+
+    {
+      pickType: 'Pick',
+      pickOrder1: 15,
+      pickOrder2: 16,
+      hero1: 'Pick 15',
+      hero2: 'Pick 16',
+      pickImage1:
+        'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+      pickImage2:
+        'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+    },
+    {
+      pickType: 'Pick',
+      pickOrder1: 18,
+      pickOrder2: 17,
+      hero1: 'Pick 18',
+      hero2: 'Pick 17',
+      pickImage1:
+        'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+      pickImage2:
+        'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+    },
+
+    {
+      pickType: 'Ban',
+      pickOrder1: 20,
+      pickOrder2: 19,
+      hero1: 'Ban 20',
+      hero2: 'Ban 19',
+      pickImage1:
+        'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+      pickImage2:
+        'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+    },
+    {
+      pickType: 'Ban',
+      pickOrder1: 22,
+      pickOrder2: 21,
+      hero1: 'Ban 22',
+      hero2: 'Ban 21',
+      pickImage1:
+        'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+      pickImage2:
+        'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+    },
+
+    {
+      pickType: 'Pick',
+      pickOrder1: 24,
+      pickOrder2: 23,
+      hero1: 'Pick 24',
+      hero2: 'Pick 23',
       pickImage1:
         'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
       pickImage2:

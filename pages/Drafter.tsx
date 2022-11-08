@@ -8,11 +8,11 @@ import {
   Space,
   Title,
   Tooltip,
-  Header,
+  Modal,
   Text,
   Button,
   Group,
-  Card,
+  Radio,
 } from '@mantine/core';
 import React = require('react');
 import { useEffect, useState, useRef } from 'react';
@@ -109,12 +109,15 @@ function Drafter() {
   const [heroIntelligence, setHeroIntelligence] = useState([]);
   const [heroStrength, setHeroStrength] = useState([]);
 
+  const [isModalOpened, setModalOpened] = useState(true);
+  const [userTeam, setUserTeam] = useState('');
+  const [pickTurn, setPickTurn] = useState('');
+
   const [heroAgilityFiltered, setHeroAgilityFiltered] = useState([]);
   const [heroIntelligenceFiltered, setHeroIntelligenceFiltered] = useState([]);
   const [heroStrengthFiltered, setHeroStrengthFiltered] = useState([]);
 
-  const defaultState = constants.pickList;
-  const [pickList, setPickList] = useState(constants.pickList);
+  const [pickList, setPickList] = useState(constants.pickRadiantFirst);
   const [selectedHeroes, setSelectedHeroes] = useState([]);
   const [filteredHeroes, setFilteredHeroes] = useState([]);
 
@@ -226,7 +229,6 @@ function Drafter() {
       })
       .then(function (data) {
         setIsLoading(!isLoading);
-        getCurrentPick();
       });
   };
 
@@ -264,6 +266,25 @@ function Drafter() {
         </AspectRatio>
       ));
   };
+
+  function setUserPreferences() {
+    if (userTeam != '' && pickTurn != '') {
+      setModalOpened(false);
+      if (
+        (userTeam == 'dire' && pickTurn == 'first') ||
+        (userTeam == 'radiant' && pickTurn == 'second')
+      ) {
+        setPickList(constants.pickDireFirst);
+        const tempList = [...pickList];
+        tempList[currIndex.current].pickImage2 = constants.urlCurrPick;
+        setPickList(tempList);
+      } else {
+        const tempList = [...pickList];
+        tempList[currIndex.current].pickImage1 = constants.urlCurrPick;
+        setPickList(tempList);
+      }
+    }
+  }
 
   function pickAHero(heroImage, filteredIndex, heroName) {
     // Reset timer
@@ -360,21 +381,39 @@ function Drafter() {
     );
   }
 
-  function getCurrentPick() {
-    const tempList = [...pickList];
-
-    if (tempList[currIndex.current].pickOrder1 == currPick.current) {
-      tempList[currIndex.current].pickImage1 = constants.urlCurrPick;
-    } else {
-      tempList[currIndex.current].pickImage2 = constants.urlCurrPick;
-    }
-
-    setPickList(tempList);
-  }
-
   return (
     <div className={classes.mainBody}>
       <HeaderMiddle activeTab={constants.drafterPageIndex} />
+
+      <Modal
+        opened={isModalOpened}
+        onClose={() => setUserPreferences()}
+        title="Draft Settings"
+      >
+        <Radio.Group
+          onChange={setUserTeam}
+          name="userSide"
+          label="Select your side/team"
+          required
+        >
+          <Radio value="radiant" label="Radiant" />
+          <Radio value="dire" label="Dire" />
+        </Radio.Group>
+
+        <Radio.Group
+          name="userPickTurn"
+          label="Select your pick turn"
+          required
+          onChange={setPickTurn}
+        >
+          <Radio value="first" label="First" />
+          <Radio value="second" label="Second" />
+        </Radio.Group>
+        <Space h="sm" />
+
+        <Button onClick={() => setUserPreferences()}>Confirm</Button>
+      </Modal>
+
       <div className={classes.timerNavBar}>
         <div className={cx(classes.timerNavItems, classes.extraTime)}>
           <Text>Radiant</Text>
@@ -388,7 +427,7 @@ function Drafter() {
             style={{ color: isRadiantTurn ? 'green' : 'red' }}
           >
             {isRadiantTurn ? 'Radiant ' : 'Dire '}
-            {pickList[currIndex.current].pickType1}
+            {pickList[currIndex.current].pickType}
           </Text>
           <Text size="xl" weight={300}>
             {secondsToMinutes(currDraftTime)}

@@ -38,14 +38,12 @@ function DraftedHeroes(props) {
         <Tooltip label={element.hero1}>
           <div
             className={
-              element.pickType1 == 'Ban'
-                ? classes.heroImageBanBorder
-                : undefined
+              element.pickType == 'Ban' ? classes.heroImageBanBorder : undefined
             }
           >
             <img
               className={
-                element.pickType1 == 'Pick'
+                element.pickType == 'Pick'
                   ? classes.heroImagePick
                   : element.pickImage1 == constants.urlCurrPick
                   ? classes.heroImageBan
@@ -60,14 +58,12 @@ function DraftedHeroes(props) {
         <Tooltip label={element.hero2}>
           <div
             className={
-              element.pickType1 == 'Ban'
-                ? classes.heroImageBanBorder
-                : undefined
+              element.pickType == 'Ban' ? classes.heroImageBanBorder : undefined
             }
           >
             <img
               className={
-                element.pickType2 == 'Pick'
+                element.pickType == 'Pick'
                   ? classes.heroImagePick
                   : element.pickImage2 == constants.urlCurrPick
                   ? classes.heroImageBan
