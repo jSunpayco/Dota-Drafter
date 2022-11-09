@@ -309,4 +309,13 @@ export const constants = {
         'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
     },
   ],
+
+  captainsModeDesc:
+    'Captains mode is the standard format for tournament games. The captains ban certain heroes, up to seven per team, preventing either team from picking the hero. The captains also choose five heroes for their team.',
+
+  howToPlay:
+    'One must first pick which team gets to have the first/second pick for the game (Radiant or Dire). 30 seconds are then allotted for bans, and 30 seconds for picks. Each captain has 130 seconds total bonus time that can be used throughout any selection. If time runs out during a ban selection, no hero will be banned; if time runs out during a pick selection, a random hero will be chosen.',
+
+  aboutMe:
+    "Currently a Computer Science student working on attaining my bacherlor's degree on 2023. This project was made with the intent on studying ReactJS, whilst trying to implement a styling framework, Mantine UI in this case. Another part of my motivation is being a fan of the video game DOTA 2 in order for me to gain learning experience in front-end development while using something I like as inspiration. You may visit the repository ",
 };
