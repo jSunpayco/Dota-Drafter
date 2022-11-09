@@ -80,7 +80,7 @@ function About() {
           <Accordion
             defaultValue="customization"
             variant="contained"
-            // style={{ minWidth: '1080px' }}
+            transitionDuration={650}
           >
             <Accordion.Item value="customization">
               <Accordion.Control>
