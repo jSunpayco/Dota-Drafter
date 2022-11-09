@@ -95,7 +95,7 @@ const HeaderMiddle = (props) => {
                 Drafter
               </Anchor>
             </li>
-            {/* <li className={classes.listItem}>
+            <li className={classes.listItem}>
               <Anchor
                 weight={700}
                 href="/heroes"
@@ -105,7 +105,7 @@ const HeaderMiddle = (props) => {
               >
                 Heroes
               </Anchor>
-            </li> */}
+            </li>
           </ul>
         </nav>
       </div>
