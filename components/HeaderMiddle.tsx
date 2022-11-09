@@ -75,11 +75,11 @@ const HeaderMiddle = (props) => {
           <ul className={classes.list}>
             <li className={classes.listItem}>
               <Anchor
+                className={cx(classes.link, {
+                  [classes.activePage]: activeTab == 2,
+                })}
                 weight={700}
                 href="/"
-                className={cx(classes.link, {
-                  [classes.activePage]: activeTab == 0,
-                })}
               >
                 Home
               </Anchor>
@@ -97,13 +97,13 @@ const HeaderMiddle = (props) => {
             </li>
             <li className={classes.listItem}>
               <Anchor
-                className={cx(classes.link, {
-                  [classes.activePage]: activeTab == 2,
-                })}
                 weight={700}
-                href="/about"
+                href="/heroes"
+                className={cx(classes.link, {
+                  [classes.activePage]: activeTab == 0,
+                })}
               >
-                About
+                Heroes
               </Anchor>
             </li>
           </ul>
