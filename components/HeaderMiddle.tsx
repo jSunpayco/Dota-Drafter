@@ -95,7 +95,7 @@ const HeaderMiddle = (props) => {
                 Drafter
               </Anchor>
             </li>
-            <li className={classes.listItem}>
+            {/* <li className={classes.listItem}>
               <Anchor
                 className={cx(classes.link, {
                   [classes.activePage]: activeTab == 2,
@@ -105,7 +105,7 @@ const HeaderMiddle = (props) => {
               >
                 About
               </Anchor>
-            </li>
+            </li> */}
           </ul>
         </nav>
       </div>
