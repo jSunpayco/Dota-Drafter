@@ -1,5 +1,6 @@
 import React = require('react');
 import { createStyles, Container, Table, Tooltip } from '@mantine/core';
+import { constants } from '../Constants';
 
 const useStyles = createStyles((theme) => ({
   heroImagePick: {
@@ -21,6 +22,9 @@ const useStyles = createStyles((theme) => ({
     borderRadius: '10px',
     width: '100%',
     height: '100%',
+  },
+
+  greyFilter: {
     filter: 'grayscale(100%)',
   },
 }));
@@ -34,16 +38,16 @@ function DraftedHeroes(props) {
         <Tooltip label={element.hero1}>
           <div
             className={
-              element.pickType1 == 'Ban'
-                ? classes.heroImageBanBorder
-                : undefined
+              element.pickType == 'Ban' ? classes.heroImageBanBorder : undefined
             }
           >
             <img
               className={
-                element.pickType1 == 'Pick'
+                element.pickType == 'Pick'
                   ? classes.heroImagePick
-                  : classes.heroImageBan
+                  : element.pickImage1 == constants.urlCurrPick
+                  ? classes.heroImageBan
+                  : cx(classes.heroImageBan, classes.greyFilter)
               }
               src={element.pickImage1}
             />
@@ -54,16 +58,16 @@ function DraftedHeroes(props) {
         <Tooltip label={element.hero2}>
           <div
             className={
-              element.pickType1 == 'Ban'
-                ? classes.heroImageBanBorder
-                : undefined
+              element.pickType == 'Ban' ? classes.heroImageBanBorder : undefined
             }
           >
             <img
               className={
-                element.pickType2 == 'Pick'
+                element.pickType == 'Pick'
                   ? classes.heroImagePick
-                  : classes.heroImageBan
+                  : element.pickImage2 == constants.urlCurrPick
+                  ? classes.heroImageBan
+                  : cx(classes.heroImageBan, classes.greyFilter)
               }
               src={element.pickImage2}
             />

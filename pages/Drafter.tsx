@@ -8,11 +8,11 @@ import {
   Space,
   Title,
   Tooltip,
-  Header,
+  Modal,
   Text,
   Button,
   Group,
-  Card,
+  Radio,
 } from '@mantine/core';
 import React = require('react');
 import { useEffect, useState, useRef } from 'react';
@@ -109,11 +109,15 @@ function Drafter() {
   const [heroIntelligence, setHeroIntelligence] = useState([]);
   const [heroStrength, setHeroStrength] = useState([]);
 
+  const [isModalOpened, setModalOpened] = useState(true);
+  const [userTeam, setUserTeam] = useState('');
+  const [pickTurn, setPickTurn] = useState('');
+
   const [heroAgilityFiltered, setHeroAgilityFiltered] = useState([]);
   const [heroIntelligenceFiltered, setHeroIntelligenceFiltered] = useState([]);
   const [heroStrengthFiltered, setHeroStrengthFiltered] = useState([]);
 
-  const [pickList, setPickList] = useState(constants.pickList);
+  const [pickList, setPickList] = useState(constants.pickRadiantFirst);
   const [selectedHeroes, setSelectedHeroes] = useState([]);
   const [filteredHeroes, setFilteredHeroes] = useState([]);
 
@@ -130,10 +134,6 @@ function Drafter() {
   const countRef = useRef(null);
 
   const [isRadiantTurn, setRadiantTurn] = useState(true);
-
-  const [pickSequence, setPickSequence] = useState<number[]>(
-    constants.pickSequence
-  );
 
   useEffect(() => {
     fetchHeroStatus();
@@ -181,7 +181,7 @@ function Drafter() {
           .toLowerCase()
           .startsWith(event.target.value.toLowerCase());
       });
-      // setHeroAgilityFiltered(newItem);
+
       newAgi = newAgi.map((item) => item.hero_id);
       newInt = newInt.map((item) => item.hero_id);
       newStr = newStr.map((item) => item.hero_id);
@@ -189,7 +189,6 @@ function Drafter() {
     } else {
       setFilteredHeroes([]);
     }
-    // console.log(filteredHeroes);
   }
 
   const fetchHeroStatus = () => {
@@ -268,6 +267,25 @@ function Drafter() {
       ));
   };
 
+  function setUserPreferences() {
+    if (userTeam != '' && pickTurn != '') {
+      setModalOpened(false);
+      if (
+        (userTeam == 'dire' && pickTurn == 'first') ||
+        (userTeam == 'radiant' && pickTurn == 'second')
+      ) {
+        setPickList(constants.pickDireFirst);
+        const tempList = [...pickList];
+        tempList[currIndex.current].pickImage2 = constants.urlCurrPick;
+        setPickList(tempList);
+      } else {
+        const tempList = [...pickList];
+        tempList[currIndex.current].pickImage1 = constants.urlCurrPick;
+        setPickList(tempList);
+      }
+    }
+  }
+
   function pickAHero(heroImage, filteredIndex, heroName) {
     // Reset timer
     if (inExtraTime) {
@@ -311,8 +329,10 @@ function Drafter() {
       tempList[currIndex.current].pickOrder2 == currPick.current
     ) {
       setRadiantTurn(false);
+      tempList[currIndex.current].pickImage2 = constants.urlCurrPick;
     } else {
       setRadiantTurn(true);
+      tempList[currIndex.current].pickImage1 = constants.urlCurrPick;
     }
 
     setSelectedHeroes([...selectedHeroes, filteredIndex]);
@@ -331,28 +351,15 @@ function Drafter() {
     }
   };
 
-  const selectHero = () => {
-    let ind = Math.floor(Math.random() * 122);
-    if (selectedHeroes.length > 0) {
-      while (selectedHeroes.some((item) => item == allHeroes[ind].hero_id)) {
-        ind = Math.floor(Math.random() * 122);
-        // console.log(ind);
-      }
-    }
-
-    pickAHero(
-      constants.urlMainApi + allHeroes[ind].img,
-      allHeroes[ind].hero_id,
-      allHeroes[ind].localized_name
-    );
-  };
+  function resetDraft() {
+    window.location.reload();
+  }
 
   const randomHero = () => {
     let ind = Math.floor(Math.random() * 122);
     if (selectedHeroes.length > 0) {
       while (selectedHeroes.some((item) => item == allHeroes[ind].hero_id)) {
         ind = Math.floor(Math.random() * 122);
-        // console.log(ind);
       }
     }
 
@@ -377,6 +384,36 @@ function Drafter() {
   return (
     <div className={classes.mainBody}>
       <HeaderMiddle activeTab={constants.drafterPageIndex} />
+
+      <Modal
+        opened={isModalOpened}
+        onClose={() => setUserPreferences()}
+        title="Draft Settings"
+      >
+        <Radio.Group
+          onChange={setUserTeam}
+          name="userSide"
+          label="Select your side/team"
+          required
+        >
+          <Radio value="radiant" label="Radiant" />
+          <Radio value="dire" label="Dire" />
+        </Radio.Group>
+
+        <Radio.Group
+          name="userPickTurn"
+          label="Select your pick turn"
+          required
+          onChange={setPickTurn}
+        >
+          <Radio value="first" label="First" />
+          <Radio value="second" label="Second" />
+        </Radio.Group>
+        <Space h="sm" />
+
+        <Button onClick={() => setUserPreferences()}>Confirm</Button>
+      </Modal>
+
       <div className={classes.timerNavBar}>
         <div className={cx(classes.timerNavItems, classes.extraTime)}>
           <Text>Radiant</Text>
@@ -390,9 +427,7 @@ function Drafter() {
             style={{ color: isRadiantTurn ? 'green' : 'red' }}
           >
             {isRadiantTurn ? 'Radiant ' : 'Dire '}
-            {pickSequence.some((item) => item == currPick.current)
-              ? 'Pick'
-              : 'Ban'}
+            {pickList[currIndex.current].pickType}
           </Text>
           <Text size="xl" weight={300}>
             {secondsToMinutes(currDraftTime)}
@@ -403,7 +438,7 @@ function Drafter() {
               {isCountingDown ? 'Pause' : 'Start'}
             </Button>
             <Button
-              onClick={selectHero}
+              onClick={resetDraft}
               // style={{ pointerEvents: isCountingDown ? 'auto' : 'none' }}
             >
               Pick
