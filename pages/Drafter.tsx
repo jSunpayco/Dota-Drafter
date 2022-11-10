@@ -154,7 +154,7 @@ function Drafter() {
         }, 1000);
       } else {
         setInExtraTime(false);
-        randomHero();
+        noHeroPicked();
         if (currPick.current > 24) {
           setCountingDown(!isCountingDown);
           clearInterval(countRef.current);
@@ -274,10 +274,10 @@ function Drafter() {
         (userTeam == 'dire' && pickTurn == 'first') ||
         (userTeam == 'radiant' && pickTurn == 'second')
       ) {
-        setPickList(constants.pickDireFirst);
-        const tempList = [...pickList];
+        const tempList = [...constants.pickDireFirst];
         tempList[currIndex.current].pickImage2 = constants.urlCurrPick;
         setPickList(tempList);
+        setRadiantTurn(false);
       } else {
         const tempList = [...pickList];
         tempList[currIndex.current].pickImage1 = constants.urlCurrPick;
@@ -286,8 +286,7 @@ function Drafter() {
     }
   }
 
-  function pickAHero(heroImage, filteredIndex, heroName) {
-    // Reset timer
+  function resetTimer() {
     if (inExtraTime) {
       setInExtraTime(false);
       if (isRadiantTurn) {
@@ -297,14 +296,16 @@ function Drafter() {
       }
     }
 
-    // setRadiantTurn(!isRadiantTurn);
     setCountingDown(true);
     setCurrDraftTime(constants.pickTime);
     clearInterval(countRef.current);
     countRef.current = setInterval(() => {
       setCurrDraftTime((timer) => timer - 1);
     }, 1000);
+  }
 
+  function pickAHero(heroImage, filteredIndex, heroName) {
+    resetTimer();
     // Add to list
     const tempList = [...pickList];
 
@@ -324,6 +325,7 @@ function Drafter() {
 
     currPick.current += 1;
 
+    // Add current pick indicator
     if (
       currPick.current <= 24 &&
       tempList[currIndex.current].pickOrder2 == currPick.current
@@ -359,19 +361,53 @@ function Drafter() {
     window.location.reload();
   }
 
-  const randomHero = () => {
-    let ind = Math.floor(Math.random() * 122);
-    if (selectedHeroes.length > 0) {
-      while (selectedHeroes.some((item) => item == allHeroes[ind].hero_id)) {
-        ind = Math.floor(Math.random() * 122);
+  const noHeroPicked = () => {
+    if (pickList[currIndex.current].pickType == 'Pick') {
+      let ind = Math.floor(Math.random() * 122);
+      if (selectedHeroes.length > 0) {
+        while (selectedHeroes.some((item) => item == allHeroes[ind].hero_id)) {
+          ind = Math.floor(Math.random() * 122);
+        }
       }
-    }
 
-    pickAHero(
-      constants.urlMainApi + allHeroes[ind].img,
-      allHeroes[ind].hero_id,
-      allHeroes[ind].localized_name
-    );
+      pickAHero(
+        constants.urlMainApi + allHeroes[ind].img,
+        allHeroes[ind].hero_id,
+        allHeroes[ind].localized_name
+      );
+    } else {
+      resetTimer();
+
+      const tempList = [...pickList];
+
+      if (pickList[currIndex.current].pickOrder1 == currPick.current) {
+        tempList[currIndex.current].pickImage1 = constants.urlSkippedPick;
+        if (currPick.current > pickList[currIndex.current].pickOrder2) {
+          currIndex.current += 1;
+        }
+      } else {
+        tempList[currIndex.current].pickImage2 = constants.urlSkippedPick;
+        if (currPick.current > pickList[currIndex.current].pickOrder1) {
+          currIndex.current += 1;
+        }
+      }
+
+      currPick.current += 1;
+
+      // Add current pick indicator of next turn
+      if (
+        currPick.current <= 24 &&
+        pickList[currIndex.current].pickOrder2 == currPick.current
+      ) {
+        setRadiantTurn(false);
+        tempList[currIndex.current].pickImage2 = constants.urlCurrPick;
+      } else {
+        setRadiantTurn(true);
+        tempList[currIndex.current].pickImage1 = constants.urlCurrPick;
+      }
+
+      setPickList(tempList);
+    }
   };
 
   function secondsToMinutes(secs) {
@@ -441,12 +477,7 @@ function Drafter() {
             <Button onClick={handleTimer}>
               {isCountingDown ? 'Pause' : 'Start'}
             </Button>
-            <Button
-              onClick={resetDraft}
-              // style={{ pointerEvents: isCountingDown ? 'auto' : 'none' }}
-            >
-              Pick
-            </Button>
+            <Button onClick={resetDraft}>Reset</Button>
           </Group>
         </div>
         <div className={cx(classes.timerNavItems, classes.extraTime)}>

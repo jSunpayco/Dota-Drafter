@@ -13,6 +13,8 @@ export const constants = {
 
   urlCurrPick:
     'https://i.etsystatic.com/18990914/r/il/a0ebb9/2022235661/il_570xN.2022235661_ald8.jpg',
+  urlSkippedPick:
+    'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
 
   urlAgility:
     'https://static.wikia.nocookie.net/dota2_gamepedia/images/2/2d/Agility_attribute_symbol.png',
