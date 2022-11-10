@@ -109,7 +109,7 @@ function Drafter() {
   const [heroIntelligence, setHeroIntelligence] = useState([]);
   const [heroStrength, setHeroStrength] = useState([]);
 
-  const [isModalOpened, setModalOpened] = useState(true);
+  const [isModalOpened, setModalOpened] = useState(false);
   const [userTeam, setUserTeam] = useState('');
   const [pickTurn, setPickTurn] = useState('');
 
@@ -340,14 +340,18 @@ function Drafter() {
   }
 
   const handleTimer = () => {
-    if (!isCountingDown) {
-      setCountingDown(!isCountingDown);
-      countRef.current = setInterval(() => {
-        setCurrDraftTime((timer) => timer - 1);
-      }, 1000);
+    if (userTeam == '' && pickTurn == '') {
+      setModalOpened(true);
     } else {
-      setCountingDown(!isCountingDown);
-      clearInterval(countRef.current);
+      if (!isCountingDown) {
+        setCountingDown(!isCountingDown);
+        countRef.current = setInterval(() => {
+          setCurrDraftTime((timer) => timer - 1);
+        }, 1000);
+      } else {
+        setCountingDown(!isCountingDown);
+        clearInterval(countRef.current);
+      }
     }
   };
 
