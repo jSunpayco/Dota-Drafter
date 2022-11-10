@@ -1,7 +1,6 @@
 import React = require('react');
-import { createStyles, Container, Table, Tooltip, Button } from '@mantine/core';
+import { createStyles, Container, Table, Tooltip } from '@mantine/core';
 import { constants } from '../Constants';
-import { useState } from 'react';
 
 const useStyles = createStyles((theme) => ({
   heroImagePick: {
@@ -28,20 +27,12 @@ const useStyles = createStyles((theme) => ({
   greyFilter: {
     filter: 'grayscale(100%)',
   },
-
-  pickButton: {
-    width: '100%',
-  },
 }));
 
 function DraftedHeroes(props) {
   const { classes, cx } = useStyles();
 
-  const [pickList, setPickList] = useState(constants.pickRadiantFirst);
-
-  const [isRadiantFirst, setRadiantFirst] = useState();
-
-  const rows = pickList.map((element) => (
+  const rows = props.pickList.map((element) => (
     <tr key={element.pickOrder1}>
       <td align="right">
         <Tooltip label={element.hero1}>
@@ -86,19 +77,6 @@ function DraftedHeroes(props) {
     </tr>
   ));
 
-  function testing() {
-    if (isRadiantFirst == undefined) console.log('test');
-    else if (isRadiantFirst == true) {
-      const tempList = [...pickList];
-      tempList[0].pickImage1 = constants.urlCurrPick;
-      setPickList(tempList);
-    } else {
-      const tempList = [...pickList];
-      tempList[0].pickImage2 = constants.urlCurrPick;
-      setPickList(tempList);
-    }
-  }
-
   return (
     <div>
       <Container size={200}>
@@ -111,9 +89,6 @@ function DraftedHeroes(props) {
           </thead>
           <tbody>{rows}</tbody>
         </Table>
-        <Button onClick={testing} className={classes.pickButton}>
-          Pick {props.currPick}
-        </Button>
       </Container>
     </div>
   );

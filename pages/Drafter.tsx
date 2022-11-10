@@ -276,11 +276,11 @@ function Drafter() {
       ) {
         setPickList(constants.pickDireFirst);
         const tempList = [...pickList];
-        tempList[0].pickImage2 = constants.urlCurrPick;
+        tempList[currIndex.current].pickImage2 = constants.urlCurrPick;
         setPickList(tempList);
       } else {
         const tempList = [...pickList];
-        tempList[0].pickImage1 = constants.urlCurrPick;
+        tempList[currIndex.current].pickImage1 = constants.urlCurrPick;
         setPickList(tempList);
       }
     }
