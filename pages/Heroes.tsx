@@ -13,6 +13,7 @@ import {
   HoverCard,
   Title,
   Group,
+  Modal,
 } from '@mantine/core';
 import { IconSearch } from '@tabler/icons';
 import React = require('react');
@@ -57,10 +58,31 @@ const useStyles = createStyles((theme) => ({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+
+  iFrameDiv: {
+    position: 'relative',
+    width: '100%',
+    overflow: 'hidden',
+    paddingTop: '56.25%',
+  },
+
+  myIframe: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    width: '100%',
+    height: '100%',
+    border: 'none',
+  },
 }));
 
 function Heroes() {
   const { classes } = useStyles();
+
+  const [isModalOpened, setModalOpened] = useState(false);
+  const [heroPicked, setHeroPicked] = useState('');
 
   const [heroStatus, setHeroStatus] = useState([]);
 
@@ -181,15 +203,15 @@ function Heroes() {
       return a.localized_name > b.localized_name ? 1 : -1;
     })
     .map((heroItem) => (
-      <HoverCard shadow="md" withArrow closeDelay={50}>
+      <HoverCard shadow="md" withArrow closeDelay={0}>
         <HoverCard.Target>
           <Card
             key={heroItem.localized_name}
             p="md"
             radius="md"
             component="a"
-            href="#"
             className={classes.card}
+            onClick={() => openModal(heroItem.localized_name)}
           >
             <AspectRatio ratio={1920 / 1080}>
               <Image src={constants.urlMainApi + heroItem.img} />
@@ -241,6 +263,11 @@ function Heroes() {
     );
   });
 
+  function openModal(heroName) {
+    setModalOpened(true);
+    setHeroPicked(heroName);
+  }
+
   const textFilter = (e) => {
     if (e.target.value == '') {
       const newItem = heroStatus
@@ -283,6 +310,21 @@ function Heroes() {
       <HeaderMiddle activeTab={constants.homePageIndex} />
 
       <Container py="xl" className={classes.container}>
+        <Modal
+          opened={isModalOpened}
+          onClose={() => setModalOpened(false)}
+          size="1080px"
+        >
+          <div className={classes.iFrameDiv}>
+            <iframe
+              src={'https://dota2.fandom.com/wiki/' + heroPicked}
+              title={heroPicked}
+              height="100%"
+              width=" 100%"
+              className={classes.myIframe}
+            ></iframe>
+          </div>
+        </Modal>
         <Header className={classes.inner}>
           <Text size="xl" weight={700}>
             Filters
@@ -313,7 +355,7 @@ function Heroes() {
 
         <Space h="sm" />
 
-        <SimpleGrid cols={5} breakpoints={[{ maxWidth: 'sm', cols: 1 }]}>
+        <SimpleGrid cols={5} breakpoints={[{ maxWidth: 'md', cols: 3 }]}>
           {heroCards}
         </SimpleGrid>
       </Container>
