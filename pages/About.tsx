@@ -71,9 +71,9 @@ function About() {
       <div style={{ marginTop: '150px' }}>
         <Group style={{ marginLeft: '100px' }}>
           <Title order={1} size={80}>
-            Welcome to DOTA Drafter
+            {constants.aboutTitle}
           </Title>
-          <Text size={25}>A web app that simulates DOTA 2's Captains Mode</Text>
+          <Text size={25}>{constants.aboutSubTitle}</Text>
         </Group>
 
         <Container size="xl" style={{ marginTop: '90px' }}>
@@ -84,7 +84,7 @@ function About() {
           >
             <Accordion.Item value="customization">
               <Accordion.Control>
-                <Title order={4}>What is DOTA 2 Captains Mode?</Title>
+                <Title order={4}>{constants.aboutAccordion1Title}</Title>
               </Accordion.Control>
               <Accordion.Panel>
                 <SimpleGrid
@@ -98,9 +98,7 @@ function About() {
                   <div className={classes.imageFrame}>
                     <img
                       className={classes.accordionImage}
-                      src={
-                        'https://www.animationxpress.com/wp-content/uploads/2022/02/3Pixotope-Dota2.png'
-                      }
+                      src={constants.aboutAccordion1Image}
                     ></img>
                   </div>
                 </SimpleGrid>
@@ -109,7 +107,7 @@ function About() {
 
             <Accordion.Item value="flexibility">
               <Accordion.Control>
-                <Title order={4}>Rules of drafting</Title>
+                <Title order={4}>{constants.aboutAccordion2Title}</Title>
               </Accordion.Control>
               <Accordion.Panel>
                 <SimpleGrid
@@ -122,9 +120,7 @@ function About() {
                     <img
                       style={{ transform: 'scale(1.3)', overflow: 'hidden' }}
                       className={classes.accordionImage}
-                      src={
-                        'https://steamuserimages-a.akamaihd.net/ugc/865111643819174254/8559DF87EC87F9C45BE2F654571D039D4D70FA18/?imw=1024&imh=576&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true'
-                      }
+                      src={constants.aboutAccordion2Image}
                     ></img>
                   </div>
                 </SimpleGrid>
@@ -133,7 +129,7 @@ function About() {
 
             <Accordion.Item value="focus-ring">
               <Accordion.Control>
-                <Title order={4}>About the developer</Title>
+                <Title order={4}>{constants.aboutAccordion3Title}</Title>
               </Accordion.Control>
               <Accordion.Panel>
                 <SimpleGrid
@@ -142,15 +138,12 @@ function About() {
                   spacing={50}
                 >
                   <p className={classes.accordionText}>
-                    {constants.aboutMe}{' '}
-                    <a href="https://github.com/jSunpayco/Dota-Drafter">here</a>
+                    {constants.aboutMe} <a href={constants.githubUrl}>here</a>
                   </p>
                   <div className={classes.imageFrame}>
                     <img
                       className={classes.accordionImage}
-                      src={
-                        'https://fs.hubspotusercontent00.net/hubfs/6426302/Imported_Blog_Media/263a75529a1752b75d64f9f21fd07c92-3-2.jpg'
-                      }
+                      src={constants.aboutAccordion3Image}
                     ></img>
                   </div>
                 </SimpleGrid>
