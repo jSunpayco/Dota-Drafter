@@ -3,6 +3,22 @@ export const constants = {
   aboutPageIndex: 2,
   homePageIndex: 0,
 
+  aboutTitle: 'Welcome to DOTA Drafter',
+  aboutSubTitle: "A web app that simulates DOTA 2's Captains Mode",
+
+  aboutAccordion1Title: 'What is DOTA 2 Captains Mode?',
+  aboutAccordion2Title: 'Rules of drafting',
+  aboutAccordion3Title: 'About the developer',
+
+  aboutAccordion1Image:
+    'https://www.animationxpress.com/wp-content/uploads/2022/02/3Pixotope-Dota2.png',
+  aboutAccordion2Image:
+    'https://steamuserimages-a.akamaihd.net/ugc/865111643819174254/8559DF87EC87F9C45BE2F654571D039D4D70FA18/?imw=1024&imh=576&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true',
+  aboutAccordion3Image:
+    'https://fs.hubspotusercontent00.net/hubfs/6426302/Imported_Blog_Media/263a75529a1752b75d64f9f21fd07c92-3-2.jpg',
+
+  githubUrl: 'https://github.com/jSunpayco',
+
   pickTime: 30, //30
   radiantExtraTime: 130, //130
   direExtraTime: 130, //130
