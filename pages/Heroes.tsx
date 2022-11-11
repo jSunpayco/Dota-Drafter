@@ -24,6 +24,7 @@ import { constants } from '../Constants';
 const useStyles = createStyles((theme) => ({
   card: {
     transition: 'transform 150ms ease',
+    cursor: 'pointer',
 
     '&:hover': {
       transform: 'scale(1.35)',
@@ -52,6 +53,7 @@ const useStyles = createStyles((theme) => ({
       cursor: 'pointer',
     },
   },
+
   inner: {
     height: 60,
     display: 'flex',

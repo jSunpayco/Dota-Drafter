@@ -69,12 +69,6 @@ function Home() {
       <HeaderMiddle activeTab={constants.aboutPageIndex} />
 
       <div style={{ marginTop: '150px' }}>
-        <iframe
-          src="https://dota2.fandom.com/wiki/Abaddon"
-          title="description"
-          height="720"
-          width=" 1080"
-        ></iframe>
         <Group style={{ marginLeft: '100px' }}>
           <Title order={1} size={80}>
             {constants.aboutTitle}
