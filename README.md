@@ -1,8 +1,19 @@
-# DOTA Drafter
+# Getting Started with Create React App
 
-This is a personal project in progress. Refer to incoming updates in the Trello board below.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-[Trello Board](https://trello.com/b/MkQuxa7Q/dota-drafter)
+## Available Scripts
 
-This project is currently being migrated from Stackblitz to another platform. Readme will be updated once another instance of the live demo will be available.
-[Stackblitz Live Demo](https://react-ts-edg7pj.stackblitz.io/)
+In the project directory, you can run:
+
+### `npm start`
+
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
+
+### `npm install`
+
+Install the required packages and dependencies
