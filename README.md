@@ -4,7 +4,7 @@ Note: This is a personal project in progress. Currently, a live demo is deployed
 
 This is a web application developed to simulate Captains Mode, a set of rules in the video game DOTA 2. The feature replicated from the game is when two team leaders take turns picking and banning one character from a list of 100+ within a specified time limit.
 
-The frontend is written in ReactJS, whereas MantineUI was also used for some html components.
+The frontend is written in [ReactJS](https://reactjs.org/), whereas [MantineUI](https://mantine.dev/) was also used for some html components. [OpenDota API](https://docs.opendota.com/) was used to retrieve character information.
 
 ## Running the app
 
@@ -18,7 +18,7 @@ npm install
 npm start
 ```
 
-###Description of commands:
+### `Description of commands:`
 
 ### `npm install`
 
