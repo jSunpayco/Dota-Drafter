@@ -98,7 +98,7 @@ const HeaderMiddle = (props) => {
             <li className={classes.listItem}>
               <Anchor
                 weight={700}
-                href="/heroes"
+                href="/about"
                 className={cx(classes.link, {
                   [classes.activePage]: activeTab == 0,
                 })}
