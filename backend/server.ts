@@ -5,7 +5,7 @@ const port = process.env.PORT || 5000;
 
 const dbo = require('./dbConn');
 
-const connectionString = "***REMOVED***";
+const connectionString = process.env.mongoURI;
 const client = new MongoClient(connectionString, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
