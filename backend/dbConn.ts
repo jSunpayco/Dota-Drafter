@@ -1,5 +1,4 @@
 const { MongoClient } = require('mongodb');
-// import MongoClient 
 const myConnectionString = "***REMOVED***";
 const myClient = new MongoClient(myConnectionString, {
   useNewUrlParser: true,

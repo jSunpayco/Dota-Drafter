@@ -14,7 +14,6 @@ function About(props) {
     const fetchUsers = () => {
       axios.get('http://localhost:5000/heroStatus')
       .then((res) => {
-        console.log(res)
         setUserList(res.data)
       })
       .catch((err) => console.log(err))
@@ -34,7 +33,8 @@ function About(props) {
     return (
       <div>
         <HeaderMiddle activeTab={0} />
-        {heroCards}
+        <p style={{ marginTop: 100 }}>{userList.length}</p>
+        {/* {heroCards} */}
       </div>
     );
   }
