@@ -12,7 +12,7 @@ function About(props) {
       }, []);
 
     const fetchUsers = () => {
-      axios.get('http://localhost:5000/colors')
+      axios.get('http://localhost:5000/heroStatus')
       .then((res) => {
         console.log(res)
         setUserList(res.data)
@@ -28,7 +28,7 @@ function About(props) {
     
     const heroCards = userList
       .map((heroItem) => (
-        <p>{heroItem.color}'s hex is {heroItem.value}</p>
+        <p>{heroItem.localized_name}'s is a {heroItem.attack_type} {heroItem.primary_attr}</p>
       ));
     
     return (
