@@ -1,5 +1,5 @@
 const { MongoClient } = require('mongodb');
-const myConnectionString = "***REMOVED***";
+const myConnectionString = process.env.mongoURI;
 const myClient = new MongoClient(myConnectionString, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
