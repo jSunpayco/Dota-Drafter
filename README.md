@@ -1,10 +1,10 @@
 # DOTA Drafter
 
-Note: This is a personal project in progress. Currently, a live demo is deployed on [Stackblitz](https://react-ts-edg7pj.stackblitz.io), but will soon be migrated to a different platform in order for users to access the application without having to run in on their machines. Readme will be updated regularly.
+Note: This is a personal project in progress. Currently, a live demo is deployed on [Stackblitz](https://react-ts-edg7pj.stackblitz.io), but will soon be migrated to a different platform. Readme will be updated regularly. The backend component can be found in [this repo](https://github.com/jSunpayco/dota-drafter-backend).
 
 This is a web application developed to simulate Captains Mode, a set of rules in the video game DOTA 2. The feature replicated from the game is when two team leaders take turns picking and banning one character from a list of 100+ within a specified time limit.
 
-The frontend is written in [ReactJS](https://reactjs.org/), whereas [MantineUI](https://mantine.dev/) was also used for some html components. [OpenDota API](https://docs.opendota.com/) was initially used to retrieve character information.
+The frontend is written in [ReactJS](https://reactjs.org/), whereas [MantineUI](https://mantine.dev/) was also used for some html components. [OpenDota API](https://docs.opendota.com/) was initially used to retrieve character information, but is now being migrated to Mongo Atlas.
 
 ## Running the app
 
@@ -14,21 +14,14 @@ Go to the main directory of the project and open command line to enter the follo
 
 ```sh
 npm install
-npm run server
-```
-
-Open a separate terminal and enter the following to run the frontend:
-
-```sh
-npm install
 npm start
 ```
 
 Your default browser will then open up and automatically direct to localhost:3000.
 
-To stop the application from running, you may enter ctrl+c on both command lines. (cmd+c for Mac).
+To stop the application from running, you may enter ctrl+c on the command line. (cmd+c for Mac).
 
-### `Description of commands:`
+## `Description of commands:`
 
 ### `npm install`
 
