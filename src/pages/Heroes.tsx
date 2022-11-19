@@ -19,21 +19,36 @@ import {
   import React from 'react';
   import HeaderMiddle from '../components/HeaderMiddle.tsx';
   import { useEffect, useState, useMemo } from 'react';
+  import axios from 'axios';
   import { constants } from '../Constants.tsx';
   
   const useStyles = createStyles((theme) => ({
     card: {
       transition: 'transform 150ms ease',
       cursor: 'pointer',
-  
+      aspectRatio: "16 / 9",
+      margin: 'auto',
+      // filter: 'drop-shadow(0 0 0.75rem crimson)',
+      width: 200,
+
       '&:hover': {
-        transform: 'scale(1.35)',
+        transform: 'scale(1.2)',
+        boxShadow: 'inset 0 -15px 20px -2px black'
       },
     },
   
     container: {
       minWidth: 500,
       marginTop: '100px',
+      marginLeft: '150px',
+      marginRight: '150px'
+    },
+
+    heroName: {
+      color: 'white',
+      position: 'absolute',
+      bottom: '0px',
+      backgroundColor: 'red'
     },
   
     title: {
@@ -46,10 +61,11 @@ import {
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
+      transition: 'transform 150ms ease',
   
       '&:hover': {
         boxShadow: `${theme.shadows.md} !important`,
-        transform: 'scale(1.2)',
+        transform: 'scale(2)',
         cursor: 'pointer',
       },
     },
@@ -110,10 +126,19 @@ import {
     }
   
     const fetchHeroStatus = () => {
+      // axios.get('https://dota-drafter.onrender.com/heroStatus')
+      // .then((res) => {
+      //   setHeroStatus(res.data)
+      //   setHeroStatusFiltered(res.data)
+      // })
+      // .catch((err) => console.log("Oh no! " + err)
+      // )
+
       return fetch(constants.urlHeroStats)
         .then((response) => response.json())
         .then((data) => {
-          setHeroStatus(data), setHeroStatusFiltered(data);
+          setHeroStatus(data)
+          setHeroStatusFiltered(data)
         });
     };
   
@@ -192,47 +217,18 @@ import {
     const attribtues = [...new Set(heroStatus.map((Val) => Val.primary_attr))];
     const atkTypes = [...new Set(heroStatus.map((Val) => Val.attack_type))];
   
-    let heroRoles = (roles) =>
-      roles.map((role) => (
-        <Group>
-          <Space w="xs" />
-          <Text size="xl">{role}</Text>
-        </Group>
-      ));
-  
     const heroCards = heroStatusFiltered
       .sort((a, b) => {
         return a.localized_name > b.localized_name ? 1 : -1;
       })
       .map((heroItem) => (
-        <HoverCard shadow="md" withArrow closeDelay={0}>
-          <HoverCard.Target>
-            <Card
-              key={heroItem.localized_name}
-              p="md"
-              radius="md"
-              component="a"
-              className={classes.card}
-              onClick={() => openModal(heroItem.localized_name)}
-            >
-              <AspectRatio ratio={1920 / 1080}>
-                <Image src={constants.urlMainApi + heroItem.img} />
-              </AspectRatio>
-            </Card>
-          </HoverCard.Target>
-          <HoverCard.Dropdown>
-            <Title order={3}>{heroItem.localized_name}</Title>
-            <Space h="xs" />
-            <Grid cols={5}>
-              <Image
-                width={30}
-                height={30}
-                src={attrUrl(heroItem.primary_attr)}
-              ></Image>
-              {heroRoles(heroItem.roles)}
-            </Grid>
-          </HoverCard.Dropdown>
-        </HoverCard>
+           <div 
+            className={classes.card} 
+            style={{backgroundImage: `url(${constants.urlMainApi + heroItem.img})`, backgroundSize:'100% 100%'}} 
+            key={heroItem.localized_name}
+            onClick={() => openModal(heroItem.localized_name)}>
+              <h2 className={classes.heroName}>{heroItem.localized_name}</h2>
+           </div>
       ));
   
     const attributeFilters = attribtues.map((attr) => {
@@ -311,7 +307,7 @@ import {
       <div>
         <HeaderMiddle activeTab={constants.homePageIndex} />
   
-        <Container py="xl" className={classes.container}>
+        <div className={classes.container} size={1200}>
           <Modal
             opened={isModalOpened}
             onClose={() => setModalOpened(false)}
@@ -328,7 +324,7 @@ import {
             </div>
           </Modal>
           <Header className={classes.inner}>
-            <Text size="xl" weight={700}>
+            <Text size={26} weight={700}>
               Filters
             </Text>
   
@@ -352,7 +348,6 @@ import {
               rightSectionWidth={42}
               onChange={textFilter}
             />
-            <Space h="xs" />
           </Header>
   
           <Space h="sm" />
@@ -360,7 +355,7 @@ import {
           <SimpleGrid cols={5} breakpoints={[{ maxWidth: 'md', cols: 3 }]}>
             {heroCards}
           </SimpleGrid>
-        </Container>
+        </div>
         {/* <Image src={constants.urlMainApi + first.img}></Image> */}
       </div>
     );
