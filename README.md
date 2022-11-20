@@ -1,6 +1,6 @@
 # DOTA Drafter
 
-Note: This is a personal project in progress. Currently, a live demo is deployed on [Stackblitz](https://react-ts-edg7pj.stackblitz.io), but will soon be migrated to a different platform. Readme will be updated regularly. The backend component can be found in [this repo](https://github.com/jSunpayco/dota-drafter-backend).
+Note: This is a personal project in progress. Currently, a live demo is deployed on [Stackblitz](https://react-ts-edg7pj.stackblitz.io). The backend component can be found in [this repo](https://github.com/jSunpayco/dota-drafter-backend).
 
 This is a web application developed to simulate Captains Mode, a set of rules in the video game DOTA 2. The feature replicated from the game is when two team leaders take turns picking and banning one character from a list of 100+ within a specified time limit.
 
