@@ -38,12 +38,77 @@ import {
       justifyContent: 'space-between',
       alignItems: 'center',
     },
+
+    filterOptions:{
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between'
+    },
+
+    dropDown:{
+      border: 'solid',
+      borderWidth: '2px',
+      borderColor: 'black',
+      width: '200px',
+      borderRadius: '25px',
+      display: 'table',
+      cursor: 'pointer',
+      zIndex: 1
+    },
+
+    dropDownClicked:{
+      borderColor: '#228BE6',
+      display: 'table'
+    },
+
+    dropDownText:{
+      fontSize: '16px',
+      marginLeft: '3px',
+      // background: 'crimson',
+      margin: '4px',
+      userSelect: 'none'
+    },
+
+    dropDownArrow:{
+      border: 'solid black',
+      borderWidth: '0 3px 3px 0',
+      display: 'inline-block',
+      padding: '3px',
+      float: 'right',
+      position: 'relative',
+      top: '5px',
+      right:'5px',
+      // bottome: '50%'
+    },
+
+    dropDownList:{
+      display: 'none',
+      position: 'absolute',
+      backgroundColor: '#f9f9f9',
+      width: '200px',
+      boxShadow: '0px 8px 16px 0px rgba(0,0,0,0.2)',
+      // padding: '12px 16px',
+      marginTop: '10px',
+      marginLeft: 'auto',
+      marginRight: 'auto'
+    },
+
+    roleOption:{
+      transition: 'all 150ms ease',
+      padding: '12px 16px',
+  
+      '&:hover': {
+        cursor: 'pointer',
+        backgroundColor: 'rgba(34, 139, 230, 0.8)',
+      },
+    },
   
     iFrameDiv: {
       position: 'relative',
       width: '100%',
       overflow: 'hidden',
       paddingTop: '56.25%',
+      transform: 'rotate(45deg)'
     },
   
     myIframe: {
@@ -67,10 +132,13 @@ import {
     const [heroStatus, setHeroStatus] = useState<any[]>([]);
   
     const [heroStatusFiltered, setHeroStatusFiltered] = useState<any[]>([]);
+
+    const [dropDownOpened, setDropDownOpen] = useState(false)
   
     const [currAttribute, setCurrAttribute] = useState('All');
     const [currAttackType, setCurrAttackType] = useState('All');
-    const [currTextSearch, setTextSearch] = useState('');
+
+    const heroRoles = ['Carry', 'Support', 'Nuker', 'Disabler', 'Jungler', 'Escape', 'Pusher', 'Initiator']
   
     useEffect(() => {
       fetchHeroStatus();
@@ -114,11 +182,6 @@ import {
                 ? newItem.attack_type == currAttackType
                 : newItem;
             })
-            .filter((newItem) => {
-              return newItem.localized_name
-                .toLowerCase()
-                .startsWith(currTextSearch);
-            })
         );
       } else {
         setCurrAttribute(attr);
@@ -127,11 +190,6 @@ import {
             return currAttackType != 'All'
               ? newItem.attack_type == currAttackType
               : newItem;
-          })
-          .filter((newItem) => {
-            return newItem.localized_name
-              .toLowerCase()
-              .startsWith(currTextSearch);
           })
           .filter((newItem) => {
             return newItem.primary_attr == attr;
@@ -150,11 +208,6 @@ import {
                 ? newItem.primary_attr == currAttribute
                 : newItem;
             })
-            .filter((newItem) => {
-              return newItem.localized_name
-                .toLowerCase()
-                .startsWith(currTextSearch);
-            })
         );
       } else {
         setCurrAttackType(atk);
@@ -163,11 +216,6 @@ import {
             return currAttribute != 'All'
               ? newItem.primary_attr == currAttribute
               : newItem;
-          })
-          .filter((newItem) => {
-            return newItem.localized_name
-              .toLowerCase()
-              .startsWith(currTextSearch);
           })
           .filter((newItem) => {
             return atk != 'All' ? newItem.attack_type == atk : newItem;
@@ -225,48 +273,18 @@ import {
         </Image>
       );
     });
+
+    const dropDownOptions = heroRoles
+      .map((role) => (
+           <div className={classes.roleOption}>
+            {role}
+           </div>
+      ));
   
     function openModal(heroName) {
       setModalOpened(true);
       setHeroPicked(heroName);
     }
-  
-    const textFilter = (e) => {
-      if (e.target.value == '') {
-        const newItem = heroStatus
-          .filter((newItem) => {
-            return currAttackType != 'All'
-              ? newItem.attack_type == currAttackType
-              : newItem;
-          })
-          .filter((newItem) => {
-            return currAttribute != 'All'
-              ? newItem.primary_attr == currAttribute
-              : newItem;
-          });
-        setHeroStatusFiltered(newItem);
-        setTextSearch('');
-      } else {
-        const newItem = heroStatus
-          .filter((newItem) => {
-            return currAttackType != 'All'
-              ? newItem.attack_type == currAttackType
-              : newItem;
-          })
-          .filter((newItem) => {
-            return currAttribute != 'All'
-              ? newItem.primary_attr == currAttribute
-              : newItem;
-          })
-          .filter((newItem) => {
-            return newItem.localized_name
-              .toLowerCase()
-              .startsWith(e.target.value.toLowerCase());
-          });
-        setHeroStatusFiltered(newItem);
-        setTextSearch(e.target.value.toLowerCase());
-      }
-    };
   
     return (
       <div>
@@ -292,26 +310,32 @@ import {
               Filters
             </Text>
   
-            <Grid cols={3}>
+            <div className={classes.filterOptions}>
               <Text size={22} weight={300}>
                 Attribute
               </Text>
-              <Group>{attributeFilters}</Group>
-            </Grid>
-            <Grid cols={3}>
+              <div className={classes.filterOptions}>{attributeFilters}</div>
+            </div>
+            <div className={classes.filterOptions}>
               <Text size="xl" weight={300}>
                 Attack Type
               </Text>
-              <Group>{attackTypeFilters}</Group>
-            </Grid>
-            <TextInput
-              // icon={<IconSearch size={18} stroke={1.5} />}
-              radius="xl"
-              size="md"
-              placeholder="Search Heroes"
-              rightSectionWidth={42}
-              onChange={textFilter}
-            />
+              <div className={classes.filterOptions}>{attackTypeFilters}</div>
+            </div>
+            <div className={classes.filterOptions}>
+              <Text style={{marginRight:'10px'}} size={22} weight={300}>
+                Roles
+              </Text> 
+              <div className={dropDownOpened ? cx(classes.dropDown, classes.dropDownClicked) : classes.dropDown} 
+              onClick={() => setDropDownOpen(!dropDownOpened)}>
+                <p className={classes.dropDownText}>0 Roles Selected 
+                  <i className={classes.dropDownArrow} style={{WebkitTransform: 'rotate(45deg)'}}></i>
+                </p>
+                <div className={dropDownOpened ? cx(classes.dropDownList, classes.dropDownClicked) : classes.dropDownList}>
+                  {dropDownOptions}
+                </div>
+              </div>
+            </div>
           </Header>
   
           <Space h="sm" />

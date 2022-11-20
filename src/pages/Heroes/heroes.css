@@ -63,6 +63,6 @@
 
 
 .filterImage:hover {
-    transform: scale(2);
+    transform: scale(1.3);
     cursor: pointer;
 }
