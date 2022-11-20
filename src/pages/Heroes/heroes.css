@@ -50,3 +50,19 @@
     visibility: visible; 
     transform: translateY(60%);
 }
+
+/* Filter images */
+
+.filterImage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: transform 150ms ease;
+}
+
+
+.filterImage:hover {
+    transform: scale(2);
+    cursor: pointer;
+}

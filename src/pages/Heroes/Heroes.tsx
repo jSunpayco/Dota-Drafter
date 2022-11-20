@@ -31,25 +31,6 @@ import {
       marginLeft: '150px',
       marginRight: '150px'
     },
-
-    title: {
-      fontFamily: `Greycliff CF, ${theme.fontFamily}`,
-      fontWeight: 600,
-    },
-  
-    Image: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      transition: 'transform 150ms ease',
-  
-      '&:hover': {
-        boxShadow: `${theme.shadows.md} !important`,
-        transform: 'scale(2)',
-        cursor: 'pointer',
-      },
-    },
   
     inner: {
       height: 60,
@@ -221,7 +202,7 @@ import {
           width={30}
           height={30}
           src={attrUrl(attr)}
-          className={classes.Image}
+          className={'filterImage'}
           onClick={() => filterAttributes(attr)}
           mx={5}
         >
@@ -236,7 +217,7 @@ import {
           width={30}
           height={30}
           src={attackUrl(atk)}
-          className={classes.Image}
+          className={'filterImage'}
           onClick={() => filterAttackTypes(atk)}
           mx={5}
         >
