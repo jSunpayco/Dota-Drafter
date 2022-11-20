@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Heroes from './pages/Heroes.tsx';
+import Heroes from './pages/Heroes/Heroes.tsx';
 import Drafter from './pages/Drafter.tsx';
 import Home from './pages/Home.tsx';
 // import About from './pages/About.tsx';

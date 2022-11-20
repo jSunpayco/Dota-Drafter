@@ -14,29 +14,17 @@ import {
     Title,
     Group,
     Modal,
+    clsx,
   } from '@mantine/core';
+  import './heroes.css';
   // import { IconSearch } from '@tabler/icons';
   import React from 'react';
-  import HeaderMiddle from '../components/HeaderMiddle.tsx';
+  import HeaderMiddle from '../../components/HeaderMiddle.tsx';
   import { useEffect, useState, useMemo } from 'react';
   import axios from 'axios';
-  import { constants } from '../Constants.tsx';
+  import { constants } from '../../Constants.tsx';
   
-  const useStyles = createStyles((theme) => ({
-    card: {
-      transition: 'transform 150ms ease',
-      cursor: 'pointer',
-      aspectRatio: "16 / 9",
-      margin: 'auto',
-      // filter: 'drop-shadow(0 0 0.75rem crimson)',
-      width: 200,
-
-      '&:hover': {
-        transform: 'scale(1.2)',
-        boxShadow: 'inset 0 -15px 20px -2px black'
-      },
-    },
-  
+  const useStyles = createStyles((theme) => ({  
     container: {
       minWidth: 500,
       marginTop: '100px',
@@ -44,13 +32,6 @@ import {
       marginRight: '150px'
     },
 
-    heroName: {
-      color: 'white',
-      position: 'absolute',
-      bottom: '0px',
-      backgroundColor: 'red'
-    },
-  
     title: {
       fontFamily: `Greycliff CF, ${theme.fontFamily}`,
       fontWeight: 600,
@@ -97,7 +78,7 @@ import {
   }));
   
   function Heroes() {
-    const { classes } = useStyles();
+    const { classes, cx } = useStyles();
   
     const [isModalOpened, setModalOpened] = useState(false);
     const [heroPicked, setHeroPicked] = useState<String>('');
@@ -223,11 +204,14 @@ import {
       })
       .map((heroItem) => (
            <div 
-            className={classes.card} 
+            className={'card'} 
             style={{backgroundImage: `url(${constants.urlMainApi + heroItem.img})`, backgroundSize:'100% 100%'}} 
             key={heroItem.localized_name}
             onClick={() => openModal(heroItem.localized_name)}>
-              <h2 className={classes.heroName}>{heroItem.localized_name}</h2>
+              <div className={'heroContainer'}>
+                <img className={'heroAttribute'} src={constants.urlAgility}></img>
+                <h2 className={'heroName'}>{heroItem.localized_name}</h2>
+              </div>
            </div>
       ));
   
@@ -307,7 +291,7 @@ import {
       <div>
         <HeaderMiddle activeTab={constants.homePageIndex} />
   
-        <div className={classes.container} size={1200}>
+        <div className={classes.container}>
           <Modal
             opened={isModalOpened}
             onClose={() => setModalOpened(false)}
@@ -316,7 +300,6 @@ import {
             <div className={classes.iFrameDiv}>
               <iframe
                 src={'https://dota2.fandom.com/wiki/' + heroPicked}
-                title={heroPicked}
                 height="100%"
                 width=" 100%"
                 className={classes.myIframe}

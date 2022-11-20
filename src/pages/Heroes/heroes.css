@@ -1,0 +1,52 @@
+.card{
+    transition: transform 150ms ease;
+    cursor: pointer;
+    aspect-ratio: 16 / 9;
+    margin: auto;
+    width: 200;
+}
+
+.card:hover{
+    transform: scale(1.2);
+    box-shadow: inset 0 -55px 55px -2px black;
+}
+
+.heroContainer {
+    display: flex;
+    align-items: center;
+    position: relative;
+    bottom: -45px;
+    left: 5px
+}
+
+.heroName {
+    color: white;
+    /* background-color: red; */
+    visibility: hidden;
+    opacity: 0;
+    transition: all .3s;
+    font-size: 18px;
+    transform: translateY(350%);
+}
+
+.heroAttribute{
+    width: 22px;
+    height: 22px;
+    transition: all .3s;
+    margin-right: 2;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(300%);
+}
+
+.card:hover .heroName{
+    opacity: 1;
+    visibility: visible; 
+    transform: translateY(60%);
+}
+
+.card:hover .heroAttribute{
+    opacity: 1;
+    visibility: visible; 
+    transform: translateY(60%);
+}
