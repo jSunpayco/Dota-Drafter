@@ -145,20 +145,13 @@ import {
     
     // Fetch from API
     const fetchHeroStatus = () => {
-      // axios.get('https://dota-drafter.onrender.com/heroStatus')
-      // .then((res) => {
-      //   setHeroStatus(res.data)
-      //   setHeroStatusFiltered(res.data)
-      // })
-      // .catch((err) => console.log("Oh no! " + err)
-      // )
-
-      return fetch(constants.urlHeroStats)
-        .then((response) => response.json())
-        .then((data) => {
-          setHeroStatus(data)
-          setHeroStatusFiltered(data)
-        });
+      axios.get('https://dota-drafter.onrender.com/heroStatus')
+      .then((res) => {
+        setHeroStatus(res.data)
+        setHeroStatusFiltered(res.data)
+      })
+      .catch((err) => console.log("Oh no! " + err)
+      )
     };
     
     // Apply filter
