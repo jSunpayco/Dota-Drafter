@@ -1,23 +1,14 @@
 import {
-    AspectRatio,
-    Container,
     SimpleGrid,
-    Card,
     createStyles,
     Image,
     Text,
-    Grid,
     Header,
     Space,
-    TextInput,
-    HoverCard,
-    Title,
-    Group,
     Modal,
-    clsx,
   } from '@mantine/core';
   import './heroes.css';
-  // import { IconSearch } from '@tabler/icons';
+  import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
   import React from 'react';
   import HeaderMiddle from '../../components/HeaderMiddle.tsx';
   import { useEffect, useState, useMemo } from 'react';
@@ -28,8 +19,8 @@ import {
     container: {
       minWidth: 500,
       marginTop: '100px',
-      marginLeft: '150px',
-      marginRight: '150px'
+      marginLeft: '10%',
+      marginRight: '10%'
     },
   
     inner: {
@@ -70,15 +61,11 @@ import {
     },
 
     dropDownArrow:{
-      border: 'solid black',
-      borderWidth: '0 3px 3px 0',
-      display: 'inline-block',
-      padding: '3px',
       float: 'right',
       position: 'relative',
       top: '5px',
       right:'5px',
-      // bottome: '50%'
+      transition: 'all 1000ms ease',
     },
 
     dropDownList:{
@@ -87,20 +74,11 @@ import {
       backgroundColor: '#f9f9f9',
       width: '200px',
       boxShadow: '0px 8px 16px 0px rgba(0,0,0,0.2)',
-      // padding: '12px 16px',
       marginTop: '10px',
       marginLeft: 'auto',
-      marginRight: 'auto'
-    },
-
-    roleOption:{
-      transition: 'all 150ms ease',
-      padding: '12px 16px',
-  
-      '&:hover': {
-        cursor: 'pointer',
-        backgroundColor: 'rgba(34, 139, 230, 0.8)',
-      },
+      marginRight: 'auto',
+      border: 'solid',
+      borderWidth: '2px',
     },
   
     iFrameDiv: {
@@ -139,11 +117,22 @@ import {
     const [currAttackType, setCurrAttackType] = useState('All');
 
     const heroRoles = ['Carry', 'Support', 'Nuker', 'Disabler', 'Jungler', 'Escape', 'Pusher', 'Initiator']
-  
+
+    const [rolesSelected, setRolesSelected] = useState<any[]>([]);
+    
+    const attribtues = [...new Set(heroStatus.map((Val) => Val.primary_attr))];
+    const atkTypes = [...new Set(heroStatus.map((Val) => Val.attack_type))];
+    
+    //Use effects
     useEffect(() => {
       fetchHeroStatus();
     }, []);
-  
+
+    useEffect(() => {
+      filterRoles();
+    }, [rolesSelected]);
+    
+    // get appropriate filter icon
     function attrUrl(attr) {
       if (attr == 'int') return constants.urlIntelligence;
       else if (attr == 'agi') return constants.urlAgility;
@@ -154,7 +143,8 @@ import {
       if (atk == 'Ranged') return constants.urlRanged;
       else return constants.urlMelee;
     }
-  
+    
+    // Fetch from API
     const fetchHeroStatus = () => {
       // axios.get('https://dota-drafter.onrender.com/heroStatus')
       // .then((res) => {
@@ -171,7 +161,8 @@ import {
           setHeroStatusFiltered(data)
         });
     };
-  
+    
+    // Apply filter
     const filterAttributes = (attr) => {
       if (currAttribute == attr) {
         setCurrAttribute('All');
@@ -223,10 +214,53 @@ import {
         setHeroStatusFiltered(newItem);
       }
     };
-  
-    const attribtues = [...new Set(heroStatus.map((Val) => Val.primary_attr))];
-    const atkTypes = [...new Set(heroStatus.map((Val) => Val.attack_type))];
-  
+
+    function addSelectedRoles(role){
+      let roleLen = rolesSelected.length;
+
+      if(rolesSelected.includes(role)){
+        let newRoles = rolesSelected.filter((item) => item !== role);
+        setRolesSelected(newRoles)
+      }else{
+        setRolesSelected(rolesSelected => [...rolesSelected, role])
+      }
+    }
+
+    function filterRoles() {
+      if(rolesSelected.length == 0){
+        const newItem = heroStatus
+          .filter((newItem) => {
+            return currAttackType != 'All'
+              ? newItem.attack_type == currAttackType
+              : newItem;
+          })
+          .filter((newItem) => {
+            return currAttribute != 'All'
+              ? newItem.primary_attr == currAttribute
+              : newItem;
+          });
+          setHeroStatusFiltered(newItem);
+      }else{
+        const newItem = heroStatus
+          .filter((newItem) => {
+            return currAttackType != 'All'
+              ? newItem.attack_type == currAttackType
+              : newItem;
+          })
+          .filter((newItem) => {
+            return currAttribute != 'All'
+              ? newItem.primary_attr == currAttribute
+              : newItem;
+          })
+          .filter((newItem) =>{
+            return rolesSelected.every((currRole) => newItem.roles.includes(currRole))
+          });
+        
+        setHeroStatusFiltered(newItem);
+      }
+    }
+    
+    // Display heroes
     const heroCards = heroStatusFiltered
       .sort((a, b) => {
         return a.localized_name > b.localized_name ? 1 : -1;
@@ -243,7 +277,8 @@ import {
               </div>
            </div>
       ));
-  
+    
+    // Display filter icons
     const attributeFilters = attribtues.map((attr) => {
       return (
         <Image
@@ -274,12 +309,16 @@ import {
       );
     });
 
+    // Misc
     const dropDownOptions = heroRoles
       .map((role) => (
-           <div className={classes.roleOption}>
+           <div 
+            className={(rolesSelected.includes(role) ? cx('roleOption', 'selectedRole') : 'roleOption')} 
+            onClick={() => addSelectedRoles(role)}
+            >
             {role}
            </div>
-      ));
+    ));
   
     function openModal(heroName) {
       setModalOpened(true);
@@ -328,8 +367,9 @@ import {
               </Text> 
               <div className={dropDownOpened ? cx(classes.dropDown, classes.dropDownClicked) : classes.dropDown} 
               onClick={() => setDropDownOpen(!dropDownOpened)}>
-                <p className={classes.dropDownText}>0 Roles Selected 
-                  <i className={classes.dropDownArrow} style={{WebkitTransform: 'rotate(45deg)'}}></i>
+                <p className={classes.dropDownText}>{rolesSelected.length} Roles Selected
+                  {dropDownOpened? <AiFillCaretUp className={classes.dropDownArrow}/>:
+                  <AiFillCaretDown className={classes.dropDownArrow}/>}
                 </p>
                 <div className={dropDownOpened ? cx(classes.dropDownList, classes.dropDownClicked) : classes.dropDownList}>
                   {dropDownOptions}

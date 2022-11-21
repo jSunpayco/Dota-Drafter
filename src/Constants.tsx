@@ -19,9 +19,9 @@ export const constants = {
   
     githubUrl: 'https://github.com/jSunpayco',
   
-    pickTime: 1, //30
-    radiantExtraTime: 0, //130
-    direExtraTime: 0, //130
+    pickTime: 30, //30
+    radiantExtraTime: 130, //130
+    direExtraTime: 130, //130
   
     attributeAgility: 'agi',
     attributeIntelligence: 'int',
