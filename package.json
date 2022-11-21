@@ -30,7 +30,7 @@
     "react-scripts": "latest"
   },
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
-  "main": "src/index.js",
+  "main": "index.js",
   "author": "",
   "license": "ISC",
   "browserslist": {
