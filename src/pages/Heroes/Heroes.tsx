@@ -85,8 +85,7 @@ import {
       position: 'relative',
       width: '100%',
       overflow: 'hidden',
-      paddingTop: '56.25%',
-      transform: 'rotate(45deg)'
+      paddingTop: '56.25%'
     },
   
     myIframe: {
@@ -365,9 +364,9 @@ import {
               <Text style={{marginRight:'10px'}} size={22} weight={300}>
                 Roles
               </Text> 
-              <div className={dropDownOpened ? cx(classes.dropDown, classes.dropDownClicked) : classes.dropDown} 
-              onClick={() => setDropDownOpen(!dropDownOpened)}>
-                <p className={classes.dropDownText}>{rolesSelected.length} Roles Selected
+              <div className={dropDownOpened ? cx(classes.dropDown, classes.dropDownClicked) : classes.dropDown}>
+                <p className={classes.dropDownText} onClick={() => setDropDownOpen(!dropDownOpened)}>
+                  {rolesSelected.length} Roles Selected
                   {dropDownOpened? <AiFillCaretUp className={classes.dropDownArrow}/>:
                   <AiFillCaretDown className={classes.dropDownArrow}/>}
                 </p>
