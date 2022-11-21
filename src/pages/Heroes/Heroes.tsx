@@ -14,6 +14,7 @@ import {
   import { useEffect, useState, useMemo } from 'react';
   import axios from 'axios';
   import { constants } from '../../Constants.tsx';
+  import {ColorRing} from 'react-loader-spinner';
   
   const useStyles = createStyles((theme) => ({  
     container: {
@@ -102,6 +103,8 @@ import {
   
   function Heroes() {
     const { classes, cx } = useStyles();
+
+    const [isLoading, setIsLoading] = useState(true);
   
     const [isModalOpened, setModalOpened] = useState(false);
     const [heroPicked, setHeroPicked] = useState<String>('');
@@ -152,6 +155,9 @@ import {
       })
       .catch((err) => console.log("Oh no! " + err)
       )
+      .then(function(data){
+        setIsLoading(false)
+      })
     };
     
     // Apply filter
@@ -371,10 +377,19 @@ import {
           </Header>
   
           <Space h="sm" />
-  
-          <SimpleGrid cols={5} breakpoints={[{ maxWidth: 'md', cols: 3 }]}>
-            {heroCards}
-          </SimpleGrid>
+          {isLoading ? (<ColorRing
+            visible={true}
+            height="80"
+            width="80"
+            ariaLabel="blocks-loading"
+            wrapperStyle={{}}
+            wrapperClass="blocks-wrapper"
+            colors={['#228BE6', '#228BE6', '#228BE6', '#228BE6', '#228BE6']}
+            />) : <SimpleGrid cols={5} breakpoints={[{ maxWidth: 'md', cols: 3 }]}>
+                    {heroCards}
+                  </SimpleGrid>
+            }
+          
         </div>
         {/* <Image src={constants.urlMainApi + first.img}></Image> */}
       </div>
