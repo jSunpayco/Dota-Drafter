@@ -16,13 +16,8 @@ function About(props) {
       .then((res) => {
         setUserList(res.data)
       })
-      .catch((err) => console.log(err))
-    
-      // return fetch('/api/about')
-      //   .then((response) => response.json())
-      //   .then((data) => {
-      //       setUserList(data);
-      //   });
+      .catch((err) => console.log(err)
+      )
     };
     
     const heroCards = userList
