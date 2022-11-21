@@ -1,9 +1,46 @@
+.container{
+    min-width: 70%;
+    margin-top: 100px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+/* Filter Nav Bar */
+.filterContainer{
+    height: 60;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 100%;
+}
+
+.filterOptions{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 250px;
+}
+
+.filterLabel{
+    visibility: visible;
+}
+
+@media screen and (max-width: 800px) {
+    .filterOptions {display: block; margin: 10px 10px;}
+    .filterContainer{margin-bottom: 50px;}
+    .filterLabel{visibility: hidden;}
+}
+
+/* Hero Cards */
 .card{
     transition: transform 150ms ease;
     cursor: pointer;
     aspect-ratio: 16 / 9;
-    margin: auto;
-    width: 200;
+    margin: 10px 15px;
+    max-width: 200;
+    width: 100%;
+    /* max-height: 12vmin; */
+    border-collapse: collapse
 }
 
 .card:hover{
@@ -16,7 +53,7 @@
     align-items: center;
     position: relative;
     bottom: -45px;
-    left: 5px
+    left: 5px;
 }
 
 .heroName {

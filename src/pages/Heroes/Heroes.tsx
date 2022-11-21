@@ -1,5 +1,4 @@
 import {
-    SimpleGrid,
     createStyles,
     Image,
     Text,
@@ -17,26 +16,6 @@ import {
   import {ColorRing} from 'react-loader-spinner';
   
   const useStyles = createStyles((theme) => ({  
-    container: {
-      minWidth: 500,
-      marginTop: '100px',
-      marginLeft: '10%',
-      marginRight: '10%'
-    },
-  
-    inner: {
-      height: 60,
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-    },
-
-    filterOptions:{
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between'
-    },
-
     dropDown:{
       border: 'solid',
       borderWidth: '2px',
@@ -99,6 +78,15 @@ import {
       height: '100%',
       border: 'none',
     },
+
+    heroesGrid:{
+      display: 'flex',
+      flexWrap: 'wrap',
+      width: '100%',
+      justifyContent: 'center',
+      alignItems: 'center',
+      // background: 'crimson',
+    }
   }));
   
   function Heroes() {
@@ -188,6 +176,7 @@ import {
     };
   
     const filterAttackTypes = (atk) => {
+      console.log(atk)
       if (currAttackType == atk) {
         setCurrAttackType('All');
         setHeroStatusFiltered(
@@ -214,8 +203,6 @@ import {
     };
 
     function addSelectedRoles(role){
-      let roleLen = rolesSelected.length;
-
       if(rolesSelected.includes(role)){
         let newRoles = rolesSelected.filter((item) => item !== role);
         setRolesSelected(newRoles)
@@ -327,7 +314,8 @@ import {
       <div>
         <HeaderMiddle activeTab={constants.homePageIndex} />
   
-        <div className={classes.container}>
+        <div className={'container'}>
+
           <Modal
             opened={isModalOpened}
             onClose={() => setModalOpened(false)}
@@ -342,24 +330,27 @@ import {
               ></iframe>
             </div>
           </Modal>
-          <Header className={classes.inner}>
-            <Text size={26} weight={700}>
+
+          <div className={'filterContainer'}>
+            <Text size={26} weight={700} className={'filterLabel'}>
               Filters
             </Text>
   
-            <div className={classes.filterOptions}>
+            <div className={'filterOptions'}>
               <Text size={22} weight={300}>
                 Attribute
               </Text>
-              <div className={classes.filterOptions}>{attributeFilters}</div>
+              {attributeFilters}
             </div>
-            <div className={classes.filterOptions}>
+
+            <div className={'filterOptions'}>
               <Text size="xl" weight={300}>
                 Attack Type
               </Text>
-              <div className={classes.filterOptions}>{attackTypeFilters}</div>
+              {attackTypeFilters}
             </div>
-            <div className={classes.filterOptions}>
+
+            <div className={'filterOptions'}>
               <Text style={{marginRight:'10px'}} size={22} weight={300}>
                 Roles
               </Text> 
@@ -374,9 +365,11 @@ import {
                 </div>
               </div>
             </div>
-          </Header>
+
+          </div>
   
           <Space h="sm" />
+
           {isLoading ? (<ColorRing
             visible={true}
             height="80"
@@ -385,9 +378,10 @@ import {
             wrapperStyle={{}}
             wrapperClass="blocks-wrapper"
             colors={['#228BE6', '#228BE6', '#228BE6', '#228BE6', '#228BE6']}
-            />) : <SimpleGrid cols={5} breakpoints={[{ maxWidth: 'md', cols: 3 }]}>
-                    {heroCards}
-                  </SimpleGrid>
+            />) : 
+            <div className={classes.heroesGrid}>
+              {heroCards}
+            </div>
             }
           
         </div>
