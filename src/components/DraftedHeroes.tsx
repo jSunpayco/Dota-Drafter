@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { createStyles, Container, Table, Tooltip } from '@mantine/core';
 import { constants } from '../Constants.tsx';
 

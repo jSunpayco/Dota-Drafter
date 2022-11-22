@@ -14,7 +14,7 @@ import {
     Group,
     Radio,
   } from '@mantine/core';
-  import React from 'react';
+  import * as React from 'react';
   import { useEffect, useState, useRef } from 'react';
   import { constants } from '../Constants.tsx';
   

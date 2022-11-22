@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import HeaderMiddle from '../components/HeaderMiddle.tsx';
 import { constants } from '../Constants.tsx';
 import {

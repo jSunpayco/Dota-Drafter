@@ -8,7 +8,7 @@ import {
   } from '@mantine/core';
   import './heroes.css';
   import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
-  import React from 'react';
+  import * as React from 'react';
   import HeaderMiddle from '../../components/HeaderMiddle.tsx';
   import { useEffect, useState, useMemo } from 'react';
   import axios from 'axios';
