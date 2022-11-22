@@ -1,6 +1,6 @@
 # DOTA Drafter
 
-Note: This is a personal project in progress. Currently, the live demo is being fixed. The backend component can be found in [this repo](https://github.com/jSunpayco/dota-drafter-backend).
+Note: This is a personal project in progress. The live demo is deployed on Vercel, and can be visited [here](https://dota-drafter.vercel.app/). The backend component can be found in [this repo](https://github.com/jSunpayco/dota-drafter-backend).
 
 This is a web application developed to simulate Captains Mode, a set of rules in the video game DOTA 2. The feature replicated from the game is when two team leaders take turns picking and banning one character from a list of 100+ within a specified time limit.
 
