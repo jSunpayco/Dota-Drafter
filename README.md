@@ -8,7 +8,7 @@ The frontend is written in [ReactJS](https://reactjs.org/), whereas [MantineUI](
 
 ## Running the app
 
-Local:
+Download the source code and unzip it in a folder.
 
 Go to the main directory of the project and open command line to enter the following commands to run the backend:
 
@@ -21,7 +21,7 @@ Your default browser will then open up and automatically direct to localhost:300
 
 To stop the application from running, you may enter ctrl+c on the command line. (cmd+c for Mac).
 
-## `Description of commands:`
+## Description of commands:
 
 ### `npm install`
 
