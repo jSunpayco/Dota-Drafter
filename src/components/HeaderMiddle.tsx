@@ -1,6 +1,6 @@
-const React = require('react')
-const { createStyles, Text, Title, Anchor } = require('@mantine/core')
-const useState = require('react')
+import * as React from 'react';
+import { createStyles, Text, Title, Anchor } from '@mantine/core';
+import { useState } from 'react';
 
 const useStyles = createStyles((theme) => ({
   navbar: {

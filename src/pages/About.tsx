@@ -1,7 +1,7 @@
-const React = require('react')
-const axios = require('axios')
-const { useEffect, useState } = require('react')
-const HeaderMiddle = require('../components/HeaderMiddle.tsx')
+import * as React from 'react';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import HeaderMiddle from '../components/HeaderMiddle.tsx';
 
 function About(props) {  
 

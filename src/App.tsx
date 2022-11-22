@@ -1,9 +1,9 @@
-const React = require('react')
-const Heroes = require('./pages/Heroes/Heroes.tsx')
-const Drafter = require('./pages/Drafter.tsx')
-const Home = require('./pages/Home.tsx')
-// const About = require('./pages/About.tsx')
-const { Router, Routes, Route } = require('react-router-dom')
+import * as React from 'react';
+import Heroes from './pages/Heroes/Heroes.tsx';
+import Drafter from './pages/Drafter.tsx';
+import Home from './pages/Home.tsx';
+// import About from './pages/About.tsx';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 export default function App() {
   return (

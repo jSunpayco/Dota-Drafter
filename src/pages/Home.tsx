@@ -1,15 +1,17 @@
-const React = require('react')
-const HeaderMiddle = require('../components/HeaderMiddle.tsx')
-const constants = require('../Constants.tsx')
-const {
+import * as React from 'react';
+import HeaderMiddle from '../components/HeaderMiddle.tsx';
+import { constants } from '../Constants.tsx';
+import {
   createStyles,
   Title,
   Text,
   Group,
   Accordion,
+  Stepper,
   Container,
+  ScrollArea,
   SimpleGrid,
-} = require('@mantine/core')
+} from '@mantine/core';
 
 const useStyles = createStyles((theme) => ({
   accordionItem: {

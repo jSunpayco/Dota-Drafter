@@ -1,9 +1,10 @@
-const React = require('react')
-const App = require('./App.tsx')
-const { createRoot } = require('react-dom/client')
+import React from 'react';
+import { StrictMode } from 'react';
+import App from './App.tsx';
+import { createRoot } from 'react-dom/client';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
-root.render(<React.StrictMode>
+root.render(<StrictMode>
   <App />
-</React.StrictMode>);
+</StrictMode>);

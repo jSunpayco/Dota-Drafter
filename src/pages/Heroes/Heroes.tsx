@@ -1,23 +1,19 @@
-const {
+import {
     createStyles,
     Image,
     Text,
+    Header,
     Space,
     Modal,
-  } = require('@mantine/core')
-  // const React = require('./heroes.css') TODO WEBPACK
+  } from '@mantine/core';
   import './heroes.css';
-  const { AiFillCaretDown, AiFillCaretUp } = require('react-icons/ai')
-
-  
-  const React = require('react')
-  const HeaderMiddle = require('../../components/HeaderMiddle.tsx')
-  const { useEffect, useState } = require('react')
-
-  
-  const axios = require('axios')
-  const constants = require('../../Constants.tsx')
-  const ColorRing = require('react-loader-spinner')
+  import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
+  import * as React from 'react';
+  import HeaderMiddle from '../../components/HeaderMiddle.tsx';
+  import { useEffect, useState, useMemo } from 'react';
+  import axios from 'axios';
+  import { constants } from '../../Constants.tsx';
+  import {ColorRing} from 'react-loader-spinner';
   
   const useStyles = createStyles((theme) => ({  
     dropDown:{

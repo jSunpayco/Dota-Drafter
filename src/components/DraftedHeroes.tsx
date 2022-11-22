@@ -1,6 +1,6 @@
-const React = require('react')
-const { createStyles, Container, Table, Tooltip } = require('@mantine/core')
-const constants = require('../Constants.tsx')
+import * as React from 'react';
+import { createStyles, Container, Table, Tooltip } from '@mantine/core';
+import { constants } from '../Constants.tsx';
 
 const useStyles = createStyles((theme) => ({
   heroImagePick: {
