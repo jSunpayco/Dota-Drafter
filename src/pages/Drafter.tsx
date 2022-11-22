@@ -20,6 +20,7 @@ import {
   
   import HeaderMiddle from '../components/HeaderMiddle.tsx';
   import DraftedHeroes from '../components/DraftedHeroes.tsx';
+  import {ColorRing} from 'react-loader-spinner';
   // import { IconSearch } from '@tabler/icons';
   
   const useStyles = createStyles((theme) => ({
@@ -228,7 +229,7 @@ import {
           );
         })
         .then(function (data) {
-          setIsLoading(!isLoading);
+          setIsLoading(false);
         });
     };
   
@@ -455,34 +456,45 @@ import {
   
           <Button onClick={() => setUserPreferences()}>Confirm</Button>
         </Modal>
-  
-        <div className={classes.timerNavBar}>
-          <div className={cx(classes.timerNavItems, classes.extraTime)}>
-            <Text>Radiant</Text>
-            <Text>{secondsToMinutes(radiantExtraTime)}</Text>
-            <Text>Reserve Time</Text>
-          </div>
-          <div className={classes.timerNavItems}>
-            <Text
-              size="xl"
-              weight={700}
-              style={{ color: isRadiantTurn ? 'green' : 'red' }}
-            >
-              {isRadiantTurn ? 'Radiant ' : 'Dire '}
-              {pickList[currIndex.current].pickType}
-            </Text>
-            <Text size="xl" weight={300}>
-              {secondsToMinutes(currDraftTime)}
-            </Text>
-  
-            <Group position="center" spacing="xs">
-              <Button onClick={handleTimer}>
-                {isCountingDown ? 'Pause' : 'Start'}
-              </Button>
-              <Button onClick={resetDraft}>Reset</Button>
-            </Group>
-          </div>
-          <div className={cx(classes.timerNavItems, classes.extraTime)}>
+
+        {isLoading ? 
+          (<ColorRing
+          visible={true}
+          height="80"
+          width="80"
+          ariaLabel="blocks-loading"
+          wrapperStyle={{}}
+          wrapperClass="blocks-wrapper"
+          colors={['#228BE6', '#228BE6', '#228BE6', '#228BE6', '#228BE6']}
+          />) : 
+          <div>
+            <div className={classes.timerNavBar}>
+              <div className={cx(classes.timerNavItems, classes.extraTime)}>
+                <Text>Radiant</Text>
+                <Text>{secondsToMinutes(radiantExtraTime)}</Text>
+                <Text>Reserve Time</Text>
+              </div>
+              <div className={classes.timerNavItems}>
+                <Text
+                  size="xl"
+                  weight={700}
+                  style={{ color: isRadiantTurn ? 'green' : 'red' }}
+                >
+                  {isRadiantTurn ? 'Radiant ' : 'Dire '}
+                  {pickList[currIndex.current].pickType}
+                </Text>
+                <Text size="xl" weight={300}>
+                  {secondsToMinutes(currDraftTime)}
+                </Text>
+      
+                <Group position="center" spacing="xs">
+                  <Button onClick={handleTimer}>
+                    {isCountingDown ? 'Pause' : 'Start'}
+                  </Button>
+                  <Button onClick={resetDraft}>Reset</Button>
+                </Group>
+              </div>
+            <div className={cx(classes.timerNavItems, classes.extraTime)}>
             <Text>Dire</Text>
             <Text>{secondsToMinutes(direExtraTime)}</Text>
             <Text>Reserve Time</Text>
@@ -542,7 +554,9 @@ import {
           <Container className={classes.drafted}>
             <DraftedHeroes pickList={pickList} />
           </Container>
-        </div>
+        </div></div>
+        }
+
       </div>
     );
   }

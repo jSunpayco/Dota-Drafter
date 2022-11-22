@@ -331,45 +331,6 @@ import {
             </div>
           </Modal>
 
-          <div className={'filterContainer'}>
-            <Text size={26} weight={700} className={'filterLabel'}>
-              Filters
-            </Text>
-  
-            <div className={'filterOptions'}>
-              <Text size={22} weight={300}>
-                Attribute
-              </Text>
-              {attributeFilters}
-            </div>
-
-            <div className={'filterOptions'}>
-              <Text size="xl" weight={300}>
-                Attack Type
-              </Text>
-              {attackTypeFilters}
-            </div>
-
-            <div className={'filterOptions'}>
-              <Text style={{marginRight:'10px'}} size={22} weight={300}>
-                Roles
-              </Text> 
-              <div className={dropDownOpened ? cx(classes.dropDown, classes.dropDownClicked) : classes.dropDown}>
-                <p className={classes.dropDownText} onClick={() => setDropDownOpen(!dropDownOpened)}>
-                  {rolesSelected.length} Roles Selected
-                  {dropDownOpened? <AiFillCaretUp className={classes.dropDownArrow}/>:
-                  <AiFillCaretDown className={classes.dropDownArrow}/>}
-                </p>
-                <div className={dropDownOpened ? cx(classes.dropDownList, classes.dropDownClicked) : classes.dropDownList}>
-                  {dropDownOptions}
-                </div>
-              </div>
-            </div>
-
-          </div>
-  
-          <Space h="sm" />
-
           {isLoading ? (<ColorRing
             visible={true}
             height="80"
@@ -379,8 +340,48 @@ import {
             wrapperClass="blocks-wrapper"
             colors={['#228BE6', '#228BE6', '#228BE6', '#228BE6', '#228BE6']}
             />) : 
-            <div className={classes.heroesGrid}>
-              {heroCards}
+            <div>
+              <div className={'filterContainer'}>
+                <Text size={26} weight={700} className={'filterLabel'}>
+                  Filters
+                </Text>
+      
+                <div className={'filterOptions'}>
+                  <Text size={22} weight={300}>
+                    Attribute
+                  </Text>
+                  {attributeFilters}
+                </div>
+
+                <div className={'filterOptions'}>
+                  <Text size="xl" weight={300}>
+                    Attack Type
+                  </Text>
+                  {attackTypeFilters}
+                </div>
+
+                <div className={'filterOptions'}>
+                  <Text style={{marginRight:'10px'}} size={22} weight={300}>
+                    Roles
+                  </Text> 
+                  <div className={dropDownOpened ? cx(classes.dropDown, classes.dropDownClicked) : classes.dropDown}>
+                    <p className={classes.dropDownText} onClick={() => setDropDownOpen(!dropDownOpened)}>
+                      {rolesSelected.length} Roles Selected
+                      {dropDownOpened? <AiFillCaretUp className={classes.dropDownArrow}/>:
+                      <AiFillCaretDown className={classes.dropDownArrow}/>}
+                    </p>
+                    <div className={dropDownOpened ? cx(classes.dropDownList, classes.dropDownClicked) : classes.dropDownList}>
+                      {dropDownOptions}
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+      
+              <Space h="sm" />
+              <div className={classes.heroesGrid}>
+                {heroCards}
+              </div>
             </div>
             }
           
