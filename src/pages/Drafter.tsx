@@ -1,4 +1,4 @@
-import {
+const {
     AspectRatio,
     Container,
     SimpleGrid,
@@ -13,14 +13,13 @@ import {
     Button,
     Group,
     Radio,
-  } from '@mantine/core';
-  import * as React from 'react';
-  import { useEffect, useState, useRef } from 'react';
-  import { constants } from '../Constants.tsx';
-  
-  import HeaderMiddle from '../components/HeaderMiddle.tsx';
-  import DraftedHeroes from '../components/DraftedHeroes.tsx';
-  // import { IconSearch } from '@tabler/icons';
+  } = require('@mantine/core')
+  const React = require('react')
+  const { useEffect, useState, useRef } = require('react')
+  const constants = require('../Constants.tsx')
+
+  const HeaderMiddle = require('../components/HeaderMiddle.tsx')
+  const DraftedHeroes = require('../components/DraftedHeroes.tsx')
   
   const useStyles = createStyles((theme) => ({
     card: {
