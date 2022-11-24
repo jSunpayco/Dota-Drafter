@@ -136,7 +136,7 @@ import {
     
     // Fetch from API
     const fetchHeroStatus = () => {
-      axios.get('https://dota-drafter.onrender.com/heroStatus')
+      axios.get('http://localhost:5000/heroStatus')
       .then((res) => {
         setHeroStatus(res.data)
         setHeroStatusFiltered(res.data)
@@ -247,9 +247,6 @@ import {
     
     // Display heroes
     const heroCards = heroStatusFiltered
-      .sort((a, b) => {
-        return a.localized_name > b.localized_name ? 1 : -1;
-      })
       .map((heroItem) => (
            <div 
             className={'card'} 
@@ -257,7 +254,7 @@ import {
             key={heroItem.localized_name}
             onClick={() => openModal(heroItem.localized_name)}>
               <div className={'heroContainer'}>
-                <img className={'heroAttribute'} src={constants.urlAgility}></img>
+                <img className={'heroAttribute'} src={attrUrl(heroItem.primary_attr)}></img>
                 <h2 className={'heroName'}>{heroItem.localized_name}</h2>
               </div>
            </div>

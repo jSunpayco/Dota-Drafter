@@ -22,6 +22,7 @@ import {
   import DraftedHeroes from '../components/DraftedHeroes.tsx';
   import {ColorRing} from 'react-loader-spinner';
   // import { IconSearch } from '@tabler/icons';
+  import axios from 'axios';
   
   const useStyles = createStyles((theme) => ({
     card: {
@@ -193,51 +194,49 @@ import {
     }
   
     const fetchHeroStatus = () => {
-      return fetch(constants.urlHeroStats)
-        .then((response) => response.json())
-        .then((data) => {
-          setAllHeroes(data);
-          setHeroAgility(
-            data.filter((hero) => {
-              return hero.primary_attr == 'agi';
-            })
-          );
-          setHeroAgilityFiltered(
-            data.filter((hero) => {
-              return hero.primary_attr == 'agi';
-            })
-          );
-          setHeroIntelligence(
-            data.filter((hero) => {
-              return hero.primary_attr == 'int';
-            })
-          );
-          setHeroIntelligenceFiltered(
-            data.filter((hero) => {
-              return hero.primary_attr == 'int';
-            })
-          );
-          setHeroStrength(
-            data.filter((hero) => {
-              return hero.primary_attr == 'str';
-            })
-          );
-          setHeroStrengthFiltered(
-            data.filter((hero) => {
-              return hero.primary_attr == 'str';
-            })
-          );
-        })
-        .then(function (data) {
-          setIsLoading(false);
-        });
+      axios.get('http://localhost:5000/heroStatus')
+      .then((res) => {
+        setAllHeroes(res.data);
+        setHeroAgility(
+          res.data.filter((hero) => {
+            return hero.primary_attr == 'agi';
+          })
+        );
+        setHeroAgilityFiltered(
+          res.data.filter((hero) => {
+            return hero.primary_attr == 'agi';
+          })
+        );
+        setHeroIntelligence(
+          res.data.filter((hero) => {
+            return hero.primary_attr == 'int';
+          })
+        );
+        setHeroIntelligenceFiltered(
+          res.data.filter((hero) => {
+            return hero.primary_attr == 'int';
+          })
+        );
+        setHeroStrength(
+          res.data.filter((hero) => {
+            return hero.primary_attr == 'str';
+          })
+        );
+        setHeroStrengthFiltered(
+          res.data.filter((hero) => {
+            return hero.primary_attr == 'str';
+          })
+        );
+      })
+      .catch((err) => console.log(err)
+      )
+      .then(function (data) {
+        setIsLoading(false);
+      });
     };
   
     const heroCards = (attr) => {
       return attr
-        .sort((a, b) => {
-          return a.localized_name > b.localized_name ? 1 : -1;
-        })
         .map((heroItem) => (
           <AspectRatio ratio={1920 / 1080}>
             <Tooltip label={heroItem.localized_name} multiline>
