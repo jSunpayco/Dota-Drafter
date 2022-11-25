@@ -194,7 +194,7 @@ import {
     }
   
     const fetchHeroStatus = () => {
-      axios.get('http://localhost:5000/heroStatus')
+      axios.get('https://dota-drafter.onrender.com/heroStatus')
       .then((res) => {
         setAllHeroes(res.data);
         setHeroAgility(
