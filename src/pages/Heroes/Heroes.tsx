@@ -97,8 +97,6 @@ import {
     const [isModalOpened, setModalOpened] = useState(false);
     const [heroPicked, setHeroPicked] = useState<String>('');
   
-    const [heroStatus, setHeroStatus] = useState<any[]>([]);
-  
     const [heroStatusFiltered, setHeroStatusFiltered] = useState<any[]>([]);
 
     const [dropDownOpened, setDropDownOpen] = useState(false)
@@ -110,17 +108,13 @@ import {
 
     const [rolesSelected, setRolesSelected] = useState<any[]>([]);
     
-    const attribtues = [...new Set(heroStatus.map((Val) => Val.primary_attr))];
-    const atkTypes = [...new Set(heroStatus.map((Val) => Val.attack_type))];
+    const attribtues = ['agi', 'str', 'int'];
+    const atkTypes = ['Ranged', 'Melee'];
     
     //Use effects
     useEffect(() => {
       fetchHeroStatus();
-    }, []);
-
-    useEffect(() => {
-      filterRoles();
-    }, [rolesSelected]);
+    }, [rolesSelected, currAttribute, currAttackType]);
     
     // get appropriate filter icon
     function attrUrl(attr) {
@@ -136,9 +130,22 @@ import {
     
     // Fetch from API
     const fetchHeroStatus = () => {
-      axios.get('http://localhost:5000/heroStatus')
+
+      const filters = {}
+
+      if(currAttribute != 'All')
+        filters['primary_attr'] = currAttribute
+
+      if(currAttackType != 'All')
+        filters['attack_type'] = currAttackType
+
+      if(rolesSelected.length > 0)
+        filters['roles'] = {$all: rolesSelected}
+
+      axios.get('http://localhost:5000/heroStatus', {params:{
+        filters: filters
+      }})
       .then((res) => {
-        setHeroStatus(res.data)
         setHeroStatusFiltered(res.data)
       })
       .catch((err) => console.log("Oh no! " + err)
@@ -152,26 +159,8 @@ import {
     const filterAttributes = (attr) => {
       if (currAttribute == attr) {
         setCurrAttribute('All');
-        setHeroStatusFiltered(
-          heroStatus
-            .filter((newItem) => {
-              return currAttackType != 'All'
-                ? newItem.attack_type == currAttackType
-                : newItem;
-            })
-        );
       } else {
         setCurrAttribute(attr);
-        const newItem = heroStatus
-          .filter((newItem) => {
-            return currAttackType != 'All'
-              ? newItem.attack_type == currAttackType
-              : newItem;
-          })
-          .filter((newItem) => {
-            return newItem.primary_attr == attr;
-          });
-        setHeroStatusFiltered(newItem);
       }
     };
   
@@ -179,26 +168,8 @@ import {
       console.log(atk)
       if (currAttackType == atk) {
         setCurrAttackType('All');
-        setHeroStatusFiltered(
-          heroStatus
-            .filter((newItem) => {
-              return currAttribute != 'All'
-                ? newItem.primary_attr == currAttribute
-                : newItem;
-            })
-        );
       } else {
         setCurrAttackType(atk);
-        const newItem = heroStatus
-          .filter((newItem) => {
-            return currAttribute != 'All'
-              ? newItem.primary_attr == currAttribute
-              : newItem;
-          })
-          .filter((newItem) => {
-            return atk != 'All' ? newItem.attack_type == atk : newItem;
-          });
-        setHeroStatusFiltered(newItem);
       }
     };
 
@@ -208,40 +179,6 @@ import {
         setRolesSelected(newRoles)
       }else{
         setRolesSelected(rolesSelected => [...rolesSelected, role])
-      }
-    }
-
-    function filterRoles() {
-      if(rolesSelected.length == 0){
-        const newItem = heroStatus
-          .filter((newItem) => {
-            return currAttackType != 'All'
-              ? newItem.attack_type == currAttackType
-              : newItem;
-          })
-          .filter((newItem) => {
-            return currAttribute != 'All'
-              ? newItem.primary_attr == currAttribute
-              : newItem;
-          });
-          setHeroStatusFiltered(newItem);
-      }else{
-        const newItem = heroStatus
-          .filter((newItem) => {
-            return currAttackType != 'All'
-              ? newItem.attack_type == currAttackType
-              : newItem;
-          })
-          .filter((newItem) => {
-            return currAttribute != 'All'
-              ? newItem.primary_attr == currAttribute
-              : newItem;
-          })
-          .filter((newItem) =>{
-            return rolesSelected.every((currRole) => newItem.roles.includes(currRole))
-          });
-        
-        setHeroStatusFiltered(newItem);
       }
     }
     
