@@ -11,11 +11,11 @@ export const constants = {
     aboutAccordion3Title: 'About the developer',
   
     aboutAccordion1Image:
-      'https://www.animationxpress.com/wp-content/uploads/2022/02/3Pixotope-Dota2.png',
+      'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254076/dotaDrafter/aboutAccordion1.png',
     aboutAccordion2Image:
-      'https://steamuserimages-a.akamaihd.net/ugc/865111643819174254/8559DF87EC87F9C45BE2F654571D039D4D70FA18/?imw=1024&imh=576&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true',
+      'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254067/dotaDrafter/aboutAccordion2.jpg',
     aboutAccordion3Image:
-      'https://fs.hubspotusercontent00.net/hubfs/6426302/Imported_Blog_Media/263a75529a1752b75d64f9f21fd07c92-3-2.jpg',
+      'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254067/dotaDrafter/aboutAccordion3.png',
   
     githubUrl: 'https://github.com/jSunpayco',
   
@@ -28,21 +28,21 @@ export const constants = {
     attributeStrength: 'str',
   
     urlCurrPick:
-      'https://i.etsystatic.com/18990914/r/il/a0ebb9/2022235661/il_570xN.2022235661_ald8.jpg',
+      'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254067/dotaDrafter/urlCurrPick.png',
     urlSkippedPick:
-      'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+      'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
   
     urlAgility:
-      'https://static.wikia.nocookie.net/dota2_gamepedia/images/2/2d/Agility_attribute_symbol.png',
+      'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669257569/dotaDrafter/Agility_attribute_symbol_lvrty8.webp',
     urlIntelligence:
-      'https://static.wikia.nocookie.net/dota2_gamepedia/images/5/56/Intelligence_attribute_symbol.png',
+      'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669257638/dotaDrafter/Intelligence_attribute_symbol_uqfpej.webp',
     urlStrength:
-      'https://static.wikia.nocookie.net/dota2_gamepedia/images/7/7a/Strength_attribute_symbol.png',
+      'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669257638/dotaDrafter/Strength_attribute_symbol_issbkx.webp',
   
     urlMelee:
-      'https://static.wikia.nocookie.net/dota2_gamepedia/images/0/02/Melee_icon.png',
+      'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254067/dotaDrafter/urlMelee.png',
     urlRanged:
-      'https://static.wikia.nocookie.net/dota2_gamepedia/images/1/19/Ranged_icon.png',
+      'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254067/dotaDrafter/urlRanged.png',
   
     urlHeroStats: 'https://api.opendota.com/api/heroStats',
     urlMainApi: 'https://api.opendota.com',
@@ -55,9 +55,9 @@ export const constants = {
         hero1: 'Ban 1',
         hero2: 'Ban 2',
         pickImage1:
-          'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+          'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
         pickImage2:
-          'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+          'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
       },
       {
         pickType: 'Ban',
@@ -66,9 +66,9 @@ export const constants = {
         hero1: 'Ban 3',
         hero2: 'Ban 4',
         pickImage1:
-          'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+          'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
         pickImage2:
-          'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+          'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
       },
   
       {
@@ -78,9 +78,9 @@ export const constants = {
         hero1: 'Pick 5',
         hero2: 'Pick 6',
         pickImage1:
-          'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+          'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
         pickImage2:
-          'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+          'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
       },
       {
         pickType: 'Pick',
@@ -89,9 +89,9 @@ export const constants = {
         hero1: 'Pick 8',
         hero2: 'Pick 7',
         pickImage1:
-          'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+          'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
         pickImage2:
-          'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+          'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
       },
   
       {
@@ -101,9 +101,9 @@ export const constants = {
         hero1: 'Ban 9',
         hero2: 'Ban 10',
         pickImage1:
-          'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+          'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
         pickImage2:
-          'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+          'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
       },
       {
         pickType: 'Ban',
@@ -112,9 +112,9 @@ export const constants = {
         hero1: 'Ban 11',
         hero2: 'Ban 12',
         pickImage1:
-          'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+          'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
         pickImage2:
-          'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+          'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
       },
       {
         pickType: 'Ban',
@@ -123,9 +123,9 @@ export const constants = {
         hero1: 'Ban 13',
         hero2: 'Ban 14',
         pickImage1:
-          'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+          'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
         pickImage2:
-          'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+          'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
       },
   
       {
@@ -135,9 +135,9 @@ export const constants = {
         hero1: 'Pick 16',
         hero2: 'Pick 15',
         pickImage1:
-          'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+          'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
         pickImage2:
-          'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+          'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
       },
       {
         pickType: 'Pick',
@@ -146,9 +146,9 @@ export const constants = {
         hero1: 'Pick 17',
         hero2: 'Pick 18',
         pickImage1:
-          'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+          'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
         pickImage2:
-          'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+          'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
       },
   
       {
@@ -159,9 +159,9 @@ export const constants = {
         hero1: 'Ban 19',
         hero2: 'Ban 20',
         pickImage1:
-          'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+          'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
         pickImage2:
-          'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+          'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
       },
       {
         pickType: 'Ban',
@@ -170,9 +170,9 @@ export const constants = {
         hero1: 'Ban 21',
         hero2: 'Ban 22',
         pickImage1:
-          'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+          'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
         pickImage2:
-          'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+          'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
       },
   
       {
@@ -182,9 +182,9 @@ export const constants = {
         hero1: 'Pick 23',
         hero2: 'Pick 24',
         pickImage1:
-          'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+          'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
         pickImage2:
-          'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+          'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
       },
     ],
   
@@ -196,9 +196,9 @@ export const constants = {
         hero1: 'Ban 2',
         hero2: 'Ban 1',
         pickImage1:
-          'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+          'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
         pickImage2:
-          'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+          'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
       },
       {
         pickType: 'Ban',
@@ -207,9 +207,9 @@ export const constants = {
         hero1: 'Ban 4',
         hero2: 'Ban 3',
         pickImage1:
-          'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+          'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
         pickImage2:
-          'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+          'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
       },
   
       {
@@ -219,9 +219,9 @@ export const constants = {
         hero1: 'Pick 6',
         hero2: 'Pick 5',
         pickImage1:
-          'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+          'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
         pickImage2:
-          'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+          'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
       },
       {
         pickType: 'Pick',
@@ -230,9 +230,9 @@ export const constants = {
         hero1: 'Pick 7',
         hero2: 'Pick 8',
         pickImage1:
-          'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+          'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
         pickImage2:
-          'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+          'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
       },
   
       {
@@ -242,9 +242,9 @@ export const constants = {
         hero1: 'Ban 10',
         hero2: 'Ban 9',
         pickImage1:
-          'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+          'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
         pickImage2:
-          'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+          'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
       },
       {
         pickType: 'Ban',
@@ -253,9 +253,9 @@ export const constants = {
         hero1: 'Ban 12',
         hero2: 'Ban 11',
         pickImage1:
-          'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+          'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
         pickImage2:
-          'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+          'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
       },
       {
         pickType: 'Ban',
@@ -264,9 +264,9 @@ export const constants = {
         hero1: 'Ban 14',
         hero2: 'Ban 13',
         pickImage1:
-          'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+          'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
         pickImage2:
-          'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+          'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
       },
   
       {
@@ -276,9 +276,9 @@ export const constants = {
         hero1: 'Pick 15',
         hero2: 'Pick 16',
         pickImage1:
-          'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+          'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
         pickImage2:
-          'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+          'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
       },
       {
         pickType: 'Pick',
@@ -287,9 +287,9 @@ export const constants = {
         hero1: 'Pick 18',
         hero2: 'Pick 17',
         pickImage1:
-          'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+          'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
         pickImage2:
-          'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+          'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
       },
   
       {
@@ -299,9 +299,9 @@ export const constants = {
         hero1: 'Ban 20',
         hero2: 'Ban 19',
         pickImage1:
-          'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+          'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
         pickImage2:
-          'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+          'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
       },
       {
         pickType: 'Ban',
@@ -310,9 +310,9 @@ export const constants = {
         hero1: 'Ban 22',
         hero2: 'Ban 21',
         pickImage1:
-          'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+          'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
         pickImage2:
-          'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+          'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
       },
   
       {
@@ -322,9 +322,9 @@ export const constants = {
         hero1: 'Pick 24',
         hero2: 'Pick 23',
         pickImage1:
-          'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+          'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
         pickImage2:
-          'https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png',
+          'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
       },
     ],
   

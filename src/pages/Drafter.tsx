@@ -20,7 +20,9 @@ import {
   
   import HeaderMiddle from '../components/HeaderMiddle.tsx';
   import DraftedHeroes from '../components/DraftedHeroes.tsx';
+  import {ColorRing} from 'react-loader-spinner';
   // import { IconSearch } from '@tabler/icons';
+  import axios from 'axios';
   
   const useStyles = createStyles((theme) => ({
     card: {
@@ -192,51 +194,49 @@ import {
     }
   
     const fetchHeroStatus = () => {
-      return fetch(constants.urlHeroStats)
-        .then((response) => response.json())
-        .then((data) => {
-          setAllHeroes(data);
-          setHeroAgility(
-            data.filter((hero) => {
-              return hero.primary_attr == 'agi';
-            })
-          );
-          setHeroAgilityFiltered(
-            data.filter((hero) => {
-              return hero.primary_attr == 'agi';
-            })
-          );
-          setHeroIntelligence(
-            data.filter((hero) => {
-              return hero.primary_attr == 'int';
-            })
-          );
-          setHeroIntelligenceFiltered(
-            data.filter((hero) => {
-              return hero.primary_attr == 'int';
-            })
-          );
-          setHeroStrength(
-            data.filter((hero) => {
-              return hero.primary_attr == 'str';
-            })
-          );
-          setHeroStrengthFiltered(
-            data.filter((hero) => {
-              return hero.primary_attr == 'str';
-            })
-          );
-        })
-        .then(function (data) {
-          setIsLoading(!isLoading);
-        });
+      axios.get('https://dota-drafter.onrender.com/heroStatus')
+      .then((res) => {
+        setAllHeroes(res.data);
+        setHeroAgility(
+          res.data.filter((hero) => {
+            return hero.primary_attr == 'agi';
+          })
+        );
+        setHeroAgilityFiltered(
+          res.data.filter((hero) => {
+            return hero.primary_attr == 'agi';
+          })
+        );
+        setHeroIntelligence(
+          res.data.filter((hero) => {
+            return hero.primary_attr == 'int';
+          })
+        );
+        setHeroIntelligenceFiltered(
+          res.data.filter((hero) => {
+            return hero.primary_attr == 'int';
+          })
+        );
+        setHeroStrength(
+          res.data.filter((hero) => {
+            return hero.primary_attr == 'str';
+          })
+        );
+        setHeroStrengthFiltered(
+          res.data.filter((hero) => {
+            return hero.primary_attr == 'str';
+          })
+        );
+      })
+      .catch((err) => console.log(err)
+      )
+      .then(function (data) {
+        setIsLoading(false);
+      });
     };
   
     const heroCards = (attr) => {
       return attr
-        .sort((a, b) => {
-          return a.localized_name > b.localized_name ? 1 : -1;
-        })
         .map((heroItem) => (
           <AspectRatio ratio={1920 / 1080}>
             <Tooltip label={heroItem.localized_name} multiline>
@@ -455,34 +455,45 @@ import {
   
           <Button onClick={() => setUserPreferences()}>Confirm</Button>
         </Modal>
-  
-        <div className={classes.timerNavBar}>
-          <div className={cx(classes.timerNavItems, classes.extraTime)}>
-            <Text>Radiant</Text>
-            <Text>{secondsToMinutes(radiantExtraTime)}</Text>
-            <Text>Reserve Time</Text>
-          </div>
-          <div className={classes.timerNavItems}>
-            <Text
-              size="xl"
-              weight={700}
-              style={{ color: isRadiantTurn ? 'green' : 'red' }}
-            >
-              {isRadiantTurn ? 'Radiant ' : 'Dire '}
-              {pickList[currIndex.current].pickType}
-            </Text>
-            <Text size="xl" weight={300}>
-              {secondsToMinutes(currDraftTime)}
-            </Text>
-  
-            <Group position="center" spacing="xs">
-              <Button onClick={handleTimer}>
-                {isCountingDown ? 'Pause' : 'Start'}
-              </Button>
-              <Button onClick={resetDraft}>Reset</Button>
-            </Group>
-          </div>
-          <div className={cx(classes.timerNavItems, classes.extraTime)}>
+
+        {isLoading ? 
+          (<ColorRing
+          visible={true}
+          height="80"
+          width="80"
+          ariaLabel="blocks-loading"
+          wrapperStyle={{}}
+          wrapperClass="blocks-wrapper"
+          colors={['#228BE6', '#228BE6', '#228BE6', '#228BE6', '#228BE6']}
+          />) : 
+          <div>
+            <div className={classes.timerNavBar}>
+              <div className={cx(classes.timerNavItems, classes.extraTime)}>
+                <Text>Radiant</Text>
+                <Text>{secondsToMinutes(radiantExtraTime)}</Text>
+                <Text>Reserve Time</Text>
+              </div>
+              <div className={classes.timerNavItems}>
+                <Text
+                  size="xl"
+                  weight={700}
+                  style={{ color: isRadiantTurn ? 'green' : 'red' }}
+                >
+                  {isRadiantTurn ? 'Radiant ' : 'Dire '}
+                  {pickList[currIndex.current].pickType}
+                </Text>
+                <Text size="xl" weight={300}>
+                  {secondsToMinutes(currDraftTime)}
+                </Text>
+      
+                <Group position="center" spacing="xs">
+                  <Button onClick={handleTimer}>
+                    {isCountingDown ? 'Pause' : 'Start'}
+                  </Button>
+                  <Button onClick={resetDraft}>Reset</Button>
+                </Group>
+              </div>
+            <div className={cx(classes.timerNavItems, classes.extraTime)}>
             <Text>Dire</Text>
             <Text>{secondsToMinutes(direExtraTime)}</Text>
             <Text>Reserve Time</Text>
@@ -542,7 +553,9 @@ import {
           <Container className={classes.drafted}>
             <DraftedHeroes pickList={pickList} />
           </Container>
-        </div>
+        </div></div>
+        }
+
       </div>
     );
   }
