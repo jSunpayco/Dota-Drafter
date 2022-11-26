@@ -8,7 +8,7 @@ function About(props) {
     const [userList, setUserList] = useState<any[]>([]);
 
     useEffect(() => {
-        fetchUsers();
+        // fetchUsers();
       }, []);
 
     const fetchUsers = () => {
@@ -28,7 +28,7 @@ function About(props) {
     return (
       <div>
         <HeaderMiddle activeTab={0} />
-        <p style={{ marginTop: 100 }}>{userList.length}</p>
+        <div style={{ marginTop: 100 }}></div>
         {/* {heroCards} */}
       </div>
     );
