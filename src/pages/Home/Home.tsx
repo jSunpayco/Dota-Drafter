@@ -41,9 +41,9 @@ function Home() {
         <div className={'contents'}>
           <div className='naviBarContainer'>
             <ul className='naviBar'>
-              <li onClick={() => scrollBack(summaryRef)} className='naviBarItem'><a className='naviBarText' href="#section-1">{constants.aboutAccordion1Title}</a></li>
-              <li onClick={() => scrollBack(rulesRef)} className='naviBarItem'><a className='naviBarText' href="#section-2">{constants.aboutAccordion2Title}</a></li>
-              <li onClick={() => scrollBack(devRef)} className='naviBarItem'><a className='naviBarText' href="#section-3">{constants.aboutAccordion3Title}</a></li>
+              <li onClick={() => scrollBack(summaryRef)} className='naviBarItem'><a className='naviBarText'>{constants.aboutAccordion1Title}</a></li>
+              <li onClick={() => scrollBack(rulesRef)} className='naviBarItem'><a className='naviBarText'>{constants.aboutAccordion2Title}</a></li>
+              <li onClick={() => scrollBack(devRef)} className='naviBarItem'><a className='naviBarText'>{constants.aboutAccordion3Title}</a></li>
             </ul>
           </div>
 
@@ -51,9 +51,15 @@ function Home() {
             
             <div className={'scrollGroup'} ref={summaryRef}>
               <div className='scrollContent'>
-                <Title order={1}>{constants.aboutAccordion1Title}</Title> 
+                <Title order={1}>{constants.aboutAccordion1Title}</Title>
                 <p>
-                  {constants.captainsModeDesc}
+                  {constants.captainsModeDesc1}
+                </p> 
+                <p>
+                  {constants.captainsModeDesc2}
+                </p> 
+                <p id='lastParagraph'>
+                  {constants.captainsModeDesc3}
                 </p>
               </div>
               <div className='scrollImage'>
@@ -77,7 +83,15 @@ function Home() {
             <div className={'scrollGroup'} ref={rulesRef}>
               <div className='scrollContent'>
                 <Title order={1}>{constants.aboutAccordion2Title}</Title>
-                <p>{constants.howToPlay}</p>
+                <p>
+                  {constants.howToPlay1}
+                </p> 
+                <p>
+                  {constants.howToPlay2}
+                </p> 
+                <p id='lastParagraph'>
+                  {constants.howToPlay3}
+                </p>
               </div>
               <div className='scrollImage'>
                 <img
@@ -97,11 +111,17 @@ function Home() {
               </div>
             </div>
             
-            <div className={'scrollGroup'} ref={devRef}>
+            <div className={'scrollGroup'} ref={devRef} data-scroll>
               <div className='scrollContent'>
                 <Title order={1}>{constants.aboutAccordion3Title}</Title>
                 <p>
-                  {constants.aboutMe} <a href={constants.githubUrl}>here</a>
+                  {constants.aboutMe1}
+                </p>
+                <p>
+                  {constants.aboutMe2}
+                </p>
+                <p id='lastParagraph'>
+                  {constants.aboutMe3} <a href={constants.githubUrl}>here</a>
                 </p>
               </div>
               <div className='scrollImage'>
