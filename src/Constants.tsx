@@ -6,16 +6,16 @@ export const constants = {
     aboutTitle: 'Welcome to DOTA Drafter',
     aboutSubTitle: "A web app that simulates DOTA 2's Captains Mode",
   
-    aboutAccordion1Title: 'What is DOTA 2 Captains Mode?',
+    aboutAccordion1Title: 'DOTA2 and Captains Mode',
     aboutAccordion2Title: 'Rules of drafting',
     aboutAccordion3Title: 'About the developer',
   
     aboutAccordion1Image:
-      'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254076/dotaDrafter/aboutAccordion1.png',
+      'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669507249/dotaDrafter/aboutAccordion1_laglul.jpg',
     aboutAccordion2Image:
-      'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254067/dotaDrafter/aboutAccordion2.jpg',
+      'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669507541/dotaDrafter/aboutAccordion2_l1y3pv.jpg',
     aboutAccordion3Image:
-      'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254067/dotaDrafter/aboutAccordion3.png',
+      'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669507541/dotaDrafter/aboutAccordion3_unpueq.jpg',
   
     githubUrl: 'https://github.com/jSunpayco',
   
@@ -328,13 +328,31 @@ export const constants = {
       },
     ],
   
-    captainsModeDesc:
-      'Captains mode is the standard format for tournament games. The captains ban certain heroes, up to seven per team, preventing either team from picking the hero. The captains also choose five heroes for their team.',
+    captainsModeDesc1:
+      "DOTA 2 is a game wherein two teams of five players match up against each other with the goal of destroying their opponent's base, whereas Captains Mode is the standard format used in the majority of tournament games.",
+    
+    captainsModeDesc2:  
+    "Two teams start off by first picking a captain that will call the shots on which characters (called heroes) their respective team wants to play, and which they do not want to play against.",
+    
+    captainsModeDesc3:
+    "Each captain then take turns banning certain heroes, up to seven per team, preventing either team from picking the hero, and also choosing five heroes for their team to utilize for the game.",
   
-    howToPlay:
-      'One must first pick which team gets to have the first/second pick for the game (Radiant or Dire). 30 seconds are then allotted for bans, and 30 seconds for picks. Each captain has 130 seconds total bonus time that can be used throughout any selection. If time runs out during a ban selection, no hero will be banned; if time runs out during a pick selection, a random hero will be chosen.',
+    howToPlay1:
+      'One must first pick which team gets to have the first/second pick for the game (Radiant or Dire).',
   
-    aboutMe:
-      "Currently a Computer Science student working on attaining my bacherlor's degree on 2023. This project was made with the intent on studying ReactJS, whilst trying to implement a styling framework, Mantine UI in this case. Another part of my motivation is being a fan of the video game DOTA 2 in order for me to gain learning experience in front-end development while using something I like as inspiration. You may visit the repository ",
+    howToPlay2:
+      '30 seconds are then allotted for bans, and 30 seconds for picks as well. Each captain also has 130 seconds total bonus time that can be used throughout any selection, once their original 30 seconds has run out.',
+
+    howToPlay3:
+      'If time runs out during a ban selection, no hero will be banned; if time runs out during a pick selection, a random hero will be chosen.',
+  
+    aboutMe1:
+      "Currently a Computer Science student about to attain my bacherlor's degree.",
+    
+    aboutMe2:
+      "This project was made with the intent on studying Typescript and ReactJS, whilst trying to implement a styling framework, with Mantine UI in this case.",
+    
+    aboutMe3:
+      "Another part of my motivation is being a fan of the video game DOTA 2 in order for me to gain learning experience in front-end development while using something I like as inspiration. You may visit the repository ",
   };
   
