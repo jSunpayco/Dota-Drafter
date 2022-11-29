@@ -190,7 +190,7 @@ import {
     }
   
     const fetchHeroStatus = () => {
-      axios.get('https://dota-drafter.onrender.com/heroStatus')
+      axios.get('https://dota-drafter-backend.vercel.app/api/heroStatus')
       .then((res) => {
         console.log("Fetched data")
         setAllHeroes(res.data);

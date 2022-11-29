@@ -142,7 +142,7 @@ import {
       if(rolesSelected.length > 0)
         filters['roles'] = {$all: rolesSelected}
 
-      axios.get('https://dota-drafter.onrender.com/heroStatus', {params:{
+      axios.get('https://dota-drafter-backend.vercel.app/api/heroStatus', {params:{
         filters: filters
       }})
       .then((res) => {
