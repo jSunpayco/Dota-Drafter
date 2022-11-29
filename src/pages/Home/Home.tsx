@@ -31,7 +31,7 @@ function Home() {
       <HeaderMiddle activeTab={constants.aboutPageIndex} />
 
       <div style={{ marginTop: '80px' }}>
-        <Group style={{ marginLeft: '100px' }}>
+        <Group className='title'>
           <Title order={1} size={80}>
             {constants.aboutTitle}
           </Title>

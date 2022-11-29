@@ -1,10 +1,14 @@
+.title{
+    margin-left: 100px;
+}
+
 /* Navigation bar */
 
 .contents{
     display: flex;
     justify-content: space-between;
     flex-direction: row;
-    margin-top: 30px;
+    margin-top: 200px;
 }
 
 .naviBarContainer{
@@ -54,6 +58,7 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
+    background-color: #f3feff;
 }
 
 /* About Contents */
@@ -95,27 +100,38 @@
 .scrollContent p{
     font-size: 20px;
     line-height: 30px;
-    margin-bottom: 800px;
+    margin-bottom: 550px;
 }
 
 .scrollContent #lastParagraph{
     margin-bottom: 100%;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 900px) {
     .contents {
       flex-direction: column;
+      margin-top: 50px;
     }
     .naviBarContainer{
-        position: relative;
+        /* position: relative; */
+        width: 100%;
         top: 30px;
-        margin-left: auto;
-        margin-right: auto;
+        z-index: 1;
+        background-color: aliceblue;
+    }
+    .naviBar{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        text-align: center;
+        padding: 0;
+        /* margin: 0; */
     }
     .contentsItem{
         margin-top: 50px;
         margin-left: auto;
         margin-right: auto;
+        background-color: white;
     }
     .scrollGroup{
         margin-top: 30px;
@@ -125,10 +141,21 @@
         margin-left: auto;
         margin-right: auto;
         width: 100%;
+        margin-bottom: 0px;
+    }
+    .scrollContent p{
+        margin-bottom: 50px;
+    }
+    .scrollContent #lastParagraph{
+        margin-bottom: 50px;
     }
     .scrollImage{
         margin-left: auto;
         margin-right: auto;
         top: 0;
+    }
+    .title{
+        margin-left: auto;
+        margin-right: auto;
     }
 }
