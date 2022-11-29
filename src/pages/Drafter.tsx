@@ -107,10 +107,6 @@ import {
   
     const [allHeroes, setAllHeroes] = useState<any[]>([]);
   
-    const [heroAgility, setHeroAgility] = useState<any[]>([]);
-    const [heroIntelligence, setHeroIntelligence] = useState<any[]>([]);
-    const [heroStrength, setHeroStrength] = useState<any[]>([]);
-  
     const [isModalOpened, setModalOpened] = useState(false);
     const [userTeam, setUserTeam] = useState('');
     const [pickTurn, setPickTurn] = useState('');
@@ -168,17 +164,17 @@ import {
   
     function keyPress(event) {
       if (event.target.value != '') {
-        let newAgi = heroAgility.filter((newItem) => {
+        let newAgi = heroAgilityFiltered.filter((newItem) => {
           return !newItem.localized_name
             .toLowerCase()
             .startsWith(event.target.value.toLowerCase());
         });
-        let newInt = heroIntelligence.filter((newItem) => {
+        let newInt = heroIntelligenceFiltered.filter((newItem) => {
           return !newItem.localized_name
             .toLowerCase()
             .startsWith(event.target.value.toLowerCase());
         });
-        let newStr = heroStrength.filter((newItem) => {
+        let newStr = heroStrengthFiltered.filter((newItem) => {
           return !newItem.localized_name
             .toLowerCase()
             .startsWith(event.target.value.toLowerCase());
@@ -196,30 +192,16 @@ import {
     const fetchHeroStatus = () => {
       axios.get('https://dota-drafter.onrender.com/heroStatus')
       .then((res) => {
+        console.log("Fetched data")
         setAllHeroes(res.data);
-        setHeroAgility(
-          res.data.filter((hero) => {
-            return hero.primary_attr == 'agi';
-          })
-        );
         setHeroAgilityFiltered(
           res.data.filter((hero) => {
             return hero.primary_attr == 'agi';
           })
         );
-        setHeroIntelligence(
-          res.data.filter((hero) => {
-            return hero.primary_attr == 'int';
-          })
-        );
         setHeroIntelligenceFiltered(
           res.data.filter((hero) => {
             return hero.primary_attr == 'int';
-          })
-        );
-        setHeroStrength(
-          res.data.filter((hero) => {
-            return hero.primary_attr == 'str';
           })
         );
         setHeroStrengthFiltered(
@@ -231,6 +213,7 @@ import {
       .catch((err) => console.log(err)
       )
       .then(function (data) {
+        console.log("set data")
         setIsLoading(false);
       });
     };
