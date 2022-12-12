@@ -327,32 +327,17 @@ export const constants = {
           'https://res.cloudinary.com/ddx0aorm7/image/upload/v1669254068/dotaDrafter/urlNoPick.png',
       },
     ],
-  
-    captainsModeDesc1:
-      "DOTA 2 is a game wherein two teams of five players match up against each other with the goal of destroying their opponent's base, whereas Captains Mode is the standard format used in the majority of tournament games.",
-    
-    captainsModeDesc2:  
-    "Two teams start off by first picking a captain that will call the shots on which characters (called heroes) their respective team wants to play, and which they do not want to play against.",
-    
-    captainsModeDesc3:
-    "Each captain then take turns banning certain heroes, up to seven per team, preventing either team from picking the hero, and also choosing five heroes for their team to utilize for the game.",
-  
-    howToPlay1:
-      'One must first pick which team gets to have the first/second pick for the game (Radiant or Dire).',
-  
-    howToPlay2:
-      '30 seconds are then allotted for bans, and 30 seconds for picks as well. Each captain also has 130 seconds total bonus time that can be used throughout any selection, once their original 30 seconds has run out.',
 
-    howToPlay3:
-      'If time runs out during a ban selection, no hero will be banned; if time runs out during a pick selection, a random hero will be chosen.',
-  
-    aboutMe1:
-      "Currently a Computer Science student about to attain my bacherlor's degree.",
-    
-    aboutMe2:
-      "This project was made with the intent on studying Typescript and ReactJS, whilst trying to implement a styling framework, with Mantine UI in this case.",
-    
-    aboutMe3:
-      "Another part of my motivation is being a fan of the video game DOTA 2 in order for me to gain learning experience in front-end development while using something I like as inspiration. You may visit the repository ",
+    about1Title: "Counter your opponents",
+    about1Desc: "Choose from a multitude of over 100 characters to go up against your opponent's lineup.",
+    about1Img:"https://res.cloudinary.com/ddx0aorm7/image/upload/v1670815617/dotaDrafter/d1.png",
+
+    about2Title: "Manage Your Time",
+    about2Desc: "Keep a lookout for your team's time limit in order to practice thinking faster in high pressure situations.",
+    about2Img:"https://res.cloudinary.com/ddx0aorm7/image/upload/v1670815660/dotaDrafter/d2.png",
+
+    about3Title: "Explore the Possibilities",
+    about3Desc: "Not familiar with a hero? Take a look at the 'Heroes' page and find out more about who they are.",
+    about3Img:"https://res.cloudinary.com/ddx0aorm7/image/upload/v1670815326/dotaDrafter/d3.png",
   };
   
