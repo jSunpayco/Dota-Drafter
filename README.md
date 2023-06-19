@@ -1,12 +1,12 @@
 # DOTA Drafter
 
-Note: This is a personal project in progress. The live demo is deployed on Vercel, and can be visited [here](https://dota-drafter.vercel.app/). The backend component can be found in [this repo](https://github.com/jSunpayco/dota-drafter-backend).
-
 This is a web application developed to simulate Captains Mode, a set of rules in the video game DOTA 2. The feature replicated from the game is when two team leaders take turns picking and banning one character from a list of 100+ within a specified time limit.
 
-The frontend is written in [ReactJS](https://reactjs.org/), whereas [MantineUI](https://mantine.dev/) was also used for some html components. [OpenDota API](https://docs.opendota.com/) was initially used to retrieve character information, but has now migrated to Mongo Atlas.
+The frontend is written in [ReactJS](https://reactjs.org/), whereas [MantineUI](https://mantine.dev/) was also used for some html components. [OpenDota API](https://docs.opendota.com/) was initially used to retrieve character information, but has now migrated to Mongo Atlas. The backend component can be found in [this repo](https://github.com/jSunpayco/dota-drafter-backend).
 
-## Running the app locally
+Note: This project is no longer deployed on Vercel, and is now required to be run locally.
+
+## Running the app
 
 Download the source code and unzip it in a folder.
 
